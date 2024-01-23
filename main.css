@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(255,125,0);
+}
+
+#focim {
+    font-family:Rubik, sans-serif;
+    font-size: 40px;
+    text-shadow: 3px 3px 3px hsl(0, 0%, 100%);
+    text-align: center;
+}
+
+#alcim {
+    font-family:Rubik, sans-serif;
+    font-size: 20px;
+    text-align: center;
+}
+
+.projektlink {
+    font-size: 25px;
+    color: rgb(0,0,30);
+}
+
+hr {
+    border-top: 1px solid black;
+}
