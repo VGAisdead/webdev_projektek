@@ -10,14 +10,12 @@ body{
 html {
     background-image: url("./assets/images/background.jpg");
     height: 500px;
-    background-color: orange;
-    background-position: center; 
+    background-color: antiquewhite;
     font-family:Rubik, sans-serif;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-position: center;
     background-position: center top;
-    background-size: 1920px 1080px;
+    background-size: cover;
 
 }
 
@@ -25,7 +23,7 @@ h1 {
     font-size: 30px;
     text-shadow: 3px 3px 3px cyan;
     text-align: center;
-    background-color:darkcyan;
+    background-color:cadetblue ;
     width: 240px;
     margin: auto;
     padding: 10px 10px;
@@ -36,7 +34,7 @@ h1 {
 
 h2{
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
     font-family:Rubik, sans-serif;
     margin: 3px;
 
@@ -74,7 +72,7 @@ a:hover{
 
 .felkoverszoveg{
     font-weight: bold ;
-    font-size: 20px;
+    font-size: 16px;
 }
 
 dt {
@@ -90,6 +88,7 @@ footer{
     position: fixed;
     bottom: 0;
     width: 100%;
+    margin: 0px 0px 10px 10px;
 }
 
 nav{
@@ -120,9 +119,18 @@ nav{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
-    height: 50%;
-    border-radius: 20px;
+    width: 60%;
+    border-radius: 15px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+#avokado {
+    position:relative;
+    max-width: 50%;
+    height:300px;
+    bottom: 70px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
