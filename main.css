@@ -17,18 +17,20 @@ html {
 }
 
 h1 {
-    font-size: 40px;
-    text-shadow: 3px 3px 3px hsl(0, 0%, 100%);
+    font-size: 30px;
+    text-shadow: 3px 3px 3px cyan;
     text-align: center;
     background-color:darkcyan;
-    width: 500px;
+    width: 240px;
     margin: auto;
+    padding: 10px 10px;
     border-radius: 20px 0px;
+    max-width: fit-content;
 }
 
 #alcim {
     font-family:Rubik, sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     text-align: center;
     margin: 5px
 }
@@ -67,4 +69,10 @@ dt {
 
 .projektlink{
     font-size: 20px;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
