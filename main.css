@@ -1,18 +1,35 @@
-body {
-    background-color: rgb(255,125,0);
+*{
+    box-sizing: border-box;
 }
 
-#focim {
+body {
+    background-image: url("../1_hu/assets/images/background.jpg");
+    height: 500px;
+    background-position: center; 
     font-family:Rubik, sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: 1920px 1080px;
+    background-position: center top;
+
+}
+
+h1 {
     font-size: 40px;
     text-shadow: 3px 3px 3px hsl(0, 0%, 100%);
     text-align: center;
+    background-color:darkcyan;
+    width: 500px;
+    margin: auto;
+    border-radius: 20px 0px;
 }
 
 #alcim {
     font-family:Rubik, sans-serif;
     font-size: 20px;
     text-align: center;
+    margin: 5px
 }
 
 .projektlink {
@@ -23,3 +40,23 @@ body {
 hr {
     border-top: 1px solid black;
 }
+
+a:link{
+    color:darkgrey;
+}
+a:visited{
+    color: black;
+}
+a:hover{
+    color: white;
+}
+
+.kapcsolatinfo {
+    font-size: 16px;
+    text-align: center;
+}
+
+.cim {
+    text-align: center;
+}
+
