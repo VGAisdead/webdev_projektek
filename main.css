@@ -10,8 +10,8 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
-    background-size: 1920px 1080px;
     background-position: center top;
+    background-size: 1920px 1080px;
 
 }
 
@@ -42,7 +42,7 @@ hr {
 }
 
 a:link{
-    color:darkgrey;
+    color:rgb(99, 99, 99);
 }
 a:visited{
     color: black;
