@@ -3,6 +3,10 @@
     max-width:100%;
 }
 
+body{
+    margin: 0px;
+}
+
 html {
     background-image: url("./assets/images/background.jpg");
     height: 500px;
@@ -27,17 +31,26 @@ h1 {
     padding: 10px 10px;
     border-radius: 20px 0px;
     max-width: fit-content;
+    margin-top: 10px;
 }
 
-#alcim {
-    font-family:Rubik, sans-serif;
-    font-size: 16px;
+h2{
     text-align: center;
-    margin: 5px
+    font-size: 16px;
+    font-family:Rubik, sans-serif;
+    margin: 3px;
+
 }
 
 hr {
-    border-top: 1px solid black;
+    border-style:solid;
+    color: black;
+    border-width: 1px 0px;
+}
+
+.googlemaplink{  
+    text-align: center;
+    display: block;
 }
 
 a:link{
@@ -81,4 +94,35 @@ footer{
 
 nav{
     text-align: center;
+}
+
+        div.middlelists{
+            text-align: center;
+        }
+
+        ul{
+            display: inline-block;
+            text-align: left;
+        }
+
+        dl{
+            display: inline-block;
+            text-align: left;
+        }
+
+        ol{
+            display: inline-block;
+            text-align: left;
+            margin-top: 0px;
+        }
+
+.kepkozepen{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    height: 50%;
+    border-radius: 20px;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
