@@ -32,20 +32,15 @@ h1 {
     margin: 5px
 }
 
-.projektlink {
-    font-size: 25px;
-    color: rgb(0,0,30);
-}
-
 hr {
     border-top: 1px solid black;
 }
 
 a:link{
-    color:rgb(99, 99, 99);
+    color:aquamarine;
 }
 a:visited{
-    color: black;
+    color: rgb(0, 0, 0);
 }
 a:hover{
     color: white;
@@ -60,3 +55,15 @@ a:hover{
     text-align: center;
 }
 
+.felkoverszoveg{
+    font-weight: bold ;
+    font-size: 20px;
+}
+
+dt {
+    margin-top: 20px;
+}
+
+.projektlink{
+    font-size: 20px;
+}
