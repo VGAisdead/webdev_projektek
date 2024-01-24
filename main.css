@@ -2,9 +2,10 @@
     box-sizing: border-box;
 }
 
-body {
-    background-image: url("../1_hu/assets/images/background.jpg");
+html {
+    background-image: url("./assets/images/background.jpg");
     height: 500px;
+    background-color: orange;
     background-position: center; 
     font-family:Rubik, sans-serif;
     background-repeat: no-repeat;
