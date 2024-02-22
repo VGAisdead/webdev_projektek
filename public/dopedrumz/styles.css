@@ -64,6 +64,9 @@ header {
   z-index: 99;
 }
 
+#form{
+  margin: auto auto
+}
 
 footer{
     margin-top: 50px;
@@ -123,8 +126,8 @@ nav{
 }
 
 .fa-envelope{
-  font-size: 50px;
-  margin-top: 30px;
+  font-size: 2rem;
+  margin-top: 20px;
 }
 
 #email{
@@ -152,10 +155,8 @@ nav{
 
 #video{
   margin: 50px auto;
-  max-width: 1280px; 
-  max-height: 720px;
-  min-width: 240px;
-  min-height: 135px;
+  width: 50%;
+  height: 40vh;
 }
 
 .submit{
@@ -178,9 +179,12 @@ nav{
         flex-wrap: wrap;
         background-color: black;
         right: 0;
+        height: 15px;
+    }
+    nav{
+      height: 0;
     }
     header {
-        height: 128px;
         align-items: start;
         flex-wrap: wrap;
         justify-content: center;
@@ -193,21 +197,31 @@ nav{
         height: 0;
     }
     .hero {
-        margin-top: 140px;
+        margin-top: 80px;
     }
     .logo > h1{
         font-size: 1.5rem;
     }
+    #video{
+      width: 90%;
+      height: 30vh;
 }
 @media only screen and (min-width: 750px) {
     #video{
-        width: 80%;
-        height: 400px;
+        width: 90%;
+        height: 35vh;
     }
+    .fa-solid{
+      font-size: 3rem
+    }
+  }
+  .fa-envelope{
+    font-size: 4rem;
 }
 @media only screen and (min-width: 1500px) {
-    #video{
-        width: 50%;
-        height: 500px;
+    .fa-solid{
+      font-size: 4rem
     }
-}
+    .fa-envelope{
+      font-size: 5rem;}
+}}
