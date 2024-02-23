@@ -17,12 +17,14 @@
 li{
     list-style: none;
 }
+html{
+  scroll-behavior: smooth;
+}
 body{
   position: relative;
   background-color:linen;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
-  scroll-behavior: smooth;
   margin: 0;  
   padding: 0;
 }
