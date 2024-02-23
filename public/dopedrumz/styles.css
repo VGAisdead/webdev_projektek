@@ -160,7 +160,7 @@ nav{
   display:grid ;
 }
 #features{
-  padding-top: 100px;
+  padding-top: 75px;
 }
 .grid{
   display: grid;
@@ -295,7 +295,6 @@ header > logo {
   #features{
     padding-left: 80px;
     padding-right: 80px;
-    padding-top: 100px;
   }
   #video{
     width: 80%;
@@ -381,6 +380,10 @@ header > logo {
     .product{
       min-width: 80vw;
     }
+   #features{
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 }
 @media only screen and (min-width: 1500px) {
     .fa-solid{
