@@ -105,7 +105,7 @@ nav{
     align-items: center;
 }
 .nav-bar{
-    flex-basis: calc(100% / 3);
+    flex-basis: 600px;
     height: 64px;
     justify-content: space-between;
     align-items: center;
@@ -162,17 +162,16 @@ nav{
   display:grid ;
 }
 #features{
-  padding-top: 75px;
+  padding-top: 100px;
 }
 .grid{
   display: grid;
   grid-template-columns:1fr 1fr 2fr 1fr;
-  padding: 15px 0;
 }
 
 div > .icon > .fa-solid{
   font-size: 75px;
-  padding: 15px;
+  padding: 15px
 }
 .icon{
   display: grid;
@@ -231,7 +230,7 @@ div > .icon > .fa-solid{
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding-top: 80px;
+  padding-top: 100px;
 }
 .submit{
   display:block;
@@ -295,6 +294,11 @@ header > logo {
   .product{
     min-width: 60vw;
   }
+  #features{
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 100px;
+  }
   #video{
     width: 80%;
     height: 40vh;
@@ -353,6 +357,9 @@ header > logo {
     }
     .box {
         height: 0;
+    }
+    .hero {
+        margin-top: 80px;
     }
     .logo > h1{
         font-size: 1.5rem;
