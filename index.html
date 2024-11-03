@@ -3,14 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="keywords" content="Jana András első weboldala" />
-    <meta
-      name="description"
-      content="Kezdő HTML tesztoldal, CSS gyakorló site"
-    />
+    <meta name="description" content="Kezdő HTML, CSS gyakorló site" />
     <meta name="author" content="Jana András" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="main.css" />
-    <title>Az első weboldalam🌐</title>
+    <title>Web Projektek🌐</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,44 +21,62 @@
     <header>
       <h1>Jana András projektjei</h1>
       <h2>Egy kezdő webfejlesztő első lépései</h2>
-      <hr />
     </header>
-    <nav>
-      <!--Series Project-->
-      <a class="projektlink" href="./public/movie-ranking.html"
-        >&#10092; Sorozat Rangsor &#10093;</a
-      >
-      <hr />
-
-      <!--Birthday Project-->
-      <a class="projektlink" href="./public/birthday-invite.html"
-        >&#10092; Szülinapi Meghívó &#10093;</a
-      >
-      <hr />
-
-      <!--Guacamole Recipe Project-->
-      <a class="projektlink" href="./public/guacamole.html"
-        >&#10092; Guacamole Recept &#10093;</a
-      >
-      <hr />
-
-      <!--Meme Project-->
-      <a class="projektlink" href="./public/meme.html"
-        >&#10092; Kóder Mémek &#10093;</a
-      >
-      <hr />
-      <!--DopeDrumz Project-->
-      <a class="projektlink" href="./public/dopedrumz/index.html"
-        >&#10092; DopeDrumz &#10093;</a
-      >
-      <hr />
-      <!--SavageLicit Project-->
-      <a class="projektlink" href="./public/savagelicit/index.html"
-        >&#10092; SavageLicit &#10093;</a
-      >
-    </nav>
 
     <hr />
+
+    <div class="projektek">
+      <!--Meme Project-->
+      <span class="card">
+        <a class="projectlink" href="./public/meme.html">
+          <img class="card-img" src="./assets/images/meme1.jpg" />
+          <p class="projectname">
+            <span class="code">&#10092;</span>
+            Kóder Mémek
+            <span class="code">/&#10093;</span>
+          </p>
+        </a>
+      </span>
+
+      <!--Guacamole Recipe Project-->
+      <span class="card">
+        <a class="projectlink" href="./public/guacamole.html">
+          <img class="card-img" src="./assets/images/guac.jpg" />
+          <p class="projectname">
+            <span class="code">&#10092;</span>
+            Guacamole Recept
+            <span class="code">/&#10093;</span>
+          </p>
+        </a>
+      </span>
+
+      <!--Birthday Project-->
+      <span class="card">
+        <a class="projectlink" href="./public/birthday-invite.html">
+          <img class="card-img" src="./assets/images/birthdaycard.jpg" />
+          <p class="projectname">
+            <span class="code">&#10092;</span>
+            Szülinapi Meghívó
+            <span class="code">/&#10093;</span>
+          </p>
+        </a>
+      </span>
+
+      <!--Series Project-->
+      <span class="card">
+        <a class="projectlink" href="./public/movie-ranking.html">
+          <img class="card-img" src="./assets/images/series.jpg" />
+          <p class="projectname">
+            <span class="code">&#10092;</span>
+            Sorozat Rangsor
+            <span class="code">/&#10093;</span>
+          </p>
+        </a>
+      </span>
+    </div>
+
+    <hr />
+
     <footer>
       <a href="./public/about.html">Rólam</a>
       &nbsp;
