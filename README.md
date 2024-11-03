@@ -1,3 +1,3 @@
-# html_projektek
+# webdev_projektek
 
 Az első bébilépéseim a webfejlesztő világban.
