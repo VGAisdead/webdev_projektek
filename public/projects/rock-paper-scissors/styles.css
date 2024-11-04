@@ -1,0 +1,214 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+}
+
+html::-webkit-scrollbar{
+        display: none;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+}
+
+html {
+    background-image: url("../../../assets/images/background.jpg");
+    height: 500px;
+    background-color: antiquewhite;
+    font-family:Rubik, sans-serif;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+}
+
+h1 {
+    font-size: 30px;
+    text-shadow: 3px 3px 3px cyan;
+    text-align: center;
+    background-color: cadetblue;
+    margin: auto;
+    padding: 10px 10px;
+    border-radius: 50px 6px;
+    border-left: 4px solid black;
+    border-bottom: 6px solid black;
+    max-width: fit-content;
+    margin-top: 10px;
+    max-width: 400px;
+}
+
+h2{
+    text-align: center;
+    font-size: 18px;
+    margin: 3px;
+    font-weight: 500;
+}
+
+hr {
+    border-style:solid;
+    color: black;
+    border-width: 1px 0px;
+}
+
+a:link{
+    color: black;
+}
+a:visited{
+    color: orangered;
+}
+a:hover{
+    color: orangered;
+}
+
+.btn {
+    font-size: 16px;
+    font-family: Rubik, sans-serif;
+    cursor: pointer;
+    min-width: 100px;
+    max-width: 150px;
+    margin: 10px;
+    color: white;
+    background-color: black;
+    background-image: linear-gradient(darkgrey, black);
+    border-color: white;
+    border-width: 2px;
+    padding: 10px 10px;
+    border-radius: 15px;
+  }
+  
+  .btn:hover {
+    background-image: linear-gradient(black, darkgrey);
+  }
+  
+  .rules-container {
+    width:fit-content;
+    max-width: 80%;
+    padding: 10px 10px;
+    margin: 20px auto 0 auto;
+    border-radius: 25px;
+    border: 2px solid ;
+    color: black ;
+    text-align: center;
+  }
+  
+  .rules-container ul {
+    list-style-type: none;
+  }
+  
+  .rules-container p {
+    margin: 10px 0;
+  }
+  
+  .score-container {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    font-size: 1.2rem;
+    gap: 50px;
+    text-align: center;
+  }
+  
+  .score {
+    font-weight: 500;
+  }
+  
+  .results-container {
+    font-size: 1.3rem;
+    margin: 15px 0;
+  }
+  
+  #winner-msg {
+    margin-top: 25px;
+  }
+  
+  #reset-game-btn {
+    display: none;
+    margin: 20px auto;
+  }
+  
+  .options-container {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .options-container > h2 {
+    flex-basis: 100%;
+    margin: 20px 0;
+  }
+
+  .results-container {
+    text-align: center;
+  }
+
+  .kopapirollo{
+    height: 20rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 50px 0px;
+  }
+
+  #jatekosvalasztas {
+    height: 75px;
+    object-fit: cover;
+    animation-name: balkez;
+    animation-duration: 1s;
+  }
+
+  #szamitogepvalasztas {
+    height: 75px;
+    object-fit: cover;
+    animation-name: jobbkez;
+    animation-duration: 1s;
+  }
+
+  @keyframes jobbkez {
+    0% {
+      transform: rotate(90deg);
+      transform-origin: 0% 2000%;
+    }
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 0% 2000%;
+    }
+  }
+  
+  @keyframes balkez {
+    0% {
+      transform: rotate(-90deg);
+      transform-origin: 0% 2000%;
+    }
+    100% {
+      transform: rotate(0deg);
+      transform-origin: 0% 2000%;
+    }
+  }
+  
+
+  @media only screen and (min-width: 1200px) {
+    #jatekosvalasztas {
+      height: 200px;
+    }
+    #szamitogepvalasztas {
+      height: 200px;
+    }
+    .kopapirollo {
+      height: 300px;
+    }
+  }
+  
+  footer {
+    padding: 0px 10px 10px 10px;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  a:link{
+    color: black;
+    text-decoration: none;
+  }
+  a:visited{
+    color: orangered;
+  }
+  a:hover{
+    color: orangered;
+  }
