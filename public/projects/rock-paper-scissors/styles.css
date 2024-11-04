@@ -31,7 +31,6 @@ h1 {
     border-left: 4px solid black;
     border-bottom: 6px solid black;
     max-width: fit-content;
-    margin-top: 10px;
 }
 
 h2{
@@ -192,6 +191,12 @@ a:hover{
     }
     .kopapirollo {
       height: 300px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    h1 {
+        max-width: 300px;
     }
   }
   
