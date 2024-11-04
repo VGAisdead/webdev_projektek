@@ -71,6 +71,10 @@ a:hover{
     padding: 10px 10px;
     border-radius: 15px;
   }
+
+  .btn-container {
+    display: flex;
+  }
   
   .btn:hover {
     background-image: linear-gradient(black, darkgrey);
@@ -126,6 +130,7 @@ a:hover{
     display: flex; 
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
   }
 
   .options-container > h2 {
