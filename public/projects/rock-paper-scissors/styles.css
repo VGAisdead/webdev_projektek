@@ -147,14 +147,14 @@ a:hover{
   }
 
   #jatekosvalasztas {
-    height: 75px;
+    height: 60px;
     object-fit: cover;
     animation-name: balkez;
     animation-duration: 1s;
   }
 
   #szamitogepvalasztas {
-    height: 75px;
+    height: 60px;
     object-fit: cover;
     animation-name: jobbkez;
     animation-duration: 1s;
