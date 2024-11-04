@@ -25,13 +25,12 @@ h1 {
     text-align: center;
     background-color: cadetblue;
     margin: auto;
-    padding: 10px 10px;
+    padding: 10px 15px;
     border-radius: 50px 6px;
     border-left: 4px solid black;
     border-bottom: 6px solid black;
     max-width: fit-content;
     margin-top: 10px;
-    max-width: 400px;
 }
 
 
