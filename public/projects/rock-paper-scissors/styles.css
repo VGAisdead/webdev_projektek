@@ -166,12 +166,12 @@ a:hover{
 
   .jobbkez-animacio {
     will-change: transform;
-    animation: jobbkez 0.5s linear forwards;
+    animation: jobbkez 0.8s ease-in-out forwards;
   }
 
   .balkez-animacio {
     will-change: transform;
-    animation: balkez 0.5s linear forwards;
+    animation: balkez 0.8s ease-in-out forwards;
   }
 
   @keyframes jobbkez {

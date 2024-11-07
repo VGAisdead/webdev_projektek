@@ -99,11 +99,11 @@ function koPapirOllo(playerChoice, computerChoice) {
     Olló: "scissors",
   };
 
-  playerHand.classList.add("balkez-animacio");
-  computerHand.classList.add("jobbkez-animacio");
-
   playerHand.src = `../../../assets/images/rockpaperscissors/player-${choicesMap[playerChoice]}.png`;
   computerHand.src = `../../../assets/images/rockpaperscissors/computer-${choicesMap[computerChoice]}.png`;
+
+  playerHand.classList.add("balkez-animacio");
+  computerHand.classList.add("jobbkez-animacio");
 
   setTimeout(() => {
     playerHand.classList.remove("balkez-animacio");
