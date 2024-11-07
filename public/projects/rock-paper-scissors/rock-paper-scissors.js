@@ -88,11 +88,10 @@ scissorsBtn.addEventListener("click", function () {
 });
 
 //  ANIMATION  //
+const playerHand = document.getElementById("jatekosvalasztas");
+const computerHand = document.getElementById("szamitogepvalasztas");
 
 function koPapirOllo(playerChoice, computerChoice) {
-  const playerHand = document.getElementById("jatekosvalasztas");
-  const computerHand = document.getElementById("szamitogepvalasztas");
-
   const choicesMap = {
     Kő: "rock",
     Papír: "paper",
@@ -104,12 +103,24 @@ function koPapirOllo(playerChoice, computerChoice) {
 
   playerHand.style.animation = "none";
   computerHand.style.animation = "none";
-  playerHand.style.display = "none";
-  computerHand.style.display = "none";
+
   setTimeout(() => {
     playerHand.style.animation = "";
     computerHand.style.animation = "";
-    playerHand.style.display = "flex";
-    computerHand.style.display = "flex";
   }, 10);
 }
+
+const imagesToPreload = [
+  "../../../assets/images/rockpaperscissors/player-rock.png",
+  "../../../assets/images/rockpaperscissors/player-paper.png",
+  "../../../assets/images/rockpaperscissors/player-scissors.png",
+  "../../../assets/images/rockpaperscissors/computer-rock.png",
+  "../../../assets/images/rockpaperscissors/computer-paper.png",
+  "../../../assets/images/rockpaperscissors/computer-scissors.png",
+  "../../../assets/images/background.png",
+];
+
+imagesToPreload.forEach((src) => {
+  const img = new Image();
+  img.src = src;
+});
