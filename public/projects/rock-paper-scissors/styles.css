@@ -155,16 +155,22 @@ a:hover{
     will-change: transform;
     height: 60px;
     object-fit: cover;
-    animation-name: balkez;
-    animation-duration: 1s;
   }
 
   #szamitogepvalasztas {
     will-change: transform;
     height: 60px;
     object-fit: cover;
-    animation-name: jobbkez;
-    animation-duration: 1s;
+  }
+
+  .jobbkez-animacio {
+    will-change: transform;
+    animation: jobbkez 1s linear forwards;
+  }
+
+  .balkez-animacio {
+    will-change: transform;
+    animation: balkez 1s linear forwards;
   }
 
   @keyframes jobbkez {
