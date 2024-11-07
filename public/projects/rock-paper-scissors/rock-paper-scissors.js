@@ -104,3 +104,4 @@ function koPapirOllo(playerChoice, computerChoice) {
 
   playerHand.style.animation = "none";
   computerHand.style.animation = "none";
+}
