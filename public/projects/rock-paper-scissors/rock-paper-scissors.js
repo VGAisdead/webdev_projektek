@@ -104,8 +104,3 @@ function koPapirOllo(playerChoice, computerChoice) {
 
   playerHand.style.animation = "none";
   computerHand.style.animation = "none";
-  setTimeout(() => {
-    playerHand.style.animation = "";
-    computerHand.style.animation = "";
-  }, 10);
-}
