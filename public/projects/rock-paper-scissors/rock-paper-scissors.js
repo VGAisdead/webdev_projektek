@@ -88,10 +88,11 @@ scissorsBtn.addEventListener("click", function () {
 });
 
 //  ANIMATION  //
-const playerHand = document.getElementById("jatekosvalasztas");
-const computerHand = document.getElementById("szamitogepvalasztas");
 
 function koPapirOllo(playerChoice, computerChoice) {
+  const playerHand = document.getElementById("jatekosvalasztas");
+  const computerHand = document.getElementById("szamitogepvalasztas");
+
   const choicesMap = {
     Kő: "rock",
     Papír: "paper",
@@ -101,13 +102,27 @@ function koPapirOllo(playerChoice, computerChoice) {
   playerHand.src = `../../../assets/images/rockpaperscissors/player-${choicesMap[playerChoice]}.png`;
   computerHand.src = `../../../assets/images/rockpaperscissors/computer-${choicesMap[computerChoice]}.png`;
 
+  // Képek rejtett előtöltése
+  const playerImage = new Image();
+  playerImage.src = `../../../assets/images/rockpaperscissors/player-${choicesMap[playerChoice]}.png`;
+  const computerImage = new Image();
+  computerImage.src = `../../../assets/images/rockpaperscissors/computer-${choicesMap[computerChoice]}.png`;
+
+  // Miután a képek betöltődtek, állítsuk be őket a src attribútumra
+  playerImage.onload = () => {
+    playerHand.src = playerImage.src;
+  };
+  computerImage.onload = () => {
+    computerHand.src = computerImage.src;
+  };
+
   playerHand.style.animation = "none";
   computerHand.style.animation = "none";
 
   setTimeout(() => {
     playerHand.style.animation = "";
     computerHand.style.animation = "";
-  }, 10);
+  }, 100);
 }
 
 const imagesToPreload = [
