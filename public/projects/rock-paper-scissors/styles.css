@@ -11,7 +11,6 @@ html::-webkit-scrollbar{
 
 html {
     background-image: url("../../../assets/images/background.jpg");
-    height: 500px;
     background-color: antiquewhite;
     font-family:Rubik, sans-serif;
     background-repeat: no-repeat;
@@ -199,7 +198,7 @@ a:hover{
     }
   }
 
-  @media screen and (max-width: 800px) {
+  @media print and (max-width: 800px) {
     h1 {
         max-width: 300px;
     }
