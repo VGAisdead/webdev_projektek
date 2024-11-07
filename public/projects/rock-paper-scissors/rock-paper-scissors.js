@@ -107,7 +107,7 @@ function koPapirOllo(playerChoice, computerChoice) {
   setTimeout(() => {
     playerHand.style.animation = "";
     computerHand.style.animation = "";
-  }, 10);
+  }, 100);
 }
 
 const imagesToPreload = [
