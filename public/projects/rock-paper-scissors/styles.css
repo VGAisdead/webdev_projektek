@@ -61,8 +61,8 @@ a:hover{
     font-size: 16px;
     font-family: Rubik, sans-serif;
     cursor: pointer;
-    min-width: 100px;
-    max-width: 150px;
+    min-width: 80px;
+    max-width: 120px;
     margin: 10px;
     color: white;
     background-color: black;
