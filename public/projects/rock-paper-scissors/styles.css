@@ -211,7 +211,7 @@ a:hover{
 
   @media print and (max-width: 800px) {
     h1 {
-        max-width: 300px;
+        max-width: 250px;
     }
   }
   
