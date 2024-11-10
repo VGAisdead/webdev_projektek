@@ -150,6 +150,7 @@ a:hover{
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    gap: 50px;
   }
 
   #jatekosvalasztas {
