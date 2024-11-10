@@ -94,6 +94,7 @@ a:hover{
   
   .rules-container ul {
     list-style-type: none;
+    padding: 0;
   }
   
   .rules-container p {
