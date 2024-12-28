@@ -1,0 +1,83 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 20px;
+  height: 50vh;
+  margin-top: 30px;
+}
+
+#text-input[type="text"] {
+  height: 40px;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  font-size: 22px;
+  font-family: Rubik, Helvetica, sans-serif;
+  background-color: white;
+  color: black;
+}
+
+#check-btn {
+  height: 40px;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  font-size: 22px;
+  font-family: Roboto;
+  text-transform: uppercase;
+  background-color: white;
+}
+
+h1 {
+  font-size: 28px;
+  font-family: Rubik, Helvetica, sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  font-family: Rubik, Helvetica, sans-serif;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+
+p {
+  font-family: Rubik, Helvetica, sans-serif;
+  font-size: 22px;
+  font-weight: 100;
+}
+
+.box {
+  background-color: #0ec5e6;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 60%;
+}
+
+@media (max-width: 600px) {
+  .box {
+    width: 80%;
+  }
+}
+
+#check-btn:hover {
+  background-color: #dfeeff;
+}
+
+#text-input:hover {
+  background-color: #dfeeff;
+}
+
+#text-input::placeholder {
+  color: black;
+}

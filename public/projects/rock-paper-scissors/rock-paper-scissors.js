@@ -53,6 +53,8 @@ function showResults(userOption) {
     resetGameBtn.style.display = "block";
     optionsContainer.style.display = "none";
   }
+  playerHand.classList.remove("hidden");
+  computerHand.classList.remove("hidden");
 }
 
 function resetGame() {
@@ -64,6 +66,8 @@ function resetGame() {
   optionsContainer.style.display = "flex";
   winnerMsgElement.innerText = "";
   roundResultsMsg.innerText = "";
+  playerHand.classList.add("hidden");
+  computerHand.classList.add("hidden");
 }
 
 resetGameBtn.addEventListener("click", resetGame);

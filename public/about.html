@@ -1,65 +1,121 @@
 <!DOCTYPE html>
 <html lang="hu">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="author" content="Jana András" />
-    <meta name="keywords" content="Jana András személyes" />
-    <meta
-      name="description"
-      content="Jana András személyes, HTML, CSS gyakorló site"
-    />
-    <title>👤Rólam👤</title>
-    <link rel="stylesheet" href="../main.css" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <br />
-    <h1>Pár szó rólam</h1>
-    <br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="keywords" content="Jana András 'rólam' oldal" />
+  <meta name="description" content="Kezdő HTML, CSS gyakorló site" />
+  <meta name="author" content="Jana András" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>👤Rólam👤</title>
 
-    <hr />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../main.css" />
+</head>
 
-    <div
-      style="
+<body>
+  <header id="header" class="header sticky-top">
+    <div class="container">
+      <nav class="navbar navbar-expand-md navbar-dark">
+
+        <a href="../index.html" class="navbar-brand">JA Projects</a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav"
+          aria-label="expand nav">
+          <span class="navbar-toggler-icon">
+          </span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link active" aria-current="page">Főoldal</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="../public/projects.html" class="nav-link active" aria-current="page">Projektek</a>
+            </li>
+
+            <li class="nav-item">
+              <a href="about.html" class="nav-link active" aria-current="page">Rólam</a>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Linkek
+              </a>
+
+              <ul class="dropdown-menu bg-black bg-gradient col-10
+                text-center py-2">
+                <li><a class="dropdown-item text-white" href="#">Facebook</a></li>
+
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+
+                <li><a class="dropdown-item text-white" href="#">Github</a></li>
+
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+
+                <li><a class="dropdown-item text-white" href="../public/contact.html">Kapcsolat</a></li>
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+
+
+      </nav>
+    </div>
+  </header>
+
+  <br />
+  <h1 class="text-center text-body-emphasis">Pár szó rólam</h1>
+  <br />
+
+  <hr />
+
+  <div id="about" style="
         display: flex;
         flex-direction: column;
         max-width: 80%;
         margin: 20px auto 20px auto;
         text-align: center;
-      "
-    >
-      <p>Kocka vagyok, de a szívem több bitből áll, mint pixelből...</p>
+      ">
+    <p class="lead">Kocka vagyok, de a szívem több bitből áll, mint pixelből...</p>
+    <br />
+    <p class="lead">
+      Amikor nem kódolok vagy épp stratégiákat próbálok a játékokban, a
+      festővásznat és a gitárt nyúzom
       <br />
-      <p>
-        Amikor nem kódolok vagy épp stratégiákat próbálok a játékokban, a
-        festővásznat és a gitárt nyúzom
-        <br />
-        – hiszek benne, hogy a kreativitás a legjobb bugfix.
-      </p>
-      <br />
-      <p>
-        Befektetésekkel is foglalkozom, mert szerintem a pénzügyi világ pont
-        olyan kihívás, mint egy jó logikai puzzle.
-        <br /><br />
-        Legyen szó kódról, színekről vagy hangokról, mindenben látom a
-        rendszert, és ez tart lendületben.
-      </p>
-    </div>
+      – hiszek benne, hogy a kreativitás a legjobb bugfix.
+    </p>
+    <br />
+    <p class="lead">
+      Befektetésekkel is foglalkozom, mert szerintem a pénzügyi világ pont
+      olyan kihívás, mint egy jó logikai puzzle.
+      <br /><br />
+      Legyen szó kódról, színekről vagy hangokról, mindenben látom a
+      rendszert, és ez tart lendületben.
+    </p>
+  </div>
 
-    <hr />
+  <hr />
 
-    <footer>
-      <a href="../index.html">Vissza</a>
-      &nbsp;
-      <br />
-      Copyright &copy; by Jana András
-    </footer>
-  </body>
+  <footer>
+  </footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
