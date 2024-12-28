@@ -153,7 +153,7 @@ ol {
 
 .projectimg {
   height: 300px;
-  object-fit: cover; /* Azonos méretű kép a kártyákban */
+  object-fit: cover;
 }
 
 .card-body {
@@ -163,7 +163,7 @@ ol {
 }
 
 .card-text {
-  flex-grow: 1; /* A szöveg terjeszkedhet a kártya kitöltéséhez */
+  flex-grow: 1; /* Szöveg terjeszkedés a kártya kitöltéséhez */
 }
 
 .card {
