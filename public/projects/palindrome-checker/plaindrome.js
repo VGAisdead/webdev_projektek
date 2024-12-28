@@ -19,15 +19,17 @@ function checkPalindrome(str) {
 
   if (isHungarian.checked) {
     // Magyar nyelvi sajátosságok
+
     normalizedStr = normalizedStr
-      .replace(/cs/g, "§") // Az "cs"-t egy speciális karakterre cseréljük
-      .replace(/dz/g, "¤") // Az "dz"-t egy másik speciális karakterre cseréljük
-      .replace(/dzs/g, "¥") // Az "dzs"-t egy harmadik karakterre cseréljük
-      .replace(/gy/g, "§§") // Az "gy"-t egy másik speciális karakterre cseréljük
-      .replace(/ly/g, "¤¤") // Az "ly"-t egy másik karakterre
-      .replace(/ny/g, "¥¥") // Az "ny"-t egy új karakterre
-      .replace(/sz/g, "∑") // Az "sz"-t egy másik karakterre
-      .replace(/ty/g, "∞"); // Az "ty"-t egy másik karakterre
+      .replace(/cs/g, "§")
+      .replace(/dz/g, "¤")
+      .replace(/dzs/g, "¥")
+      .replace(/gy/g, "†")
+      .replace(/ly/g, "µ")
+      .replace(/ny/g, "Ω")
+      .replace(/sz/g, "∑")
+      .replace(/ty/g, "∞")
+      .replace(/zs/g, "≠");
   }
 
   const rev = normalizedStr.split("").reverse().join("");
