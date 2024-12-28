@@ -80,13 +80,13 @@
 
     <br />
     <h1 class="text-center text-black">Palindrom ellenőrző</h1>
-    <h2 class="lead">"Meszet eszem a neten a neten a meszet eszem."</h2>
-    <hr />
+    <p class="text-center lead">"Meszet eszem a neten a neten a meszet eszem."</p>
+    <hr>
 
     <div class="wrapper">
         <div class="box">
 
-            <input type="text" id="text-input" placeholder="Példa: egészsége">
+            <input type="text" id="text-input" placeholder="példa: kosarasok, race car">
             </input>
 
             <button type="submit" id="check-btn" onclick="checkInput()">Ellenőrzés
@@ -99,17 +99,49 @@
 
         </div>
 
-        <div class="box text-black text-center lead">
+        <div class="box text-black text-center lead mb-5">
             <h2 class="text-uppercase">Mi az a palindrom?</h2>
-            <p>Olyan szó vagy szókapcsolat, amely visszafelé olvasva is ugyanaz, vagy visszafelé olvasva is értelmes.
+            <p class="lead">Olyan szó vagy szókapcsolat, amely visszafelé olvasva is ugyanaz, vagy (tágabb értelemben)
+                visszafelé
+                olvasva is értelmes.
             </p>
-            <p>Például: szósz, kütyük, radar, szakasz, <br>ló szava szól, a cápa eledele apáca, <br> indul a görög
-                aludni</p>
+
+            <p class="lead">Például:<br>szósz, kütyük, radar, szakasz, <br>ló szava szól, a cápa eledele apáca, <br>
+                indul a görög
+                aludni
+                <br>
+            <h3 class="text-uppercase lead fw-medium">Figyelem!</h3>
+            <p class="lead">
+                Bár a "szakasz" vagy a "kütyük" a magyar nyelvtan szerint palindromok, mert a magyar
+                nyelvben az "sz" és "ty" egy karakternek számítanak, a betűk szintjén mégsem azok.
+                <br>
+                A betűk sorrendje ugyanis nem egyezik:
+            <ul>
+                <li>Eredeti: <strong>szakasz, kütyük</strong></li>
+                <li>Fordított: <strong>zsakazs, küytük</strong></li>
+            </ul>
+            Ezért karakterek alapján nem tekinthetők palindromnak. <br><br>
+            Az alábbi gombbal kiválaszthatod hogyan szeretnéd ellenőrizni a palindromokat:</p>
+
+            <!-- Rounded switch -->
+            <div class="col-12 d-flex justify-content-center align-items-center flex-wrap gap-3">
+                <p class="lead mb-0 flex-item">Karakter szintű</p>
+
+                <div class="switch-container">
+                    <label for="isHungarian" class="switch">
+                        <input type="checkbox" id="isHungarian" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <p class="lead mb-0 flex-item">Magyar</p>
+            </div>
+
         </div>
 
+
+
     </div>
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
