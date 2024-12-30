@@ -9,6 +9,7 @@ function checkInput() {
     return alert("Írj be egy szót vagy kifejezést.");
   } else {
     checkPalindrome(input.value);
+    result.classList.remove("hidden");
   }
 }
 
