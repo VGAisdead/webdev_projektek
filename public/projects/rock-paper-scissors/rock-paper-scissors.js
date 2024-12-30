@@ -1,4 +1,12 @@
 let computerChoice;
+let playerScore = 0;
+let computerScore = 0;
+const playerScoreSpanElement = document.getElementById("player-score");
+const computerScoreSpanElement = document.getElementById("computer-score");
+const roundResultsMsg = document.getElementById("results-msg");
+const winnerMsgElement = document.getElementById("winner-msg");
+const optionsContainer = document.querySelector(".options-container");
+const resetGameBtn = document.getElementById("reset-game-btn");
 
 function getRandomComputerResult() {
   const options = ["Kő", "Papír", "Olló"];
@@ -14,9 +22,6 @@ function hasPlayerWonTheRound(player, computer) {
   );
 }
 
-let playerScore = 0;
-let computerScore = 0;
-
 function getRoundResults(userOption) {
   const computerResult = getRandomComputerResult();
 
@@ -30,13 +35,6 @@ function getRoundResults(userOption) {
     return `Vesztettél!`;
   }
 }
-
-const playerScoreSpanElement = document.getElementById("player-score");
-const computerScoreSpanElement = document.getElementById("computer-score");
-const roundResultsMsg = document.getElementById("results-msg");
-const winnerMsgElement = document.getElementById("winner-msg");
-const optionsContainer = document.querySelector(".options-container");
-const resetGameBtn = document.getElementById("reset-game-btn");
 
 function showResults(userOption) {
   roundResultsMsg.innerText = getRoundResults(userOption);
