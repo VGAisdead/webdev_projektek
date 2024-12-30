@@ -65,16 +65,15 @@ h2 {
 }
 
 #check-btn:hover {
-  background-color: #877eff80;
+  background-color: #ffffff20;
 }
 
 #check-btn:active {
   background-color: #0ec6e680;
 }
 
-#text-input:hover,
 #text-input:focus {
-  background-color: #ffffff1a;
+  background-color: #ffffff20;
 }
 
 #text-input::placeholder {
