@@ -139,14 +139,25 @@ ol {
   max-width: 100%;
 }
 
+.memeloading {
+  border: 2px solid black;
+  border-radius: 20px;
+  max-width: 100%;
+}
+
+p {
+  margin: 0;
+}
+
 .meme1p1 {
   font-size: 1.5rem;
   padding-bottom: 4px;
+  padding-top: 4px;
 }
 
 .meme1p2 {
   font-size: 1rem;
-  padding-bottom: 8px;
+  padding-bottom: 10px;
 }
 
 /*-------------------------------------------*/
