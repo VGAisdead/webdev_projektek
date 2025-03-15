@@ -85,39 +85,37 @@
     <p class="text-center lead">Pénzügyi kimutatások teszt</p>
     <hr>
 
+    <!-- Kimutatás kiválasztása -->
+    <div id="start-modal" class="modal">
+        <div class="modal-content">
+            <h3>Válaszd ki, melyik beszámolót szeretnéd gyakorolni:</h3>
+            <ul id="report-selection">
+                <li class="select-report" data-type="merleg">Mérleg</li>
+                <li class="select-report" data-type="osszkoltseg">Összköltség Eredménykimutatás</li>
+                <li class="select-report" data-type="forgalmi">Forgalmi Költség Eredménykimutatás</li>
+                <li class="select-report" data-type="cashflow">Cashflow kimutatás</li>
+            </ul>
+        </div>
+    </div>
 
-    <div class="wrapper col-10 col-lg-6 mt-5 mb-3">
 
-        <div id="start-modal" class="modal">
-            <div class="modal-content">
-                <h3>Válaszd ki, melyik beszámolót szeretnéd gyakorolni:</h3>
-                <ul id="report-selection">
-                    <li class="select-report" data-type="merleg">Mérleg</li>
-                    <li class="select-report" data-type="osszkoltseg">Összköltség Eredménykimutatás</li>
-                    <li class="select-report" data-type="forgalmi">Forgalmi Költség Eredménykimutatás</li>
-                    <li class="select-report" data-type="cashflow">Cashflow kimutatás</li>
-                </ul>
+    <div id="sheet" class="wrapper col-10 col-lg-6 mt-5 mb-3 hidden">
+        <!-- Táblázat -->
+            <h2 id="report-title"></h2>
+            <table id="report-table"></table>
+            <!-- Ellenőrzés gomb -->
+            <div class="d-flex justify-content-center mt-3">
+                <button id="check-button" class="btn btn-primary check">Ellenőrzés</button>
             </div>
-        </div>
-    
-        <h2 id="report-title" style="display: none;"></h2>
-        <table id="report-table" style="display: none;"></table>
-        <!-- Az Ellenőrzés gomb -->
-        <div class="d-flex justify-content-center mt-3">
-    <button id="check-button" class="btn btn-primary">Ellenőrzés</button>
-        </div>
+    </div>
 
-    
-        <!-- Modal ablak a táblázathoz -->
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <h3>Válassz egy elemet:</h3>
-                <ul id="option-list"></ul>
-                <button id="close-modal">Bezárás</button>
-            </div>
+    <!-- Modal ablak a táblázathoz -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <h3>Válassz egy elemet:</h3>
+            <ul id="option-list"></ul>
+            <button id="close-modal">Bezárás</button>
         </div>
-
-
     </div>
 
 

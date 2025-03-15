@@ -113,3 +113,18 @@ table td[class="selectable"] {
   color: white; /* Fehér szín a szövegnek */
   cursor: pointer;
 }
+
+.check {
+  width: 100%;
+  margin: auto;
+  height: 3rem;
+  border-radius: 8px;
+  background-color: orangered;
+  border: none;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 1.2rem;
+  color: black;
+  transition: background-color 1s ease-out;
+  cursor: pointer;
+}

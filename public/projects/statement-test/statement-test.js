@@ -3,6 +3,7 @@ const modal = document.getElementById("modal");
 const optionList = document.getElementById("option-list");
 const reportTitle = document.getElementById("report-title");
 const reportTable = document.getElementById("report-table");
+const reportSheet = document.getElementById("sheet");
 const closeModalBtn = document.getElementById("close-modal");
 
 let activeCell = null; // Az éppen kiválasztott cella
@@ -67,6 +68,7 @@ document.querySelectorAll(".select-report").forEach((button) => {
   button.addEventListener("click", function () {
     const reportType = this.dataset.type;
     const selectedReport = reports[reportType];
+    sheet.classList.remove("hidden");
 
     // Beállítjuk a táblázatot
     reportTitle.textContent = selectedReport.title;
