@@ -21,10 +21,6 @@ body {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-
-
-
 .hidden {
   display: none;
 }
@@ -46,10 +42,6 @@ td:hover {
 th {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
-
-
-
 
 table {
   width: 100%;
@@ -77,8 +69,10 @@ td {
   padding: 20px;
   border-radius: 10px;
   width: 80%; /* Csökkentett szélesség, hogy jobban illeszkedjen kisebb képernyőkön */
+  max-height: 80%;
   max-width: 400px; /* Maximális szélesség, hogy ne legyen túl széles */
   text-align: center;
+  overflow: auto;
 }
 
 .modal ul {
@@ -119,4 +113,3 @@ table td[class="selectable"] {
   color: white; /* Fehér szín a szövegnek */
   cursor: pointer;
 }
-

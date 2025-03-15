@@ -80,16 +80,14 @@ document.querySelectorAll(".select-report").forEach((button) => {
       let tableRow = document.createElement("tr");
       let cell = document.createElement("td");
 
-      if (row.type === "header") {
-        cell.textContent = `${row.label}`; // Csak a római számok
+      if (row.type === "header" || row.type === "subheader") {
+        // Az A, B, C és római betűs sorok mindig a teljes szöveget mutatják
+        cell.textContent = `${row.label} ${row.name}`;
         cell.style.fontWeight = "bold";
-        cell.style.backgroundColor = "#777"; // Sötétebb háttér a fő kategóriáknak
-      } else if (row.type === "subheader") {
-        cell.textContent = `${row.label}`; // Csak a római számok
-        cell.style.fontWeight = "bold";
-        cell.style.backgroundColor = "#999"; // Kicsit világosabb háttér az alosztályoknak
+        cell.style.backgroundColor = row.type === "header" ? "#777" : "#999"; // Sötétebb háttér a fő kategóriáknak, világosabb a subheader-eknek
       } else {
-        cell.textContent = `${row.label}`; // Csak az arab számok
+        // Az arab számoknál csak a számok jelennek meg először
+        cell.textContent = `${row.label}`;
         cell.classList.add("selectable");
         cell.dataset.id = index;
 
@@ -104,7 +102,8 @@ document.querySelectorAll(".select-report").forEach((button) => {
             li.textContent = option.name; // Az objektum 'name' mezőjét használjuk
 
             li.addEventListener("click", function () {
-              activeCell.textContent = `${row.label} ${option.name}`; // Itt lesz a név hozzáadva
+              // Kiválasztáskor hozzáadjuk a névet
+              activeCell.textContent = `${row.label} ${option.name}`;
 
               // Eltávolítjuk az opciók közül
               availableOptions = availableOptions.filter(
