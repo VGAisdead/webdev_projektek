@@ -1,6 +1,6 @@
 const whoami = document.querySelector(".whoami");
 
-const careers = ["kóder", "könyvelő", "gamer", "örök tanuló!"];
+const careers = ["kóder ", "könyvelő ", "gamer ", "örök tanuló! "];
 let careerIndex = 0;
 let characterIndex = 0;
 
@@ -18,9 +18,10 @@ András vagyok - <br>${careers[careerIndex].slice(0, characterIndex)}</h1>`;
   if (careerIndex === careers.length) {
     setTimeout(() => {
       careerIndex = 0;
-    }, 500);
+      updateCareer();
+    }, 10000);
   }
-  setTimeout(updateCareer, 200);
+  setTimeout(updateCareer, 300);
 }
 
 updateCareer();
