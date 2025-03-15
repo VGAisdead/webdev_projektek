@@ -15,9 +15,9 @@ const reports = {
   merleg: {
     title: "Mérleg",
     description:
-      "A mérleg egy pénzügyi kimutatás, amely a vállalkozás eszközeit, forrásait és azok változásait mutatja. Két fő részből áll: az aktív oldal az eszközöket, míg a passzív oldal a forrásokat tartalmazza, így átfogó képet adva a vállalat pénzügyi helyzetéről egy adott időpontban.",
+      "A mérleg egy pénzügyi kimutatás, amely a vállalkozás eszközeit, forrásait mutatja. Két fő részből áll: az aktív oldal az eszközöket, míg a passzív oldal a forrásokat tartalmazza, így átfogó képet adva a vállalat pénzügyi helyzetéről egy adott időpontban.",
     rows: [
-      { label: "ESZKÖZÖK", name: "Elválasztó sor", type: "separator" },
+      { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "header" },
       { label: "A/", name: "Befektetett eszközök", type: "header" },
       { label: "I.", name: "Immateriális javak", type: "subheader" },
       { label: "1.", name: "Alapítás átszervezés aktivált értéke" },
@@ -37,6 +37,7 @@ const reports = {
       { label: "2.", name: "Befejezetlen és félkész termékek" },
       { label: "C/", name: "Aktív időbeli elhatárolások", type: "header" },
       { label: "1.", name: "Bevételek aktív időbeli elhatárolása" },
+      { label: "FORRÁSOK /", name: "PASSZÍVÁK", type: "header" },
     ],
   },
   osszkoltseg: {
