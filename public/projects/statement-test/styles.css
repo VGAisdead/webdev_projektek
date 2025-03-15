@@ -138,8 +138,7 @@ table td[class="selectable"] {
 
 /* Header és subheader típusú sorok nem kattinthatók */
 table td[type="header"],
-table td[type="subheader"],
-table td[type="separator"] {
+table td[type="subheader"] {
   background-color: #ddd; /* Világos szürke háttér */
   color: #333;
   font-weight: bold;
