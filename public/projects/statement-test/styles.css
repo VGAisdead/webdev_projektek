@@ -54,11 +54,7 @@ td {
   text-align: center;
 }
 .modal {
-<<<<<<< HEAD
   display: none; /* Alapértelmezetten rejtve */
-=======
-  display: none;
->>>>>>> df0638e6be53203496f0741bcda0d1d358349f20
   position: fixed;
   top: 0;
   left: 0;
@@ -67,7 +63,6 @@ td {
   background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
-<<<<<<< HEAD
   z-index: 1000; /* Biztos, hogy a modál mindig előtérben lesz */
   overflow: hidden; /* Elkerüli, hogy görgethető legyen */
 }
@@ -76,9 +71,6 @@ td {
   display: flex; /* Megjeleníti a modált, ha hozzáadjuk a "show" osztályt */
 }
 
-=======
-}
->>>>>>> df0638e6be53203496f0741bcda0d1d358349f20
 .modal-content {
   background: white;
   padding: 20px;
@@ -142,7 +134,6 @@ table td[class="selectable"] {
   color: black;
   transition: background-color 1s ease-out;
   cursor: pointer;
-<<<<<<< HEAD
 }
 
 /* Header és subheader típusú sorok nem kattinthatók */
@@ -157,6 +148,3 @@ table td[type="separator"] {
   pointer-events: none; /* Ne reagáljanak a kattintásokra */
   border: none; /* Ne legyenek szegélyek */
 }
-=======
-}
->>>>>>> df0638e6be53203496f0741bcda0d1d358349f20
