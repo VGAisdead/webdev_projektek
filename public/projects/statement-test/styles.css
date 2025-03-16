@@ -115,6 +115,14 @@ td {
 	color: white;
 }
 
+#error-modal {
+	display: none;
+}
+
+#error-modal.show {
+	display: flex;
+}
+
 .modal ul li:hover {
 	background-color: rgb(
 		215,

@@ -616,7 +616,10 @@ if (checkBtn) {
 // Eredmények modal (egységes progress bar logika)
 function showErrorModal(message) {
 	errorList.innerHTML = `<p>${message}</p>`;
-	errorModal.classList.add("show");
+	errorModal.classList.remove("show"); // Először eltávolítjuk a "show" osztályt
+	setTimeout(() => {
+		errorModal.classList.add("show"); // Kis késleltetéssel újra hozzáadjuk
+	}, 10); // 10ms késleltetés az állapotfrissítéshez
 
 	const selectableCells = document.querySelectorAll(
 		"#report-table tr td.selectable"
@@ -657,7 +660,7 @@ function showErrorModal(message) {
 
 	function animateText(currentTime) {
 		const elapsed = currentTime - startTime;
-		const progress = Math.min(elapsed / duration, 1); // 0 és 1 között
+		const progress = Math.min(elapsed / duration, 1);
 		const currentValue = Math.round(start + (end - start) * progress);
 
 		percentageText.textContent = `${currentValue}%`;
@@ -665,19 +668,18 @@ function showErrorModal(message) {
 		if (progress < 1) {
 			requestAnimationFrame(animateText);
 		} else {
-			percentageText.textContent = `${end}%`; // Végső érték
+			percentageText.textContent = `${end}%`;
 		}
 	}
 
-	percentageText.textContent = "0%"; // Kezdőérték
+	percentageText.textContent = "0%";
 	requestAnimationFrame(animateText);
 }
-
 // Hibamodal bezárása (progress bar reset)
 document.getElementById("close-error-modal").addEventListener("click", () => {
 	errorModal.classList.remove("show");
-	progressFill.style.width = "0%"; // Reset a bezáráskor
-	percentageText.textContent = "0%"; // Szöveg reset
+	progressFill.style.width = "0%";
+	percentageText.textContent = "0%";
 });
 
 // Progress bar frissítése
@@ -695,16 +697,15 @@ function updateProgressBar(percentage) {
 // Modalok bezárása
 function closeModalOnOutsideClick(event, modalElement) {
 	if (event.target === modalElement) {
-		modalElement.style.display = "none"; // vagy classList.remove("show")
+		modalElement.classList.remove("show"); // Csak classList-et használunk
 	}
 }
 
 window.addEventListener("click", (event) =>
 	closeModalOnOutsideClick(event, modal)
 );
-window.addEventListener(
-	"click",
-	(event) => closeModalOnOutsideClick(event, errorModal) // Itt már van a definíció
+window.addEventListener("click", (event) =>
+	closeModalOnOutsideClick(event, errorModal)
 );
 
 // Progress bar frissítése
