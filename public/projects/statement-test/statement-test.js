@@ -194,7 +194,7 @@ const reports = {
 	cashflow: {
 		title: "Cashflow kimutatás",
 		description:
-			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási körökben.",
+			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási szinten.",
 		rows: [
 			{
 				label: "01.",
