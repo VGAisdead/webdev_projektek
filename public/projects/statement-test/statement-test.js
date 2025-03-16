@@ -20,7 +20,7 @@ const reports = {
     title: "Mérleg",
     description: "A mérleg egy pénzügyi kimutatás...",
     rows: [
-      { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "header" },
+      { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "mainheader" },
       { label: "A/", name: "Befektetett eszközök", type: "header" },
       { label: "I.", name: "Immateriális javak", type: "subheader" },
       {
@@ -83,14 +83,43 @@ const reports = {
     title: "Összköltség Eredménykimutatás",
     description: "Összköltség Eredménykimutatás...",
     rows: [
-      { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "header" },
-      { label: "A/", name: "Befektetett eszközök", type: "header" },
-      { label: "I.", name: "Immateriális javak", type: "subheader" },
       {
-        label: "1.",
-        name: "Alapítás átszervezés aktivált értéke",
+        label: "01.",
+        name: "Belföldi értékesítés nettó árbevétele",
         type: "selectable",
       },
+      {
+        label: "02.",
+        name: "Export értékesítés nettó árbevétele",
+        type: "selectable",
+      },
+      {
+        label: "I.",
+        name: "Értékesítés nettó árbevétele (01+02)",
+        type: "header",
+      },
+      {
+        label: "03.",
+        name: "Saját termelésű készletek állományváltozása",
+        type: "selectable",
+      },
+      {
+        label: "04.",
+        name: "Saját előállítású eszközök aktivált értéke",
+        type: "selectable",
+      },
+      {
+        label: "II.",
+        name: "Aktivált saját teljesítmények értéke (±03+04)",
+        type: "header",
+      },
+      {
+        label: "A /",
+        name: "ÜZEMI (Üzleti) tevékenység eredménye",
+        type: "mainheader",
+      },
+
+      { label: "I.", name: "Immateriális javak", type: "subheader" },
     ],
   },
 };
@@ -134,10 +163,20 @@ document.querySelectorAll(".select-report").forEach((button) => {
       const tableRow = document.createElement("tr");
       const cell = document.createElement("td");
 
-      if (row.type === "header" || row.type === "subheader") {
+      if (
+        row.type === "mainheader" ||
+        row.type === "header" ||
+        row.type === "subheader"
+      ) {
         cell.textContent = `${row.label} ${row.name}`;
         cell.style.fontWeight = "bold";
-        cell.style.backgroundColor = row.type === "header" ? "#777" : "#999";
+        if (row.type === "mainheader") {
+          cell.style.backgroundColor = "#F8F6F1";
+        } else if (row.type === "header") {
+          cell.style.backgroundColor = "#FFD9D6";
+        } else if (row.type === "subheader") {
+          cell.style.backgroundColor = "#B8BFB0";
+        }
       } else {
         cell.textContent = row.label;
         cell.classList.add("selectable");
@@ -217,15 +256,37 @@ window.addEventListener("click", (event) => {
 // Ellenőrzés
 document.getElementById("check-button").addEventListener("click", () => {
   const selectedReport = reports[currentReportType || "merleg"];
-  const expectedOrder = selectedReport.rows.map((row) => row.label);
-  const userOrder = Array.from(
-    document.querySelectorAll("#report-table tr td")
-  ).map((cell) => cell.textContent.trim().split(" ")[0]);
+
+  // Csak a selectable sorok elvárt sorrendje
+  const expectedSelectableOrder = selectedReport.rows
+    .filter((row) => row.type === "selectable")
+    .map((row) => ({
+      label: row.label,
+      name: row.name,
+    }));
+
+  // A felhasználó által kitöltött selectable sorok
+  const userSelectableOrder = Array.from(
+    document.querySelectorAll("#report-table tr td.selectable")
+  ).map((cell) => ({
+    label: cell.dataset.label,
+    name: cell.dataset.selectedOption
+      ? JSON.parse(cell.dataset.selectedOption).name
+      : null,
+  }));
 
   const errors = [];
-  for (let i = 0; i < expectedOrder.length; i++) {
-    if (expectedOrder[i] !== userOrder[i]) {
-      errors.push(`Hiba: A(z) ${expectedOrder[i]} sor rossz helyen van!`);
+  for (let i = 0; i < expectedSelectableOrder.length; i++) {
+    const expected = expectedSelectableOrder[i];
+    const user = userSelectableOrder[i];
+
+    // Ha a label nem egyezik, vagy a kiválasztott név nem stimmel
+    if (user.label !== expected.label) {
+      errors.push(`Hiba: A(z) ${expected.label} sor rossz helyen van!`);
+    } else if (user.name !== expected.name && user.name !== null) {
+      errors.push(
+        `Hiba: ${expected.label} sor rossz elem: ${user.name} (megoldás: ${expected.name})!`
+      );
     }
   }
 
