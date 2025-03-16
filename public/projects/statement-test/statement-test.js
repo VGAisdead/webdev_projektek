@@ -8,6 +8,7 @@ const reportTable = document.getElementById("report-table");
 const reportSheet = document.getElementById("sheet");
 const closeModalBtn = document.getElementById("close-modal");
 const deleteRowBtn = document.getElementById("delete-row-btn");
+const checkBtn = document.getElementById("check-button");
 
 let activeCell = null; // Az éppen kiválasztott cella
 let availableOptions = []; // Az elérhető elemek listája
@@ -171,7 +172,7 @@ const reports = {
 
 	cashflow: {
 		title: "Cashflow kimutatás",
-		description: "Cahsflow kimutatás...",
+		description: "Cashflow kimutatás...",
 		rows: [
 			{
 				label: "01.",
@@ -310,9 +311,13 @@ function updateOptionsList() {
 		)
 	);
 
+	let hasOptions = false;
+
 	// Az elérhető, még nem választott opciók hozzáadása
 	shuffledOptions.forEach((option) => {
 		if (!usedItems.has(option.name)) {
+			hasOptions = true; // Ha van elérhető opció, beállítjuk
+
 			const li = document.createElement("li");
 			li.textContent = option.name;
 
@@ -351,11 +356,11 @@ function updateOptionsList() {
 		}
 	});
 
-	// Törlés gomb megjelenítése, ha van kiválasztott sor
-	if (deleteRowBtn && activeCell && activeCell.dataset.selectedOption) {
-		deleteRowBtn.style.display = "block"; // Gomb megjelenítése
+	// A törlés gombot egyértelműen elrejtjük, ha nincs aktív cella vagy nincs kiválasztott opció
+	if (!activeCell || !activeCell.dataset.selectedOption) {
+		deleteRowBtn.style.display = "none";
 	} else {
-		deleteRowBtn.style.display = "none"; // Gomb elrejtése, ha nincs kiválasztott sor
+		deleteRowBtn.style.display = "block";
 	}
 }
 
@@ -363,28 +368,35 @@ function updateOptionsList() {
 if (deleteRowBtn) {
 	deleteRowBtn.addEventListener("click", () => {
 		if (activeCell && activeCell.dataset.selectedOption) {
-			const selectedOption = JSON.parse(
-				activeCell.dataset.selectedOption
-			);
+			try {
+				const selectedOption = JSON.parse(
+					activeCell.dataset.selectedOption
+				);
 
-			// A kiválasztott opciót visszahelyezzük az elérhető opciók közé
-			shuffledOptions.push(selectedOption);
-			shuffledOptions = shuffleArray(shuffledOptions); // Opciók újra keverése
+				// A kiválasztott opciót visszahelyezzük az elérhető opciók közé
+				shuffledOptions.push(selectedOption);
+				shuffledOptions = shuffleArray(shuffledOptions); // Opciók újrakeverése
 
-			// A kiválasztott cella törlése
-			activeCell.dataset.selectedOption = null;
-			activeCell.textContent = activeCell.dataset.label; // Az eredeti címke visszaállítása
+				// Kiválasztott elem eltávolítása a selectedItems listából
+				selectedItems = selectedItems.filter(
+					(item) => item.name !== selectedOption.name
+				);
 
-			// Kiválasztott elem eltávolítása a selectedItems listából
-			selectedItems = selectedItems.filter(
-				(item) => item.name !== selectedOption.name
-			);
+				// A kiválasztott cella visszaállítása az eredeti állapotára
+				delete activeCell.dataset.selectedOption;
+				activeCell.textContent = activeCell.dataset.label; // Az eredeti címke visszaállítása
 
-			// Opciók listájának frissítése
-			updateOptionsList();
+				// Aktív cella törlése
+				activeCell = null;
 
-			// A "Sor törlése" gomb elrejtése, ha nincs kiválasztott elem
-			deleteRowBtn.style.display = "none";
+				// Opciók listájának frissítése
+				updateOptionsList();
+
+				// Biztosan elrejtjük a törlés gombot
+				deleteRowBtn.style.display = "none";
+			} catch (e) {
+				console.error("Hiba a JSON parse-olás során:", e);
+			}
 		}
 	});
 }
@@ -392,75 +404,85 @@ if (deleteRowBtn) {
 // Modal bezárása
 if (closeModalBtn) {
 	closeModalBtn.addEventListener("click", () => {
-		modal.style.display = "none"; // Modal bezárása
-		updateOptionsList(); // Frissítjük az opciókat
+		modal.style.display = "none";
+		activeCell = null; // Aktív cella törlése
+		updateOptionsList();
+		deleteRowBtn.style.display = "none"; // Törlés gomb biztos elrejtése
 	});
 }
 
-window.addEventListener("click", (event) => {
-	if (event.target === modal) {
-		modal.style.display = "none"; // Modal bezárása, ha a háttéren kattintunk
-	}
-});
+if (checkBtn) {
+	checkBtn.addEventListener("click", () => {
+		console.log("Ellenőrzés gomb megnyomva!");
 
-document.getElementById("check-button").addEventListener("click", () => {
-	console.log("Ellenőrzés gomb megnyomva!");
-
-	if (!currentReportType || !reports[currentReportType]) {
-		showErrorModal("Nincs kiválasztott beszámoló!");
-		return;
-	}
-
-	const selectedReport = reports[currentReportType];
-
-	// Csak a selectable sorok elvárt sorrendje
-	const expectedSelectableOrder = selectedReport.rows
-		.filter((row) => row.type === "selectable")
-		.map((row) => ({
-			label: row.label,
-			name: row.name,
-		}));
-
-	// A felhasználó által kitöltött selectable sorok
-	const userSelectableOrder = Array.from(
-		document.querySelectorAll("#report-table tr td.selectable")
-	).map((cell) => ({
-		label: cell.dataset.label,
-		name: cell.dataset.selectedOption
-			? JSON.parse(cell.dataset.selectedOption).name
-			: null,
-	}));
-
-	console.log("Kitöltött adatok:", userSelectableOrder);
-
-	// Ellenőrizzük, hogy minden mező ki van-e töltve
-	const emptyFields = userSelectableOrder.some((user) => user.name === null);
-
-	if (emptyFields) {
-		showErrorModal("Töltse ki az összes mezőt!");
-		return;
-	}
-
-	const errors = [];
-	for (let i = 0; i < expectedSelectableOrder.length; i++) {
-		const expected = expectedSelectableOrder[i];
-		const user = userSelectableOrder[i];
-
-		if (user.label !== expected.label) {
-			errors.push(`Hiba: A(z) ${expected.label} sor rossz helyen van!`);
-		} else if (user.name !== expected.name) {
-			errors.push(
-				`Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})`
-			);
+		if (!currentReportType || !reports[currentReportType]) {
+			showErrorModal("Nincs kiválasztott beszámoló!");
+			return;
 		}
-	}
 
-	if (errors.length > 0) {
-		showErrorModal(errors.join("<br>"));
-	} else {
-		showErrorModal("A megoldás helyes! ✅");
-	}
-});
+		const selectedReport = reports[currentReportType];
+
+		// Csak a selectable sorok elvárt sorrendje
+		const expectedSelectableOrder = selectedReport.rows
+			.filter((row) => row.type === "selectable")
+			.map((row) => ({
+				label: row.label,
+				name: row.name,
+			}));
+
+		// A felhasználó által kitöltött selectable sorok
+		const userSelectableOrder = Array.from(
+			document.querySelectorAll("#report-table tr td.selectable")
+		).map((cell) => {
+			let name = null;
+			if (cell.dataset.selectedOption) {
+				try {
+					name = JSON.parse(cell.dataset.selectedOption).name;
+				} catch (e) {
+					console.error("Hiba a JSON parse-olás során:", e);
+				}
+			}
+			return {
+				label: cell.dataset.label,
+				name: name,
+			};
+		});
+
+		console.log("Kitöltött adatok:", userSelectableOrder);
+
+		// Ellenőrizzük, hogy minden mező ki van-e töltve
+		const emptyFields = userSelectableOrder.some(
+			(user) => user.name === null
+		);
+
+		if (emptyFields) {
+			showErrorModal("Töltse ki az összes mezőt!");
+			return;
+		}
+
+		const errors = [];
+		for (let i = 0; i < expectedSelectableOrder.length; i++) {
+			const expected = expectedSelectableOrder[i];
+			const user = userSelectableOrder[i];
+
+			if (user.label !== expected.label) {
+				errors.push(
+					`Hiba: A(z) ${expected.label} sor rossz helyen van!`
+				);
+			} else if (user.name !== expected.name) {
+				errors.push(
+					`Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})`
+				);
+			}
+		}
+
+		if (errors.length > 0) {
+			showErrorModal(errors.join("<br>"));
+		} else {
+			showErrorModal("A megoldás helyes! ✅");
+		}
+	});
+}
 
 // Hibaüzenet megjelenítése a modalban
 function showErrorModal(message) {
@@ -476,9 +498,16 @@ document.getElementById("close-error-modal").addEventListener("click", () => {
 	document.getElementById("error-modal").classList.remove("show");
 });
 
-window.addEventListener("click", (event) => {
-	const errorModal = document.getElementById("error-modal");
-	if (event.target === errorModal) {
-		errorModal.classList.remove("show");
+// Modalok bezárása
+function closeModalOnOutsideClick(event, modalElement) {
+	if (event.target === modalElement) {
+		modalElement.style.display = "none"; // vagy classList.remove("show")
 	}
-});
+}
+
+window.addEventListener("click", (event) =>
+	closeModalOnOutsideClick(event, modal)
+);
+window.addEventListener("click", (event) =>
+	closeModalOnOutsideClick(event, errorModal)
+);

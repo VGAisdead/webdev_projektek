@@ -67,14 +67,14 @@ td {
 	background: white;
 	padding: 20px;
 	border-radius: 10px;
-	width: 80%; /* Csökkentett szélesség, hogy jobban illeszkedjen kisebb képernyőkön */
+	width: 80%;
 	max-height: 80%;
-	max-width: 400px; /* Maximális szélesség, hogy ne legyen túl széles */
+	max-width: 400px;
 	text-align: center;
 	overflow: auto;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between; /* Ez segíti a tartalom és a gombok megfelelő elhelyezését */
+	justify-content: space-between;
 }
 
 .modal-content ul li {
@@ -89,36 +89,42 @@ td {
 .modal ul li {
 	padding: 10px;
 	margin: 5px 0;
-	background: lightgray;
+	background-color: #e9e9e9;
 	border-radius: 5px;
-}
-.modal ul li:hover {
-	background: darkgray;
+	transition: border-radius 3s ease-out;
 }
 
 #close-modal,
 #close-error-modal,
 #delete-row-btn {
 	border: none;
-	background-color: #007bff;
-	color: white;
-	padding: 10px 15px;
+	background-color: orange;
+	color: black;
+	padding: 5px 10px;
 	border-radius: 5px;
 	cursor: pointer;
 	font-size: 16px;
-	transition: background-color 0.3s;
+	transition: background-color 0.3s ease-out;
 	align-self: center;
 }
 
 #close-modal:hover,
 #close-error-modal:hover,
 #delete-row-btn:hover {
-	background-color: #0056b3;
+	background-color: orangered;
+	color: white;
 }
 
 .modal ul li:hover {
-	background: #e3e3e3; /* Könnyen észrevehető háttérváltás hover esetén */
+	background-color: rgb(
+		215,
+		215,
+		215
+	); /* Könnyen észrevehető háttérváltás hover esetén */
 	cursor: pointer;
+	border-radius: 50px;
+	transition: background-color 0.5s ease-in;
+	transition: border-radius 1s ease-out;
 }
 
 /* Az arab számokkal jelölt sorok szövege fehér legyen */
@@ -130,15 +136,15 @@ table td[class="selectable"] {
 .check {
 	width: auto;
 	margin: auto;
-	height: 3rem;
-	border-radius: 8px;
-	background-color: orangered;
+	padding: 5px 10px;
+	border-radius: 5px;
+	background-color: orange;
 	border: none;
 	text-transform: uppercase;
 	font-weight: normal;
 	font-size: 1.2rem;
 	color: black;
-	transition: background-color 0.5s ease-out;
+	transition: background-color 0.3s ease-out;
 	cursor: pointer;
 }
 
@@ -162,13 +168,13 @@ table td[class="selectable"] {
 }
 
 .headingbg {
-	background-color: #ffffff15;
+	background-color: #ffffff7e;
 	padding: 20px 0;
 	border-radius: 10px 10px 0 0;
 }
 
 .footingbg {
-	background-color: #ffffff15;
+	background-color: #ffffff30;
 	padding: 20px 0;
 	border-radius: 0 0 10px 10px;
 }
