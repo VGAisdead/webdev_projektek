@@ -82,6 +82,11 @@ td {
   overflow: auto;
 }
 
+.modal-content ul li {
+  display: block;
+  visibility: visible;
+}
+
 .modal ul {
   list-style: none;
   padding: 0;

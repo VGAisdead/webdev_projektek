@@ -1,3 +1,4 @@
+// DOM elemek
 const startModal = document.getElementById("start-modal");
 const modal = document.getElementById("modal");
 const optionList = document.getElementById("option-list");
@@ -9,122 +10,144 @@ const closeModalBtn = document.getElementById("close-modal");
 
 let activeCell = null; // Az éppen kiválasztott cella
 let availableOptions = []; // Az elérhető elemek listája
+let selectedItems = []; // Kiválasztott elemek
+let currentReportType = null; // Dinamikusan tároljuk a kiválasztott beszámoló típusát
+let shuffledOptions = [];
 
-// Különböző beszámolókhoz tartozó sorok
+// Beszámolók adatai (rövidítve, az eredeti változatot használhatod)
 const reports = {
   merleg: {
     title: "Mérleg",
-    description:
-      "A mérleg egy pénzügyi kimutatás, amely a vállalkozás eszközeit, forrásait mutatja. Két fő részből áll: az aktív oldal az eszközöket, míg a passzív oldal a forrásokat tartalmazza, így átfogó képet adva a vállalat pénzügyi helyzetéről egy adott időpontban.",
+    description: "A mérleg egy pénzügyi kimutatás...",
     rows: [
       { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "header" },
       { label: "A/", name: "Befektetett eszközök", type: "header" },
       { label: "I.", name: "Immateriális javak", type: "subheader" },
-      { label: "1.", name: "Alapítás átszervezés aktivált értéke" },
-      { label: "2.", name: "Kísérleti fejlesztés aktivált értéke" },
-      { label: "3.", name: "Vagyoni értékű jogok" },
-      { label: "4.", name: "Szellemi termékek" },
-      { label: "5.", name: "Üzleti vagy cégérték" },
-      { label: "6.", name: "Immateriális javakra adott előlegek" },
-      { label: "7.", name: "Immateriális javak értékhelyesbítése" },
+      {
+        label: "1.",
+        name: "Alapítás átszervezés aktivált értéke",
+        type: "selectable",
+      },
+      {
+        label: "2.",
+        name: "Kísérleti fejlesztés aktivált értéke",
+        type: "selectable",
+      },
+      { label: "3.", name: "Vagyoni értékű jogok", type: "selectable" },
+      { label: "4.", name: "Szellemi termékek", type: "selectable" },
+      { label: "5.", name: "Üzleti vagy cégérték", type: "selectable" },
+      {
+        label: "6.",
+        name: "Immateriális javakra adott előlegek",
+        type: "selectable",
+      },
+      {
+        label: "7.",
+        name: "Immateriális javak értékhelyesbítése",
+        type: "selectable",
+      },
       { label: "II.", name: "Tárgyi eszközök", type: "subheader" },
-      { label: "1.", name: "Ingatlanok és a kapcsolódó vagyoni értékű jogok" },
-      { label: "2.", name: "Műszaki berendezések, gépek, járművek" },
-      { label: "3.", name: "Egyéb berendezések, felszerelések, járművek" },
+      {
+        label: "1.",
+        name: "Ingatlanok és a kapcsolódó vagyoni értékű jogok",
+        type: "selectable",
+      },
+      {
+        label: "2.",
+        name: "Műszaki berendezések, gépek, járművek",
+        type: "selectable",
+      },
+      {
+        label: "3.",
+        name: "Egyéb berendezések, felszerelések, járművek",
+        type: "selectable",
+      },
       { label: "B/", name: "Forgóeszközök", type: "header" },
       { label: "I.", name: "Készletek", type: "subheader" },
-      { label: "1.", name: "Anyagok" },
-      { label: "2.", name: "Befejezetlen és félkész termékek" },
+      { label: "1.", name: "Anyagok", type: "selectable" },
+      {
+        label: "2.",
+        name: "Befejezetlen és félkész termékek",
+        type: "selectable",
+      },
       { label: "C/", name: "Aktív időbeli elhatárolások", type: "header" },
-      { label: "1.", name: "Bevételek aktív időbeli elhatárolása" },
+      {
+        label: "1.",
+        name: "Bevételek aktív időbeli elhatárolása",
+        type: "selectable",
+      },
       { label: "FORRÁSOK /", name: "PASSZÍVÁK", type: "header" },
     ],
   },
   osszkoltseg: {
     title: "Összköltség Eredménykimutatás",
-    rows: ["Bevétel", "Anyagköltség", "Bérköltség", "Értékcsökkenés"],
-  },
-  forgalmi: {
-    title: "Forgalmi Költség Eredménykimutatás",
+    description: "Összköltség Eredménykimutatás...",
     rows: [
-      "Nettó árbevétel",
-      "Értékesítési költségek",
-      "Marketing költségek",
-      "Adminisztrációs költségek",
-    ],
-  },
-  cashflow: {
-    title: "Cashflow kimutatás",
-    rows: [
-      "Üzleti tevékenység",
-      "Befektetési tevékenység",
-      "Finanszírozási tevékenység",
+      { label: "ESZKÖZÖK /", name: "AKTÍVÁK", type: "header" },
+      { label: "A/", name: "Befektetett eszközök", type: "header" },
+      { label: "I.", name: "Immateriális javak", type: "subheader" },
+      {
+        label: "1.",
+        name: "Alapítás átszervezés aktivált értéke",
+        type: "selectable",
+      },
     ],
   },
 };
 
-// Az induló modalt megjelenítjük betöltéskor
-document.addEventListener("DOMContentLoaded", function () {
-  startModal.classList.add("show"); // A modális ablak megjelenítése
+// Fisher-Yates algoritmus a keveréshez
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+// Induló modal megjelenítése
+document.addEventListener("DOMContentLoaded", () => {
+  if (startModal) startModal.classList.add("show");
 });
 
-// Amikor egy beszámolót kiválasztunk
+// Beszámoló kiválasztása
 document.querySelectorAll(".select-report").forEach((button) => {
   button.addEventListener("click", function () {
-    const reportType = this.dataset.type;
-    const selectedReport = reports[reportType];
-    sheet.classList.remove("hidden");
+    currentReportType = this.dataset.type;
+    const selectedReport = reports[currentReportType];
 
-    // Beállítjuk a táblázatot
+    reportSheet.classList.remove("hidden");
     reportTitle.textContent = selectedReport.title;
     reportDescription.textContent = selectedReport.description;
     reportTitle.style.display = "block";
     reportDescription.style.display = "flex";
     reportTable.style.display = "table";
 
-    availableOptions = [...selectedReport.rows]; // Újratöltjük az elérhető opciókat
+    // Elérhető opciók szűrése és keverése
+    availableOptions = selectedReport.rows.filter(
+      (row) => row.type === "selectable"
+    );
+    shuffledOptions = shuffleArray([...availableOptions]);
 
+    // Táblázat generálása
     reportTable.innerHTML = "";
     selectedReport.rows.forEach((row, index) => {
-      let tableRow = document.createElement("tr");
-      let cell = document.createElement("td");
+      const tableRow = document.createElement("tr");
+      const cell = document.createElement("td");
 
       if (row.type === "header" || row.type === "subheader") {
-        // Az A, B, C és római betűs sorok mindig a teljes szöveget mutatják
         cell.textContent = `${row.label} ${row.name}`;
         cell.style.fontWeight = "bold";
-        cell.style.backgroundColor = row.type === "header" ? "#777" : "#999"; // Sötétebb háttér a fő kategóriáknak, világosabb a subheader-eknek
+        cell.style.backgroundColor = row.type === "header" ? "#777" : "#999";
       } else {
-        // Az arab számoknál csak a számok jelennek meg először
-        cell.textContent = `${row.label}`;
+        cell.textContent = row.label;
         cell.classList.add("selectable");
         cell.dataset.id = index;
+        cell.dataset.label = row.label; // Eredeti címke tárolása
 
-        // Kattintásra megnyitja a modalt
         cell.addEventListener("click", function () {
-          activeCell = this; // Eltároljuk az aktív cellát
-
-          // Frissítjük a modalt az elérhető elemekkel
-          optionList.innerHTML = "";
-          availableOptions.forEach((option) => {
-            let li = document.createElement("li");
-            li.textContent = option.name; // Az objektum 'name' mezőjét használjuk
-
-            li.addEventListener("click", function () {
-              // Kiválasztáskor hozzáadjuk a névet
-              activeCell.textContent = `${row.label} ${option.name}`;
-
-              // Eltávolítjuk az opciók közül
-              availableOptions = availableOptions.filter(
-                (opt) => opt !== option
-              );
-
-              modal.style.display = "none"; // Bezárjuk a modalt
-            });
-            optionList.appendChild(li);
-          });
-
-          modal.style.display = "flex"; // Megjelenítjük a modalt
+          activeCell = this;
+          updateOptionsList();
+          modal.style.display = "flex";
         });
       }
 
@@ -132,78 +155,104 @@ document.querySelectorAll(".select-report").forEach((button) => {
       reportTable.appendChild(tableRow);
     });
 
-    // Bezárjuk az induló modalt
     startModal.style.display = "none";
   });
 });
 
+// Elérhető opciók frissítése
+function updateOptionsList() {
+  optionList.innerHTML = "";
+  const usedItems = new Set(
+    Array.from(document.querySelectorAll("td[data-selected-option]")).map(
+      (cell) => JSON.parse(cell.dataset.selectedOption)?.name
+    )
+  );
+
+  shuffledOptions.forEach((option) => {
+    if (!usedItems.has(option.name)) {
+      const li = document.createElement("li");
+      li.textContent = option.name;
+
+      li.addEventListener("click", () => {
+        if (activeCell) {
+          if (activeCell.dataset.selectedOption) {
+            try {
+              const prevOption = JSON.parse(activeCell.dataset.selectedOption);
+              shuffledOptions.push(prevOption);
+              selectedItems = selectedItems.filter(
+                (item) => item.name !== prevOption.name
+              );
+            } catch (e) {
+              console.error("Hiba a JSON parseolásakor:", e);
+            }
+          }
+
+          activeCell.textContent = `${activeCell.dataset.label} ${option.name}`;
+          activeCell.dataset.selectedOption = JSON.stringify(option);
+          shuffledOptions = shuffledOptions.filter(
+            (opt) => opt.name !== option.name
+          );
+          selectedItems.push(option);
+        }
+        modal.style.display = "none";
+        updateOptionsList();
+      });
+
+      optionList.appendChild(li);
+    }
+  });
+}
+
 // Modal bezárása
-closeModalBtn.addEventListener("click", function () {
+closeModalBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
 
-// Ha a modal háttérre kattintanak, zárja be
-window.addEventListener("click", function (event) {
+window.addEventListener("click", (event) => {
   if (event.target === modal) {
     modal.style.display = "none";
   }
 });
 
-// Az ellenőrzés gomb kattintásának eseménye
-document.getElementById("check-button").addEventListener("click", function () {
-  // Kiválasztott beszámoló típusa
-  const reportType = "merleg"; // Ezt dinamikusan kell frissíteni, ha más beszámolót választunk
-  const selectedReport = reports[reportType]; // A beszámoló objektum
-
-  // Az elvárt sorrend (római és arab számok)
+// Ellenőrzés
+document.getElementById("check-button").addEventListener("click", () => {
+  const selectedReport = reports[currentReportType || "merleg"];
   const expectedOrder = selectedReport.rows.map((row) => row.label);
+  const userOrder = Array.from(
+    document.querySelectorAll("#report-table tr td")
+  ).map((cell) => cell.textContent.trim().split(" ")[0]);
 
-  // A táblázatban található sorrend
-  let userOrder = [];
-  const tableRows = document.querySelectorAll("#report-table tr td");
-
-  tableRows.forEach((cell) => {
-    userOrder.push(cell.textContent.trim().split(" ")[0]); // Csak a számokat tároljuk
-  });
-
-  // Ellenőrzés
-  let errors = [];
+  const errors = [];
   for (let i = 0; i < expectedOrder.length; i++) {
     if (expectedOrder[i] !== userOrder[i]) {
       errors.push(`Hiba: A(z) ${expectedOrder[i]} sor rossz helyen van!`);
     }
   }
 
-  // Hibák megjelenítése a modálban
   const errorList = document.getElementById("error-list");
-  errorList.innerHTML = ""; // Töröljük a korábbi hibákat
+  errorList.innerHTML = "";
+  const errorModal = document.getElementById("error-modal");
 
   if (errors.length > 0) {
     errors.forEach((error) => {
-      let li = document.createElement("li");
+      const li = document.createElement("li");
       li.textContent = error;
       errorList.appendChild(li);
     });
-
-    // Megjelenítjük a hibák modálját
-    const errorModal = document.getElementById("error-modal");
-    errorModal.classList.add("show"); // A modális ablak megjelenítése a show osztály hozzáadásával
+    errorModal.classList.add("show");
   } else {
     alert("A megoldás helyes!");
   }
 });
 
-// Modal bezárása
-document
-  .getElementById("close-error-modal")
-  .addEventListener("click", function () {
-    document.getElementById("error-modal").classList.remove("show"); // A modál elrejtése a show osztály eltávolításával
-  });
+// Hibamodal bezárása
+document.getElementById("close-error-modal").addEventListener("click", () => {
+  document.getElementById("error-modal").classList.remove("show");
+});
 
-// Ha a modal háttérre kattintanak, zárja be
-window.addEventListener("click", function (event) {
+window.addEventListener("click", (event) => {
   const errorModal = document.getElementById("error-modal");
   if (event.target === errorModal) {
-    errorModal.style.display = "none"; // Bezárás
+    errorModal.classList.remove("show");
   }
 });
