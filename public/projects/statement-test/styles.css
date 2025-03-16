@@ -17,7 +17,6 @@ body {
 	border: 1px solid black;
 	margin: auto;
 	border-radius: 10px;
-	padding: 0 0 20px 0;
 	background-color: rgba(0, 0, 0, 0.3);
 }
 
@@ -129,7 +128,7 @@ table td[class="selectable"] {
 }
 
 .check {
-	width: 100%;
+	width: auto;
 	margin: auto;
 	height: 3rem;
 	border-radius: 8px;
@@ -162,10 +161,16 @@ table td[class="selectable"] {
 	color: #000000;
 }
 
-.titlebg {
-	background-color: #8affce30;
+.headingbg {
+	background-color: #ffffff15;
 	padding: 20px 0;
 	border-radius: 10px 10px 0 0;
+}
+
+.footingbg {
+	background-color: #ffffff15;
+	padding: 20px 0;
+	border-radius: 0 0 10px 10px;
 }
 
 .modal-content:has(.btns > li) {

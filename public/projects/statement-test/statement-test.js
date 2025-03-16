@@ -71,53 +71,6 @@ const reports = {
 				name: "Immateriális javak értékhelyesbítése",
 				type: "selectable",
 			},
-			{
-				label: "II.",
-				name: "Tárgyi eszközök",
-				type: "subheader",
-			},
-			{
-				label: "1.",
-				name: "Ingatlanok és a kapcsolódó vagyoni értékű jogok",
-				type: "selectable",
-			},
-			{
-				label: "2.",
-				name: "Műszaki berendezések, gépek, járművek",
-				type: "selectable",
-			},
-			{
-				label: "3.",
-				name: "Egyéb berendezések, felszerelések, járművek",
-				type: "selectable",
-			},
-			{
-				label: "B/",
-				name: "Forgóeszközök",
-				type: "secheader",
-			},
-			{ label: "I.", name: "Készletek", type: "subheader" },
-			{ label: "1.", name: "Anyagok", type: "selectable" },
-			{
-				label: "2.",
-				name: "Befejezetlen és félkész termékek",
-				type: "selectable",
-			},
-			{
-				label: "C/",
-				name: "Aktív időbeli elhatárolások",
-				type: "secheader",
-			},
-			{
-				label: "1.",
-				name: "Bevételek aktív időbeli elhatárolása",
-				type: "selectable",
-			},
-			{
-				label: "FORRÁSOK /",
-				name: "PASSZÍVÁK",
-				type: "mainheader",
-			},
 		],
 	},
 	osszkoltseg: {
