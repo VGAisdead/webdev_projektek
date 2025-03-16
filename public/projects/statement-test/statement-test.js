@@ -10,6 +10,18 @@ const closeModalBtn = document.getElementById("close-modal");
 const deleteRowBtn = document.getElementById("delete-row-btn");
 const checkBtn = document.getElementById("check-button");
 
+const tooltipTriggerList = document.querySelectorAll(
+	'[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map(
+	(tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+);
+
+const errorList = document.getElementById("error-list");
+const errorModal = document.getElementById("error-modal");
+const progressFill = document.getElementById("progress-fill");
+const percentageText = document.getElementById("percentage-text");
+
 let activeCell = null; // Az éppen kiválasztott cella
 let availableOptions = []; // Az elérhető elemek listája
 let selectedItems = []; // Kiválasztott elemek
@@ -411,18 +423,15 @@ if (closeModalBtn) {
 	});
 }
 
+// Ellenőrzés gomb
 if (checkBtn) {
 	checkBtn.addEventListener("click", () => {
-		console.log("Ellenőrzés gomb megnyomva!");
-
 		if (!currentReportType || !reports[currentReportType]) {
 			showErrorModal("Nincs kiválasztott beszámoló!");
 			return;
 		}
 
 		const selectedReport = reports[currentReportType];
-
-		// Csak a selectable sorok elvárt sorrendje
 		const expectedSelectableOrder = selectedReport.rows
 			.filter((row) => row.type === "selectable")
 			.map((row) => ({
@@ -430,7 +439,6 @@ if (checkBtn) {
 				name: row.name,
 			}));
 
-		// A felhasználó által kitöltött selectable sorok
 		const userSelectableOrder = Array.from(
 			document.querySelectorAll("#report-table tr td.selectable")
 		).map((cell) => {
@@ -448,13 +456,9 @@ if (checkBtn) {
 			};
 		});
 
-		console.log("Kitöltött adatok:", userSelectableOrder);
-
-		// Ellenőrizzük, hogy minden mező ki van-e töltve
 		const emptyFields = userSelectableOrder.some(
 			(user) => user.name === null
 		);
-
 		if (emptyFields) {
 			showErrorModal("Töltse ki az összes mezőt!");
 			return;
@@ -464,11 +468,8 @@ if (checkBtn) {
 		for (let i = 0; i < expectedSelectableOrder.length; i++) {
 			const expected = expectedSelectableOrder[i];
 			const user = userSelectableOrder[i];
-
 			if (user.label !== expected.label) {
-				errors.push(
-					`Hiba: A(z) ${expected.label} sor rossz helyen van!`
-				);
+				errors.push(`Hiba: ${expected.label} sor rossz helyen van!`);
 			} else if (user.name !== expected.name) {
 				errors.push(
 					`Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})`
@@ -484,13 +485,62 @@ if (checkBtn) {
 	});
 }
 
-// Hibaüzenet megjelenítése a modalban
+// Eredmények modal (egységes progress bar logika)
 function showErrorModal(message) {
-	const errorList = document.getElementById("error-list");
-	const errorModal = document.getElementById("error-modal");
-
 	errorList.innerHTML = `<p>${message}</p>`;
 	errorModal.classList.add("show");
+
+	const selectableCells = document.querySelectorAll(
+		"#report-table tr td.selectable"
+	);
+	const totalSelectable = selectableCells.length;
+	const expectedOrder = reports[currentReportType].rows.filter(
+		(row) => row.type === "selectable"
+	);
+	const userOrder = Array.from(selectableCells).map((cell) => ({
+		label: cell.dataset.label,
+		name: cell.dataset.selectedOption
+			? JSON.parse(cell.dataset.selectedOption).name
+			: null,
+	}));
+
+	let correctCount = 0;
+	for (let i = 0; i < expectedOrder.length; i++) {
+		if (userOrder[i].name === expectedOrder[i].name) {
+			correctCount++;
+		}
+	}
+
+	const percentage = (correctCount / totalSelectable) * 100;
+
+	// Progress bar animáció
+	progressFill.style.transition = "none"; // Először kikapcsoljuk az animációt
+	progressFill.style.width = "0%"; // Nulláról indul
+	percentageText.textContent = "0%"; // Szöveg reset
+	setTimeout(() => {
+		progressFill.style.transition = "width 2s ease-out"; // Animáció vissza
+		progressFill.style.width = `${percentage}%`; // Célérték
+		percentageText.textContent = `${Math.round(percentage)}%`; // Szöveg frissítése
+	}, 50); // Kis késleltetés az animáció indításához
+}
+
+// Hibamodal bezárása (progress bar reset)
+document.getElementById("close-error-modal").addEventListener("click", () => {
+	errorModal.classList.remove("show");
+	progressFill.style.width = "0%"; // Reset a bezáráskor
+	percentageText.textContent = "0%"; // Szöveg reset
+});
+
+// Progress bar frissítése
+function updateProgressBar(percentage) {
+	const progressFill = document.getElementById("progress-fill");
+	const percentageText = document.getElementById("percentage-text");
+
+	// Beállítjuk a progress bar szélességét a százalékos érték alapján
+	progressFill.style.width = percentage + "%";
+
+	// Frissítjük a százalékos szöveget is
+	percentageText.textContent = percentage + "%";
 }
 
 // Hibamodal bezárása
@@ -508,6 +558,19 @@ function closeModalOnOutsideClick(event, modalElement) {
 window.addEventListener("click", (event) =>
 	closeModalOnOutsideClick(event, modal)
 );
-window.addEventListener("click", (event) =>
-	closeModalOnOutsideClick(event, errorModal)
+window.addEventListener(
+	"click",
+	(event) => closeModalOnOutsideClick(event, errorModal) // Itt már van a definíció
 );
+
+// Progress bar frissítése
+function updateProgressBar(percentage) {
+	const progressFill = document.getElementById("progress-fill");
+	const percentageText = document.getElementById("percentage-text");
+
+	// Beállítjuk a progress bar szélességét a százalékos érték alapján
+	progressFill.style.width = percentage + "%";
+
+	// Frissítjük a százalékos szöveget is
+	percentageText.textContent = percentage + "%";
+}

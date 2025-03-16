@@ -125,10 +125,16 @@
             </div>
         </div>
 
-        <!-- Modal a hibák megjelenítésére -->
+        <!-- Modal az eredmények megjelenítésére -->
         <div id="error-modal" class="modal">
             <div class="modal-content">
-                <h3>Hibák a megoldásban:</h3>
+                <h3>Eredmények:</h3>
+                <div id="progress-container">
+                    <span id="percentage-text">0%</span>
+                    <div id="progress-bar">
+                        <div id="progress-fill"></div>
+                    </div>
+                </div>
                 <ul id="error-list"></ul>
                 <button id="close-error-modal">Bezárás</button>
             </div>
