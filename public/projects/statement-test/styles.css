@@ -100,7 +100,8 @@ td {
   background: darkgray;
 }
 
-#close-modal {
+#close-modal,
+#close-error-modal {
   border: none;
   background-color: #007bff;
   color: white;
@@ -111,7 +112,8 @@ td {
   transition: background-color 0.3s;
 }
 
-#close-modal:hover {
+#close-modal:hover,
+#close-error-modal:hover {
   background-color: #0056b3;
 }
 
@@ -136,7 +138,7 @@ table td[class="selectable"] {
   font-weight: normal;
   font-size: 1.2rem;
   color: black;
-  transition: background-color 1s ease-out;
+  transition: background-color 0.5s ease-out;
   cursor: pointer;
 }
 

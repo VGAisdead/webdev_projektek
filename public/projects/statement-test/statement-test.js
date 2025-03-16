@@ -255,7 +255,7 @@ window.addEventListener("click", (event) => {
 
 // Ellenőrzés
 document.getElementById("check-button").addEventListener("click", () => {
-  const selectedReport = reports[currentReportType || "merleg"];
+  const selectedReport = reports[currentReportType];
 
   // Csak a selectable sorok elvárt sorrendje
   const expectedSelectableOrder = selectedReport.rows
