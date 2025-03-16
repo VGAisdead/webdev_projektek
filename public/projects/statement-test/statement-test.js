@@ -23,13 +23,75 @@ let shuffledOptions = [];
 
 // Beszámolók adatai
 const reports = {
-  emerleg: {
+	emerleg: {
+		title: "Egyszerűsített éves beszámoló mérlege",
+		description:
+			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja (csak mérlegsorok) az adott időpontban.",
+		rows: [
+			{
+				label: "ESZKÖZÖK /",
+				name: "AKTÍVÁK",
+				type: "mainheader",
+				tooltip: "A cég összes eszközét foglalja össze.",
+			},
+			{
+				label: "A/",
+				name: "Befektetett eszközök",
+				type: "secheader",
+				tooltip: "Hosszú távú eszközök csoportja.",
+			},
+			{
+				label: "I.",
+				name: "Immateriális javak",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Tárgyi eszközök",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Befektetett pénzügyi eszközök",
+				type: "selectable",
+			},
+			{
+				label: "B/",
+				name: "Forgóeszközök",
+				type: "secheader",
+				tooltip: "Rövid távon hasznosítható eszközök.",
+			},
+			{
+				label: "I.",
+				name: "Készletek",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Követelések",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Értékpapírok",
+				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Pénzeszközök",
+				type: "selectable",
+			},
+			{
+				label: "C/",
+				name: "Aktív időbeli elhatárolások",
+				type: "secheader",
+				tooltip:
+					"Jövőbeni bevételek, költségek, ráfordítások időbeli elszámolása.",
+			},
+		],
+	},
 
-  },
-
-  lepcso: {
-
-  },
+	lepcso: {},
 
 	osszkoltseg: {
 		title: "Összköltség Eredménykimutatás",
@@ -177,8 +239,8 @@ const reports = {
 			},
 		],
 	},
-  
-  merleg: {
+
+	merleg: {
 		title: "Éves beszámoló mérlege",
 		description:
 			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
@@ -339,8 +401,50 @@ const reports = {
 				type: "secheader",
 				tooltip: "Rövid távon hasznosítható eszközök.",
 			},
+			{
+				label: "I.",
+				name: "Készletek",
+				type: "subheader",
+				tooltip: "A cég raktáron lévő anyagai és termékei.",
+			},
+			{
+				label: "1.",
+				name: "Anyagok",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Befejezetlen termelés és félkész termékek",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Növendék, hízó és egyéb állatok",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Áruk",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Késztermékek",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Készletekre adott előlegek",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Követelések",
+				type: "subheader",
+				tooltip: "A cégnek járó, még ki nem fizetett összegek.",
+			},
 		],
-	}
+	},
 };
 
 // Induló modal megjelenítése
