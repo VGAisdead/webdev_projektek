@@ -24,7 +24,7 @@ let shuffledOptions = [];
 // Beszámolók adatai
 const reports = {
 	merleg: {
-		title: "Mérleg",
+		title: "Éves beszámoló mérlege",
 		description:
 			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
 		rows: [
@@ -127,6 +127,62 @@ const reports = {
 				name: "Befektetett pénzügyi eszközök",
 				type: "subheader",
 				tooltip: "Hosszú távú pénzügyi befektetések.",
+			},
+			{
+				label: "1.",
+				name: "Tartós részesedés kapcsolt vállalkozásban",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Tartósan adott kölcsön kapcsolt vállalkozásban",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Tartós jelentős tulajdoni részesedés",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Tartósan adott kölcsön jelentős tulajdoni részesedési viszonyban álló vállalkozásban",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Egyéb tartós részesedés",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Tartósan adott kölcsön egyéb részesedési viszonyban álló vállalkozásban",
+				type: "selectable",
+			},
+			{
+				label: "7.",
+				name: "Egyéb tartósan adott kölcsön",
+				type: "selectable",
+			},
+			{
+				label: "8.",
+				name: "Tartós hitelviszonyt megtestesítő értékpapír",
+				type: "selectable",
+			},
+			{
+				label: "9.",
+				name: "Befektetett pénzügyi eszközök értékhelyesbítése",
+				type: "selectable",
+			},
+			{
+				label: "10.",
+				name: "Befektetett pénzügyi eszközök értékelési különbözete",
+				type: "selectable",
+			},
+			{
+				label: "B/",
+				name: "Forgóeszközök",
+				type: "secheader",
+				tooltip: "Rövid távon hasznosítható eszközök.",
 			},
 		],
 	},
