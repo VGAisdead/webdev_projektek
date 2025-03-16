@@ -10,13 +10,6 @@ const closeModalBtn = document.getElementById("close-modal");
 const deleteRowBtn = document.getElementById("delete-row-btn");
 const checkBtn = document.getElementById("check-button");
 
-const tooltipTriggerList = document.querySelectorAll(
-	'[data-bs-toggle="tooltip"]'
-);
-const tooltipList = [...tooltipTriggerList].map(
-	(tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-);
-
 const errorList = document.getElementById("error-list");
 const errorModal = document.getElementById("error-modal");
 const progressFill = document.getElementById("progress-fill");
@@ -32,22 +25,26 @@ let shuffledOptions = [];
 const reports = {
 	merleg: {
 		title: "Mérleg",
-		description: "A mérleg egy pénzügyi kimutatás...",
+		description:
+			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
 		rows: [
 			{
 				label: "ESZKÖZÖK /",
 				name: "AKTÍVÁK",
 				type: "mainheader",
+				tooltip: "A cég összes eszközét foglalja össze.",
 			},
 			{
 				label: "A/",
 				name: "Befektetett eszközök",
 				type: "secheader",
+				tooltip: "Hosszú távú eszközök csoportja.",
 			},
 			{
 				label: "I.",
 				name: "Immateriális javak",
 				type: "subheader",
+				tooltip: "Nem fizikai eszközök köre.",
 			},
 			{
 				label: "1.",
@@ -84,11 +81,59 @@ const reports = {
 				name: "Immateriális javak értékhelyesbítése",
 				type: "selectable",
 			},
+			{
+				label: "II.",
+				name: "Tárgyi eszközök",
+				type: "subheader",
+				tooltip: "Fizikai, tartós használatú eszközök.",
+			},
+			{
+				label: "1.",
+				name: "Ingatlanok és a kapcsolódó vagyoni értékű jogok",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Műszaki berendezések, gépek, járművek",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Egyéb berendezések, felszerelések, járművek",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Tenyészállatok",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Beruházások, felújítások ",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Beruházásokra adott előlegek",
+				type: "selectable",
+			},
+			{
+				label: "7.",
+				name: "Tárgyi eszközök értékhelyesbítése",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Befektetett pénzügyi eszközök",
+				type: "subheader",
+				tooltip: "Hosszú távú pénzügyi befektetések.",
+			},
 		],
 	},
 	osszkoltseg: {
 		title: "Összköltség Eredménykimutatás",
-		description: "Összköltség Eredménykimutatás...",
+		description:
+			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve mutatja az eredményt.",
 		rows: [
 			{
 				label: "01.",
@@ -136,7 +181,8 @@ const reports = {
 
 	forgalmi: {
 		title: "Forgalmi Eredménykimutatás",
-		description: "Forgalmi Eredménykimutatás...",
+		description:
+			"A forgalmi költség kimutatás a nettó árbevételt és költségeket részletezi az eredményhez.",
 		rows: [
 			{
 				label: "01.",
@@ -184,7 +230,8 @@ const reports = {
 
 	cashflow: {
 		title: "Cashflow kimutatás",
-		description: "Cashflow kimutatás...",
+		description:
+			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási körökben.",
 		rows: [
 			{
 				label: "01.",
@@ -274,6 +321,13 @@ document.querySelectorAll(".select-report").forEach((button) => {
 				cell.textContent = `${row.label} ${row.name}`;
 				cell.style.fontWeight = "bold";
 
+				cell.setAttribute("data-bs-toggle", "tooltip");
+				cell.setAttribute("data-bs-placement", "bottom");
+				cell.setAttribute(
+					"data-bs-title",
+					row.tooltip || "Nincs leírás"
+				);
+
 				if (row.type === "mainheader") {
 					cell.classList.add("mainheader");
 				} else if (row.type === "secheader") {
@@ -285,7 +339,7 @@ document.querySelectorAll(".select-report").forEach((button) => {
 				cell.textContent = row.label;
 				cell.classList.add("selectable");
 				cell.dataset.id = index;
-				cell.dataset.label = row.label; // Eredeti címke tárolása
+				cell.dataset.label = row.label;
 
 				cell.addEventListener("click", function () {
 					activeCell = this;
@@ -297,11 +351,29 @@ document.querySelectorAll(".select-report").forEach((button) => {
 			tableRow.appendChild(cell);
 			reportTable.appendChild(tableRow);
 		});
-		// Elérhető opciók szűrése és keverése
+
 		availableOptions = selectedReport.rows.filter(
 			(row) => row.type === "selectable"
 		);
 		shuffledOptions = shuffleArray([...availableOptions]);
+
+		// Bootstrap tooltip-ek inicializálása
+		const tooltipTriggerList = document.querySelectorAll(
+			'[data-bs-toggle="tooltip"]'
+		);
+		const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => {
+			const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+			tooltipTriggerEl.addEventListener("shown.bs.tooltip", () => {
+				// Az összes látható tooltip nyílának módosítása
+				const arrows = document.querySelectorAll(
+					".tooltip.bs-tooltip-bottom .tooltip-arrow"
+				);
+				arrows.forEach((arrow) => {
+					arrow.style.borderBottomColor = "#333"; // Inline felülírás
+				});
+			});
+			return tooltip;
+		});
 	});
 });
 
@@ -563,11 +635,6 @@ function updateProgressBar(percentage) {
 	// Frissítjük a százalékos szöveget is
 	percentageText.textContent = percentage + "%";
 }
-
-// Hibamodal bezárása
-document.getElementById("close-error-modal").addEventListener("click", () => {
-	document.getElementById("error-modal").classList.remove("show");
-});
 
 // Modalok bezárása
 function closeModalOnOutsideClick(event, modalElement) {

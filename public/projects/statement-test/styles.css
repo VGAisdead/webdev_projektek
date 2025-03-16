@@ -169,13 +169,13 @@ table td[class="selectable"] {
 
 .headingbg {
 	background-color: #ffffff7e;
-	padding: 20px 0;
+	padding: 20px;
 	border-radius: 10px 10px 0 0;
 }
 
 .footingbg {
 	background-color: #ffffff30;
-	padding: 20px 0;
+	padding: 20px;
 	border-radius: 0 0 10px 10px;
 }
 
@@ -218,4 +218,25 @@ table td[class="selectable"] {
 	background-color: limegreen;
 	border-radius: 5px;
 	transition: width 1s ease-out; /* Animációs átmenet */
+}
+
+.tooltip {
+	--bs-tooltip-bg: #353535;
+}
+
+.tooltip-inner {
+	color: #fff;
+	font-family: Rubik, sans-serif;
+	font-size: 14px;
+	padding: 8px 12px;
+}
+
+/* A nyíl színének beállítása bottom pozícióhoz */
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+	border-bottom-color: #333 !important;
+}
+
+/* A nyíl alapjának biztosítása */
+.tooltip.bs-tooltip-bottom .tooltip-arrow {
+	background-color: #333 !important;
 }
