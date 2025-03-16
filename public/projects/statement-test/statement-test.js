@@ -460,7 +460,7 @@ if (checkBtn) {
 			(user) => user.name === null
 		);
 		if (emptyFields) {
-			showErrorModal("Töltse ki az összes mezőt!");
+			showErrorModal("Töltsd ki az összes mezőt!");
 			return;
 		}
 
@@ -472,7 +472,7 @@ if (checkBtn) {
 				errors.push(`Hiba: ${expected.label} sor rossz helyen van!`);
 			} else if (user.name !== expected.name) {
 				errors.push(
-					`Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})`
+					`Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})<br>`
 				);
 			}
 		}
@@ -514,14 +514,35 @@ function showErrorModal(message) {
 	const percentage = (correctCount / totalSelectable) * 100;
 
 	// Progress bar animáció
-	progressFill.style.transition = "none"; // Először kikapcsoljuk az animációt
-	progressFill.style.width = "0%"; // Nulláról indul
-	percentageText.textContent = "0%"; // Szöveg reset
+	progressFill.style.transition = "none";
+	progressFill.style.width = "0%";
 	setTimeout(() => {
-		progressFill.style.transition = "width 2s ease-out"; // Animáció vissza
-		progressFill.style.width = `${percentage}%`; // Célérték
-		percentageText.textContent = `${Math.round(percentage)}%`; // Szöveg frissítése
-	}, 50); // Kis késleltetés az animáció indításához
+		progressFill.style.transition = "width 2s ease-out";
+		progressFill.style.width = `${percentage}%`;
+	}, 50);
+
+	// Percentage text animáció
+	let start = 0;
+	const end = Math.round(percentage);
+	const duration = 500;
+	const startTime = performance.now();
+
+	function animateText(currentTime) {
+		const elapsed = currentTime - startTime;
+		const progress = Math.min(elapsed / duration, 1); // 0 és 1 között
+		const currentValue = Math.round(start + (end - start) * progress);
+
+		percentageText.textContent = `${currentValue}%`;
+
+		if (progress < 1) {
+			requestAnimationFrame(animateText);
+		} else {
+			percentageText.textContent = `${end}%`; // Végső érték
+		}
+	}
+
+	percentageText.textContent = "0%"; // Kezdőérték
+	requestAnimationFrame(animateText);
 }
 
 // Hibamodal bezárása (progress bar reset)

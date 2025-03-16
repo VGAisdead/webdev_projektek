@@ -208,7 +208,8 @@ table td[class="selectable"] {
 	background-color: #ddd;
 	border-radius: 5px;
 	overflow: hidden;
-	margin: 10px 0;
+	margin-top: 15px;
+	margin-bottom: 30px;
 }
 
 #progress-fill {
