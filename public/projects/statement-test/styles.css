@@ -1,161 +1,181 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  align-items: center;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	align-items: center;
 }
 
 body {
-  font-family: Rubik, sans-serif;
+	font-family: Rubik, sans-serif;
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 
-  border: none;
-  margin: auto;
-  border-radius: 10px;
-  padding: 0 0 20px 0;
-  background-color: rgba(0, 0, 0, 0.3);
+	border: 1px solid black;
+	margin: auto;
+	border-radius: 10px;
+	padding: 0 0 20px 0;
+	background-color: rgba(0, 0, 0, 0.3);
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
 
-table,
-th,
-td {
-  border: 1px solid white;
-  padding: 10px;
-}
 table {
-  border-spacing: 30px;
+	border-spacing: 30px;
 }
 
 td:hover {
-  background-color: #ffffff25;
+	background-color: #ffffff25;
 }
 
 th {
-  background-color: rgba(0, 0, 0, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 table {
-  width: 100%;
-  border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
 td {
-  padding: 10px;
-  border: 1px solid black;
-  text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+	text-align: center;
 }
 .modal {
-  display: none; /* Alapértelmezetten rejtve */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; /* Biztos, hogy a modál mindig előtérben lesz */
-  overflow: hidden; /* Elkerüli, hogy görgethető legyen */
+	display: none; /* Alapértelmezetten rejtve */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+	z-index: 1000; /* Biztos, hogy a modál mindig előtérben lesz */
+	overflow: hidden; /* Elkerüli, hogy görgethető legyen */
 }
 
 .modal.show {
-  display: flex; /* Megjeleníti a modált, ha hozzáadjuk a "show" osztályt */
+	display: flex; /* Megjeleníti a modált, ha hozzáadjuk a "show" osztályt */
 }
 
 .modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  width: 80%; /* Csökkentett szélesség, hogy jobban illeszkedjen kisebb képernyőkön */
-  max-height: 80%;
-  max-width: 400px; /* Maximális szélesség, hogy ne legyen túl széles */
-  text-align: center;
-  overflow: auto;
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	width: 80%; /* Csökkentett szélesség, hogy jobban illeszkedjen kisebb képernyőkön */
+	max-height: 80%;
+	max-width: 400px; /* Maximális szélesség, hogy ne legyen túl széles */
+	text-align: center;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; /* Ez segíti a tartalom és a gombok megfelelő elhelyezését */
 }
 
 .modal-content ul li {
-  display: block;
-  visibility: visible;
+	display: block;
+	visibility: visible;
 }
 
 .modal ul {
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 }
 .modal ul li {
-  padding: 10px;
-  margin: 5px 0;
-  background: lightgray;
-  border-radius: 5px;
+	padding: 10px;
+	margin: 5px 0;
+	background: lightgray;
+	border-radius: 5px;
 }
 .modal ul li:hover {
-  background: darkgray;
+	background: darkgray;
 }
 
 #close-modal,
-#close-error-modal {
-  border: none;
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s;
+#close-error-modal,
+#delete-row-btn {
+	border: none;
+	background-color: #007bff;
+	color: white;
+	padding: 10px 15px;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	transition: background-color 0.3s;
+	align-self: center;
 }
 
 #close-modal:hover,
-#close-error-modal:hover {
-  background-color: #0056b3;
+#close-error-modal:hover,
+#delete-row-btn:hover {
+	background-color: #0056b3;
 }
 
 .modal ul li:hover {
-  background: #999; /* Könnyen észrevehető háttérváltás hover esetén */
+	background: #e3e3e3; /* Könnyen észrevehető háttérváltás hover esetén */
+	cursor: pointer;
 }
 
 /* Az arab számokkal jelölt sorok szövege fehér legyen */
 table td[class="selectable"] {
-  color: white; /* Fehér szín a szövegnek */
-  cursor: pointer;
+	color: white; /* Fehér szín a szövegnek */
+	cursor: pointer;
 }
 
 .check {
-  width: 100%;
-  margin: auto;
-  height: 3rem;
-  border-radius: 8px;
-  background-color: orangered;
-  border: none;
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 1.2rem;
-  color: black;
-  transition: background-color 0.5s ease-out;
-  cursor: pointer;
+	width: 100%;
+	margin: auto;
+	height: 3rem;
+	border-radius: 8px;
+	background-color: orangered;
+	border: none;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 1.2rem;
+	color: black;
+	transition: background-color 0.5s ease-out;
+	cursor: pointer;
 }
 
-/* Header és subheader típusú sorok nem kattinthatók */
-table td[type="header"],
-table td[type="subheader"] {
-  background-color: #ddd; /* Világos szürke háttér */
-  color: #333;
-  font-weight: bold;
-  text-align: center;
-  cursor: default; /* Ne legyen kattintható */
-  pointer-events: none; /* Ne reagáljanak a kattintásokra */
-  border: none; /* Ne legyenek szegélyek */
+.mainheader {
+	background-color: #ffffff;
+}
+
+.secheader {
+	background-color: #ffd9d6;
+}
+
+.subheader {
+	background-color: #b8bfb0;
+}
+
+.mainheader:hover,
+.secheader:hover,
+.subheader:hover {
+	background-color: rgba(255, 255, 255, 0.6);
+	color: #000000;
 }
 
 .titlebg {
-  background-color: #0ff4c625;
-  padding: 20px 0;
-  border-radius: 10px 10px 0 0;
+	background-color: #8affce30;
+	padding: 20px 0;
+	border-radius: 10px 10px 0 0;
+}
+
+.modal-content:has(.btns > li) {
+	list-style-type: none;
+	margin: 0 10px;
+}
+
+.btns {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	gap: 10px;
 }
