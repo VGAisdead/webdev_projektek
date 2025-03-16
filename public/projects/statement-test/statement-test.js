@@ -23,7 +23,162 @@ let shuffledOptions = [];
 
 // Beszámolók adatai
 const reports = {
-	merleg: {
+  emerleg: {
+
+  },
+
+  lepcso: {
+
+  },
+
+	osszkoltseg: {
+		title: "Összköltség Eredménykimutatás",
+		description:
+			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve mutatja az eredményt.",
+		rows: [
+			{
+				label: "01.",
+				name: "Belföldi értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "02.",
+				name: "Export értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "I.",
+				name: "Értékesítés nettó árbevétele (01+02)",
+				type: "secheader",
+			},
+			{
+				label: "03.",
+				name: "Saját termelésű készletek állományváltozása",
+				type: "selectable",
+			},
+			{
+				label: "04.",
+				name: "Saját előállítású eszközök aktivált értéke",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				type: "secheader",
+			},
+			{
+				label: "A /",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye",
+				type: "mainheader",
+			},
+
+			{
+				label: "I.",
+				name: "Immateriális javak",
+				type: "subheader",
+			},
+		],
+	},
+
+	forgalmi: {
+		title: "Forgalmi Eredménykimutatás",
+		description:
+			"A forgalmi költség kimutatás a nettó árbevételt és költségeket részletezi az eredményhez.",
+		rows: [
+			{
+				label: "01.",
+				name: "Belföldi értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "02.",
+				name: "Export értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "I.",
+				name: "Értékesítés nettó árbevétele (01+02)",
+				type: "secheader",
+			},
+			{
+				label: "03.",
+				name: "Saját termelésű készletek állományváltozása",
+				type: "selectable",
+			},
+			{
+				label: "04.",
+				name: "Saját előállítású eszközök aktivált értéke",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				type: "secheader",
+			},
+			{
+				label: "A /",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye",
+				type: "mainheader",
+			},
+
+			{
+				label: "I.",
+				name: "Immateriális javak",
+				type: "subheader",
+			},
+		],
+	},
+
+	cashflow: {
+		title: "Cashflow kimutatás",
+		description:
+			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási körökben.",
+		rows: [
+			{
+				label: "01.",
+				name: "Belföldi értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "02.",
+				name: "Export értékesítés nettó árbevétele",
+				type: "selectable",
+			},
+			{
+				label: "I.",
+				name: "Értékesítés nettó árbevétele (01+02)",
+				type: "secheader",
+			},
+			{
+				label: "03.",
+				name: "Saját termelésű készletek állományváltozása",
+				type: "selectable",
+			},
+			{
+				label: "04.",
+				name: "Saját előállítású eszközök aktivált értéke",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				type: "secheader",
+			},
+			{
+				label: "A /",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye",
+				type: "mainheader",
+			},
+
+			{
+				label: "I.",
+				name: "Immateriális javak",
+				type: "subheader",
+			},
+		],
+	},
+  
+  merleg: {
 		title: "Éves beszámoló mérlege",
 		description:
 			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
@@ -185,153 +340,7 @@ const reports = {
 				tooltip: "Rövid távon hasznosítható eszközök.",
 			},
 		],
-	},
-	osszkoltseg: {
-		title: "Összköltség Eredménykimutatás",
-		description:
-			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve mutatja az eredményt.",
-		rows: [
-			{
-				label: "01.",
-				name: "Belföldi értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "02.",
-				name: "Export értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "I.",
-				name: "Értékesítés nettó árbevétele (01+02)",
-				type: "secheader",
-			},
-			{
-				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
-				type: "selectable",
-			},
-			{
-				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
-				type: "selectable",
-			},
-			{
-				label: "II.",
-				name: "Aktivált saját teljesítmények értéke (±03+04)",
-				type: "secheader",
-			},
-			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
-				type: "mainheader",
-			},
-
-			{
-				label: "I.",
-				name: "Immateriális javak",
-				type: "subheader",
-			},
-		],
-	},
-
-	forgalmi: {
-		title: "Forgalmi Eredménykimutatás",
-		description:
-			"A forgalmi költség kimutatás a nettó árbevételt és költségeket részletezi az eredményhez.",
-		rows: [
-			{
-				label: "01.",
-				name: "Belföldi értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "02.",
-				name: "Export értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "I.",
-				name: "Értékesítés nettó árbevétele (01+02)",
-				type: "secheader",
-			},
-			{
-				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
-				type: "selectable",
-			},
-			{
-				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
-				type: "selectable",
-			},
-			{
-				label: "II.",
-				name: "Aktivált saját teljesítmények értéke (±03+04)",
-				type: "secheader",
-			},
-			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
-				type: "mainheader",
-			},
-
-			{
-				label: "I.",
-				name: "Immateriális javak",
-				type: "subheader",
-			},
-		],
-	},
-
-	cashflow: {
-		title: "Cashflow kimutatás",
-		description:
-			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási körökben.",
-		rows: [
-			{
-				label: "01.",
-				name: "Belföldi értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "02.",
-				name: "Export értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "I.",
-				name: "Értékesítés nettó árbevétele (01+02)",
-				type: "secheader",
-			},
-			{
-				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
-				type: "selectable",
-			},
-			{
-				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
-				type: "selectable",
-			},
-			{
-				label: "II.",
-				name: "Aktivált saját teljesítmények értéke (±03+04)",
-				type: "secheader",
-			},
-			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
-				type: "mainheader",
-			},
-
-			{
-				label: "I.",
-				name: "Immateriális javak",
-				type: "subheader",
-			},
-		],
-	},
+	}
 };
 
 // Induló modal megjelenítése
