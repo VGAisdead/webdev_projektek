@@ -285,7 +285,7 @@ document.getElementById("check-button").addEventListener("click", () => {
       errors.push(`Hiba: A(z) ${expected.label} sor rossz helyen van!`);
     } else if (user.name !== expected.name && user.name !== null) {
       errors.push(
-        `Hiba: ${expected.label} sor rossz elem: ${user.name} (megoldás: ${expected.name})!`
+        `Hiba: ${expected.label} sor: ${user.name} (megoldás: ${expected.name})`
       );
     }
   }
