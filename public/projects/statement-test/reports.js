@@ -220,8 +220,8 @@ export const reports = {
 			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
 		rows: [
 			{
-				label: "ESZKÖZÖK /",
-				name: "AKTÍVÁK",
+				label: "⮛ ESZKÖZÖK /",
+				name: "AKTÍVÁK ⮛",
 				type: "mainheader",
 				tooltip: "A cég összes eszközét foglalja össze.",
 			},
@@ -493,6 +493,56 @@ export const reports = {
 				label: "6.",
 				name: "Értékpapírok értékelési különbözete",
 				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Pénzeszközök",
+				type: "subheader",
+				tooltip: "Készpénz és azonnal felhasználható banki betétek.",
+			},
+			{
+				label: "1.",
+				name: "Pénztár, csekkek",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Bankbetétek",
+				type: "selectable",
+			},
+			{
+				label: "C/",
+				name: "Aktív időbeli elhatárolások",
+				type: "secheader",
+				tooltip:
+					"Jövőbeni bevételek, költségek, ráfordítások időbeli elszámolása.",
+			},
+			{
+				label: "1.",
+				name: "Bevételek aktív időbeli elhatárolása",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Költségek, ráfordítások aktív időbeli elhatárolása",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Halasztott ráfordítások",
+				type: "selectable",
+			},
+			{
+				label: "ESZKÖZÖK ",
+				name: "ÖSSZESEN",
+				type: "mainheader",
+				tooltip: "A vállalkozás teljes eszközállományának értéke.",
+			},
+			{
+				label: "⮛ FORRÁSOK / ",
+				name: "PASSZÍVÁK ⮛",
+				type: "mainheader",
+				tooltip: "A cég vagyonát biztosító kötelezettségek és tőke.",
 			},
 		],
 	},

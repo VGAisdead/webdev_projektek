@@ -222,7 +222,7 @@ table td[class="selectable"] {
 }
 
 .tooltip {
-	--bs-tooltip-bg: #353535;
+	--bs-tooltip-bg: #000000;
 	opacity: 1;
 }
 
