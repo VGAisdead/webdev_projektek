@@ -223,6 +223,7 @@ table td[class="selectable"] {
 
 .tooltip {
 	--bs-tooltip-bg: #353535;
+	opacity: 1;
 }
 
 .tooltip-inner {
@@ -232,12 +233,6 @@ table td[class="selectable"] {
 	padding: 8px 12px;
 }
 
-/* A nyíl színének beállítása bottom pozícióhoz */
-.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
-	border-bottom-color: #333 !important;
-}
-
-/* A nyíl alapjának biztosítása */
-.tooltip.bs-tooltip-bottom .tooltip-arrow {
-	background-color: #333 !important;
+.tooltip.show {
+	opacity: 1;
 }
