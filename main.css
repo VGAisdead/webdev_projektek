@@ -1,209 +1,210 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0px;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0px;
 }
 
 html::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  scroll-behavior: smooth;
+	display: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	scroll-behavior: smooth;
 }
 
 body {
-  background-image: url("./assets/images/background.jpg") !important;
-  background-color: antiquewhite;
-  font-family: Rubik, sans-serif;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center top;
-  background-size: cover;
+	background-image: url("./assets/images/background.jpg") !important;
+	background-blend-mode: hard-light;
+	background-color: antiquewhite;
+	font-family: Rubik, sans-serif;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center top;
+	background-size: cover;
 }
 
 #nav {
-  justify-content: flex-end;
+	justify-content: flex-end;
 }
 
 li.nav-item {
-  justify-items: center;
+	justify-items: center;
 }
 
 .header {
-  background-color: black;
-  color: white;
-  font-family: rubik;
+	background-color: black;
+	color: white;
+	font-family: rubik;
 }
 
 .heroimg {
-  border-radius: 10px;
-  justify-self: center;
+	border-radius: 10px;
+	justify-self: center;
 }
 
 .lead {
-  color: black;
+	color: black;
 }
 
 .lead2 {
-  color: black;
-  font-size: 1rem;
-  font-weight: 500;
+	color: black;
+	font-size: 1rem;
+	font-weight: 500;
 }
 
 .badge-link {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .btn-dark {
-  --bs-btn-bg: #000;
-  --bs-btn-hover-bg: #rgba(255, 0, 0, 0);
-  --bs-btn-hover-color: #fff;
-  --bs-btn-hover-border-color: #fff;
-  --bs-btn-active-bg: #000;
+	--bs-btn-bg: #000;
+	--bs-btn-hover-bg: #rgba(255, 0, 0, 0);
+	--bs-btn-hover-color: #fff;
+	--bs-btn-hover-border-color: #fff;
+	--bs-btn-active-bg: #000;
 }
 
 #footer {
-  background-color: black;
-  color: white;
-  font-family: rubik;
-  padding: 0;
+	background-color: black;
+	color: white;
+	font-family: rubik;
+	padding: 0;
 }
 
 #nav > ul > li.nav-item.dropdown > ul > li > a:hover {
-  background-color: black;
+	background-color: black;
 }
 
 #nav > ul > li.nav-item.dropdown > ul > li > a:active {
-  background-color: cornflowerblue;
+	background-color: cornflowerblue;
 }
 
 h2 {
-  text-align: center;
-  font-size: 18px;
-  margin: 3px;
-  font-weight: 500;
+	text-align: center;
+	font-size: 18px;
+	margin: 3px;
+	font-weight: 500;
 }
 
 hr {
-  border-style: solid;
-  color: #000;
-  border-width: 1px 0px;
-  margin: 10px 0;
+	border-style: solid;
+	color: #000;
+	border-width: 1px 0px;
+	margin: 10px 0;
 }
 
 .kapcsolatinfo {
-  font-size: 16px;
-  text-align: center;
+	font-size: 16px;
+	text-align: center;
 }
 
 ol {
-  list-style-position: inside;
-  text-align: left;
+	list-style-position: inside;
+	text-align: left;
 }
 
 .kepkozepen {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 80%;
-  border-radius: 15px;
-  margin-top: 30px;
-  margin-bottom: 30px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 80%;
+	border-radius: 15px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 
 #avokado {
-  display: block;
-  margin: 0 auto 0 auto;
-  max-width: 300px;
-  max-height: 300px;
+	display: block;
+	margin: 0 auto 0 auto;
+	max-width: 300px;
+	max-height: 300px;
 }
 
 .memediv {
-  background-color: black;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  padding: 0px 0px 0px 0px;
-  color: white;
-  text-align: center;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 40%;
-  border-radius: 20px;
+	background-color: black;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	padding: 0px 0px 0px 0px;
+	color: white;
+	text-align: center;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 40%;
+	border-radius: 20px;
 }
 
 .meme1pic {
-  border: 2px solid black;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  max-width: 100%;
+	border: 2px solid black;
+	border-top-left-radius: 20px;
+	border-top-right-radius: 20px;
+	max-width: 100%;
 }
 
 .memeloading {
-  border: 2px solid black;
-  border-radius: 20px;
-  max-width: 100%;
+	border: 2px solid black;
+	border-radius: 20px;
+	max-width: 100%;
 }
 
 p {
-  margin: 0;
+	margin: 0;
 }
 
 .meme1p1 {
-  font-size: 1.5rem;
-  padding-bottom: 4px;
-  padding-top: 4px;
+	font-size: 1.5rem;
+	padding-bottom: 4px;
+	padding-top: 4px;
 }
 
 .meme1p2 {
-  font-size: 1rem;
-  padding-bottom: 10px;
+	font-size: 1rem;
+	padding-bottom: 10px;
 }
 
 /*-------------------------------------------*/
 
 .projectimg {
-  height: 300px;
-  object-fit: cover; /* Azonos méretű kép a kártyákban */
+	height: 300px;
+	object-fit: cover; /* Azonos méretű kép a kártyákban */
 }
 
 .card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
 
 .card-text {
-  flex-grow: 1; /* A szöveg terjeszkedhet a kártya kitöltéséhez */
+	flex-grow: 1; /* A szöveg terjeszkedhet a kártya kitöltéséhez */
 }
 
 .card {
-  height: 100%; /* Azonos magasság a flexbox miatt */
+	height: 100%; /* Azonos magasság a flexbox miatt */
 }
 
 /*------------------------------------------*/
 
 .code {
-  color: black;
+	color: black;
 }
 
 a:hover .code {
-  transition: color 1s ease-out;
-  color: white;
+	transition: color 1s ease-out;
+	color: white;
 }
 
 @media screen and (max-width: 800px) {
-  .memediv {
-    max-width: 80%;
-  }
+	.memediv {
+		max-width: 80%;
+	}
 }
 
 @media screen and (min-width: 1000px) {
-  .kepkozepen {
-    max-width: 600px;
-  }
-  #avokado {
-    min-height: 500px;
-    min-width: 500px;
-  }
+	.kepkozepen {
+		max-width: 600px;
+	}
+	#avokado {
+		min-height: 500px;
+		min-width: 500px;
+	}
 }
