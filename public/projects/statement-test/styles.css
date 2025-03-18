@@ -259,16 +259,15 @@ table td[class="selectable"] {
 	z-index: 9999;
 }
 
-/* resetBtn */
 #reset-statement {
 	transition: all 0.3s ease;
-}
-
-#reset-statement i.bi-arrow-repeat {
+    }
+    
+    #reset-statement svg.bi-arrow-repeat {
 	display: inline-block;
 	transition: transform 0.5s ease;
-}
-
-#reset-statement:hover i.bi-arrow-repeat {
+    }
+    
+    #reset-statement:hover svg.bi-arrow-repeat {
 	transform: rotate(270deg);
-}
+    }
