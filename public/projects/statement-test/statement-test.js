@@ -327,7 +327,7 @@ if (checkBtn) {
 				successSound.play().catch((error) => {
 					console.error("Hiba a hang lejátszásakor:", error);
 				});
-			}, 750);
+			}, 500);
 		}
 	});
 }

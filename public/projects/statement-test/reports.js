@@ -1,4 +1,23 @@
 export const reports = {
+	test: {
+		title: "Teszt kimutatás",
+		description:
+			"Új funkciók tesztelése",
+		rows: [
+			{
+				label: "⮛ TEST",
+				name: "THAT SHIT ⮛",
+				type: "mainheader",
+				tooltip: "Now you want to check if it works or not?",
+			},
+			{
+				label: "",
+				name: "pls work",
+				type: "selectable",
+			}
+		]
+		},
+
 	emerleg: {
 		title: "Egyszerűsített éves beszámoló mérlege",
 		description:
