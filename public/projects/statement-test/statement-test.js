@@ -423,6 +423,8 @@ window.addEventListener("click", (event) =>
 
 // Beszámoló reset
 resetBtn.addEventListener("click", () => {
-	reportSheet.classList.add("hidden");
+	window.addEventListener("click", (event) =>
+		closeModalOnOutsideClick(event, startModal)
+	);
 	startModal.classList.add("show");
 });

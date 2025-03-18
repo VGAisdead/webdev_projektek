@@ -270,5 +270,5 @@ table td[class="selectable"] {
 }
 
 #reset-statement:hover i.bi-arrow-repeat {
-	transform: rotate(360deg); /* 360 fokos forgás */
+	transform: rotate(270deg);
 }
