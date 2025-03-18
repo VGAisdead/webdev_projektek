@@ -14,7 +14,7 @@ html::-webkit-scrollbar {
 body {
 	background-image: url("./assets/images/background.jpg") !important;
 	background-blend-mode: hard-light;
-	background-color: antiquewhite;
+	background-color: rgba(255, 255, 255, 0.6);
 	font-family: Rubik, sans-serif;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
