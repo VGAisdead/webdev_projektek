@@ -535,14 +535,286 @@ export const reports = {
 			{
 				label: "ESZKÖZÖK ",
 				name: "ÖSSZESEN",
-				type: "mainheader",
+				type: "sum",
 				tooltip: "A vállalkozás teljes eszközállományának értéke.",
+			},
+			{
+				label: "",
+				name: "",
+				type: "nothing",
 			},
 			{
 				label: "⮛ FORRÁSOK / ",
 				name: "PASSZÍVÁK ⮛",
 				type: "mainheader",
 				tooltip: "A cég vagyonát biztosító kötelezettségek és tőke.",
+			},
+			{
+				label: "D/",
+				name: "Saját tőke",
+				type: "secheader",
+				tooltip:
+					"A cég saját erőforrásai, a teljes vagyon és kötelezettségek különbözete.",
+			},
+			{
+				label: "I.",
+				name: "Jegyzett tőke",
+				type: "subheader",
+				tooltip: "A tulajdonosok által befektetett tőke összege.",
+			},
+			{
+				label: "ebből: ",
+				name: "Visszavásárolt tulajdoni részesedés névértéken",
+				type: "sum",
+				tooltip: "A tulajdonosok által visszavásárolt részesedés.",
+			},
+			{
+				label: "II.",
+				name: "Jegyzett, de még be nem fizetett tőke (-)",
+				type: "subheader",
+				tooltip: "A jegyzett tőke még ki nem fizetett része.",
+			},
+			{
+				label: "III.",
+				name: "Tőketartalék",
+				type: "subheader",
+				tooltip:
+					"Tőkeemelésből vagy egyéb hozzájárulásból származó többletösszeg.",
+			},
+			{
+				label: "IV.",
+				name: "Eredménytartalék",
+				type: "subheader",
+				tooltip:
+					"Korábbi évek felhalmozott, fel nem osztott nyeresége vagy vesztesége.",
+			},
+			{
+				label: "V.",
+				name: "Lekötött tartalék",
+				type: "subheader",
+				tooltip:
+					"Külön célra (pl. fejlesztésre) félretett, fel nem osztható összeg.",
+			},
+			{
+				label: "VI.",
+				name: "Értékelési tartalék",
+				type: "subheader",
+				tooltip:
+					"Eszközök piaci értékeléséből adódó különbözet összege.",
+			},
+			{
+				label: "1.",
+				name: "Értékhelyesbítés értékelési tartaléka",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Valós értékelés értékelési tartaléka",
+				type: "selectable",
+			},
+			{
+				label: "VII.",
+				name: "Adózott eredmény",
+				type: "subheader",
+				tooltip:
+					"A cég adózás utáni nyeresége vagy vesztesége adott időszakban.",
+			},
+			{
+				label: "E/",
+				name: "Céltartalékok",
+				type: "secheader",
+				tooltip:
+					"Jövőbeli kiadásokra (pl. garancia, per) előre elkülönített összeg.",
+			},
+			{
+				label: "1.",
+				name: "Céltartalék a várható kötelezettségekre",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Céltartalék a jövőbeni költségekre",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Egyéb céltartalék",
+				type: "selectable",
+			},
+			{
+				label: "F/",
+				name: "Kötelezettségek",
+				type: "secheader",
+				tooltip:
+					"A cég külső felekkel szembeni tartozásai, pl. hitelek, szállítói számlák.",
+			},
+			{
+				label: "I.",
+				name: "Hátrasorolt kötelezettségek",
+				type: "subheader",
+				tooltip: "5 éven túli, hátrasorolt, alárendelt tartozások.",
+			},
+			{
+				label: "1.",
+				name: "Hátrasorolt kötelezettségek kapcsolt vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Hátrasorolt kötelezettségek jelentős tulajdoni viszonyban lévő vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Hátrasorolt kötelezettségek egyéb részesedési viszonyban lévő vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Hosszú lejáratú kötelezettségek",
+				type: "subheader",
+				tooltip:
+					"1 éven túli lejáratú, külső felekkel szembeni tartozások.",
+			},
+			{
+				label: "1.",
+				name: "Hosszú lejáratra kapott kölcsönök",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Átváltoztatható kötvények",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Tartozások kötvénykibocsátásból",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Beruházási és fejlesztési hitelek",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Egyéb hosszú lejáratú hitelek",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Tartós kötelezettségek kapcsolt vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "7.",
+				name: "Tartós kötelezettségek jelentős tulajdoni viszonyban lévő vállalkozásokkal szemben",
+				type: "selectable",
+			},
+			{
+				label: "8.",
+				name: "Tartós kötelezettségek egyéb részesedésiviszonyban lévő vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "9.",
+				name: "Egyéb hosszú lejáratú kötelezettségek",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Rövid lejáratú kötelezettségek",
+				type: "subheader",
+				tooltip:
+					"1 éven belüli lejáratú, külső felekkel szembeni tartozások.",
+			},
+			{
+				label: "1.",
+				name: "Rövid lejáratú kölcsönök",
+				type: "selectable",
+			},
+			{
+				label: "ebből: ",
+				name: "Átváltoztatható kötvények",
+				type: "sum",
+				tooltip: "Rövid lejáratú kötvények, amelyek részvényre válthatók.",
+			},
+			{
+				label: "2.",
+				name: "Rövid lejáratú hitelek",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Vevőktől kapott előlegek",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Kötelezettségek áruszállításból és szolgáltatásból (szállítók)",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Váltótartozások",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Rövid lejáratú kötelezettségek kapcsolt vállalkozással szemben",
+				type: "selectable",
+			},
+			{
+				label: "7.",
+				name: "Rövid lejáratú kötelezettségek jelentős tulajdoni viszonyban lévő vállalkozásokkal szemben",
+				type: "selectable",
+			},
+			{
+				label: "8.",
+				name: "Rövid lejáratú kötelezettségek egyéb részesedési viszonyban lévő vállalkozással szemben",
+			},
+			{
+				label: "9.",
+				name: "Egyéb rövid lejáratú kötelezettségek",
+				type: "selectable",
+			},
+			{
+				label: "10.",
+				name: "Kötelezettségek értékelési különbözete",
+				type: "selectable",
+			},
+			{
+				label: "11.",
+				name: "Származékos ügyletek negatív értékelési különbözete",
+				type: "selectable",
+			},
+			{
+				label: "G/",
+				name: "Passzív időbeli elhatárolások",
+				type: "secheader",
+				tooltip:
+					"Később esedékes bevételek, költségek, ráfordítások időbeli elszámolása.",
+			},
+			{
+				label: "1.",
+				name: "Bevételek passzív időbeli elhatárolása",
+				type: "selectable",
+			},
+			{
+				label: "2.",
+				name: "Költségek, ráfordítások passzív időbeli elhatárolása",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Halasztott Bevételek",
+				type: "selectable",
+			},
+			{
+				label: "FORRÁSOK ",
+				name: "ÖSSZESEN",
+				type: "sum",
+				tooltip: "A cég teljes finanszírozása, saját tőke és kötelezettségek összege.",
 			},
 		],
 	},

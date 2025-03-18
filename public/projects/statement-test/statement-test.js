@@ -61,7 +61,8 @@ document.querySelectorAll(".select-report").forEach((button) => {
 			if (
 				row.type === "mainheader" ||
 				row.type === "secheader" ||
-				row.type === "subheader"
+				row.type === "subheader" ||
+				row.type === "sum"
 			) {
 				cell.textContent = `${row.label} ${row.name}`;
 				cell.style.fontWeight = "bold";
@@ -79,7 +80,11 @@ document.querySelectorAll(".select-report").forEach((button) => {
 					cell.classList.add("secheader");
 				} else if (row.type === "subheader") {
 					cell.classList.add("subheader");
+				} else if (row.type === "sum") {
+					cell.classList.add("sum");
 				}
+			} else if (row.type === "nothing") {
+				cell.classList.add("nothing");
 			} else {
 				cell.textContent = row.label;
 				cell.classList.add("selectable");
@@ -89,7 +94,7 @@ document.querySelectorAll(".select-report").forEach((button) => {
 				cell.addEventListener("click", function () {
 					activeCell = this;
 					updateOptionsList();
-					modal.style.display = "flex";
+					modal.classList.add("show");
 				});
 			}
 
@@ -239,6 +244,11 @@ if (closeModalBtn) {
 		deleteRowBtn.style.display = "none"; // Törlés gomb biztos elrejtése
 	});
 }
+function closeModalOnOutsideClick(event, modalElement) {
+	if (event.target === modalElement) {
+		modalElement.classList.remove("show"); // Csak classList-et használunk
+	}
+}
 
 // Ellenőrzés gomb
 if (checkBtn) {
@@ -384,12 +394,6 @@ function updateProgressBar(percentage) {
 }
 
 // Modalok bezárása
-function closeModalOnOutsideClick(event, modalElement) {
-	if (event.target === modalElement) {
-		modalElement.classList.remove("show"); // Csak classList-et használunk
-	}
-}
-
 window.addEventListener("click", (event) =>
 	closeModalOnOutsideClick(event, modal)
 );

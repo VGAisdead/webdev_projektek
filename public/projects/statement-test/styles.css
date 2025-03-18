@@ -168,14 +168,23 @@ table td[class="selectable"] {
 	background-color: #b8bfb0;
 }
 
+.sum {
+	background-color: rgba(255, 255, 255, 0.1);
+	color: white;
+}
+.nothing {
+	background-color: rgb(255, 0, 0);
+	padding: 20px;
+}
+
 .headingbg {
-	background-color: #ffffff7e;
+	background-color: #ffffff40;
 	padding: 20px;
 	border-radius: 10px 10px 0 0;
 }
 
 .footingbg {
-	background-color: #ffffff30;
+	background-color: #ffffff40;
 	padding: 20px;
 	border-radius: 0 0 10px 10px;
 }
