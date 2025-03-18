@@ -1,12 +1,6 @@
 const whoami = document.querySelector(".whoami");
 
-const careers = [
-	"kóder ",
-	"könyvelő ",
-	"gamer ",
-	"fejlesztő ",
-	"örök tanuló! ",
-];
+const careers = ["kóder ", "könyvelő ", "gamer ", "örök tanuló"];
 let careerIndex = 0;
 let characterIndex = 0;
 
