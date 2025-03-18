@@ -16,6 +16,7 @@ const errorList = document.getElementById("error-list");
 const errorModal = document.getElementById("error-modal");
 const progressFill = document.getElementById("progress-fill");
 const percentageText = document.getElementById("percentage-text");
+const canvas = document.getElementById("confetti-canvas"); // confetti
 
 let activeCell = null; // Az éppen kiválasztott cella
 let availableOptions = []; // Az elérhető elemek listája
@@ -183,7 +184,7 @@ function updateOptionsList() {
 					// Opciók listájának frissítése
 					updateOptionsList();
 				}
-				modal.style.display = "none"; // Modal bezárása
+				modal.classList.remove("show");
 			});
 
 			optionList.appendChild(li);
@@ -238,10 +239,10 @@ if (deleteRowBtn) {
 // Modal bezárása
 if (closeModalBtn) {
 	closeModalBtn.addEventListener("click", () => {
-		modal.style.display = "none";
+		modal.classList.remove("show");
 		activeCell = null; // Aktív cella törlése
 		updateOptionsList();
-		deleteRowBtn.style.display = "none"; // Törlés gomb biztos elrejtése
+		deleteRowBtn.style.display = "none"; // Törlés gomb elrejtése
 	});
 }
 function closeModalOnOutsideClick(event, modalElement) {
@@ -307,7 +308,25 @@ if (checkBtn) {
 		if (errors.length > 0) {
 			showErrorModal(errors.join("<br>"));
 		} else {
-			showErrorModal("A megoldás helyes! ✅");
+			showErrorModal(`A megoldás helyes! ✅<br><br>`);
+
+			// Konfetti
+			setTimeout(() => {
+				confetti({
+					particleCount: 100,
+					spread: 70,
+					origin: { y: 0.6 },
+				});
+			}, 1000);
+			setTimeout(() => {
+				// Hang lejátszása
+				const successSound = new Audio(
+					"../../../assets/sounds/confetti.mp3"
+				);
+				successSound.play().catch((error) => {
+					console.error("Hiba a hang lejátszásakor:", error);
+				});
+			}, 750);
 		}
 	});
 }
@@ -347,7 +366,7 @@ function showErrorModal(message) {
 	progressFill.style.transition = "none";
 	progressFill.style.width = "0%";
 	setTimeout(() => {
-		progressFill.style.transition = "width 2s ease-out";
+		progressFill.style.transition = "width 1s ease-out";
 		progressFill.style.width = `${percentage}%`;
 	}, 50);
 
@@ -386,10 +405,10 @@ function updateProgressBar(percentage) {
 	const progressFill = document.getElementById("progress-fill");
 	const percentageText = document.getElementById("percentage-text");
 
-	// Beállítjuk a progress bar szélességét a százalékos érték alapján
+	// Progress bar szélesség a százalékos érték alapján
 	progressFill.style.width = percentage + "%";
 
-	// Frissítjük a százalékos szöveget is
+	// Frissítjük a százalékos szöveget
 	percentageText.textContent = percentage + "%";
 }
 

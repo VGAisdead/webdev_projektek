@@ -103,9 +103,9 @@
         </div>
 
 
-        <div id="sheet" class="wrapper col-10 col-lg-6 mt-5 mb-3 hidden">
+        <div id="sheet" class="wrapper col-10 col-lg-6 mt-5 mb-5 hidden">
             <!-- Táblázat -->
-            <div class="headingbg container-fluid ">
+            <div class="headingbg container-fluid">
                 <h3 id="report-title" class="text-center text-black"></h3>
                 <h6 id="report-description" class="text-center text-black fw-normal justify-content-center"></h6>
             </div>
@@ -131,7 +131,7 @@
         <!-- Modal az eredmények megjelenítésére -->
         <div id="error-modal" class="modal">
             <div class="modal-content">
-                <h3>Eredmények:</h3>
+                <h3>Eredmény:</h3>
                 <div id="progress-container">
                     <span id="percentage-text" class="fs-4">0%</span>
                     <div id="progress-bar">
@@ -142,11 +142,13 @@
                 <button id="close-error-modal">Bezárás</button>
             </div>
         </div>
+        <canvas id="confetti-canvas"></canvas>
 
 
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
         <script type="module" src="statement-test.js"></script>
     </body>
