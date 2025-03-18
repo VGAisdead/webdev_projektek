@@ -11,6 +11,7 @@ const reportSheet = document.getElementById("sheet");
 const closeModalBtn = document.getElementById("close-modal");
 const deleteRowBtn = document.getElementById("delete-row-btn");
 const checkBtn = document.getElementById("check-button");
+const resetBtn = document.getElementById("reset-statement");
 
 const errorList = document.getElementById("error-list");
 const errorModal = document.getElementById("error-modal");
@@ -45,7 +46,7 @@ document.querySelectorAll(".select-report").forEach((button) => {
 
 		const selectedReport = reports[currentReportType];
 
-		startModal.style.display = "none";
+		startModal.classList.remove("show");
 		reportSheet.classList.remove("hidden");
 		reportTitle.textContent = selectedReport.title;
 		reportDescription.textContent = selectedReport.description;
@@ -288,7 +289,7 @@ if (checkBtn) {
 			(user) => user.name === null
 		);
 		if (emptyFields) {
-			showErrorModal("Töltsd ki az összes mezőt!");
+			showErrorModal(`Töltsd ki az összes mezőt!<br><br>`);
 			return;
 		}
 
@@ -419,3 +420,9 @@ window.addEventListener("click", (event) =>
 window.addEventListener("click", (event) =>
 	closeModalOnOutsideClick(event, errorModal)
 );
+
+// Beszámoló reset
+resetBtn.addEventListener("click", () => {
+	reportSheet.classList.add("hidden");
+	startModal.classList.add("show");
+});
