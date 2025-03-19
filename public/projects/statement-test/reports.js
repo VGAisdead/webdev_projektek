@@ -1,12 +1,11 @@
 export const reports = {
 	test: {
 		title: "Teszt kimutatás",
-		description:
-			"Új funkciók tesztelése",
+		description: "Új funkciók tesztelése",
 		rows: [
 			{
-				label: "⮛ TEST",
-				name: "THAT SHIT ⮛",
+				label: "▼ TEST",
+				name: "THAT SHIT ▼",
 				type: "mainheader",
 				tooltip: "Now you want to check if it works or not?",
 			},
@@ -14,9 +13,9 @@ export const reports = {
 				label: "",
 				name: "pls work",
 				type: "selectable",
-			}
-		]
-		},
+			},
+		],
+	},
 
 	emerleg: {
 		title: "Egyszerűsített éves beszámoló mérlege",
@@ -24,8 +23,8 @@ export const reports = {
 			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja (csak mérlegsorok) az adott időpontban.",
 		rows: [
 			{
-				label: "⮛ ESZKÖZÖK /",
-				name: "AKTÍVÁK ⮛",
+				label: "▼ ESZKÖZÖK /",
+				name: "AKTÍVÁK ▼",
 				type: "mainheader",
 				tooltip: "A cég összes eszközét foglalja össze.",
 			},
@@ -95,8 +94,8 @@ export const reports = {
 				type: "nothing",
 			},
 			{
-				label: "⮛ FORRÁSOK / ",
-				name: "PASSZÍVÁK ⮛",
+				label: "▼ FORRÁSOK / ",
+				name: "PASSZÍVÁK ▼",
 				type: "mainheader",
 				tooltip: "A cég vagyonát biztosító kötelezettségek és tőke.",
 			},
@@ -341,8 +340,8 @@ export const reports = {
 			"A mérleg a vállalkozás vagyoni helyzetét mutatja egy adott időpontban, eszközök és források szerint.",
 		rows: [
 			{
-				label: "⮛ ESZKÖZÖK /",
-				name: "AKTÍVÁK ⮛",
+				label: "▼ ESZKÖZÖK /",
+				name: "AKTÍVÁK ▼",
 				type: "mainheader",
 				tooltip: "A cég összes eszközét foglalja össze.",
 			},
@@ -665,8 +664,8 @@ export const reports = {
 				type: "nothing",
 			},
 			{
-				label: "⮛ FORRÁSOK / ",
-				name: "PASSZÍVÁK ⮛",
+				label: "▼ FORRÁSOK / ",
+				name: "PASSZÍVÁK ▼",
 				type: "mainheader",
 				tooltip: "A cég vagyonát biztosító kötelezettségek és tőke.",
 			},
