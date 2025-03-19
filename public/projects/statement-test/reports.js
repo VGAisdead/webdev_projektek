@@ -7,10 +7,10 @@ export const reports = {
 				label: "▼ TEST",
 				name: "THAT SHIT ▼",
 				type: "mainheader",
-				tooltip: "Now you want to check if it works or not?",
+				tooltip: "well u want to check if it works or not?",
 			},
 			{
-				label: "",
+				label: "...",
 				name: "pls work",
 				type: "selectable",
 			},
