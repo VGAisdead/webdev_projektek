@@ -230,6 +230,8 @@ export const reports = {
 				label: "III.",
 				name: "Egyéb bevételek",
 				type: "secheader",
+				tooltip:
+					"Nem alaptevékenységből származó bevételek, pl. támogatások, értékesített eszközök nyeresége",
 			},
 			{
 				label: "ebből:",
