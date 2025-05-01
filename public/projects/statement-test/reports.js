@@ -228,8 +228,8 @@ export const reports = {
 				type: "secheader",
 			},
 			{
-				label: "-",
-				name: "ebből: visszaírt értékvesztés",
+				label: "ebből:",
+				name: "Visszaírt értékvesztés",
 				type: "sum",
 			},
 			{
@@ -293,8 +293,8 @@ export const reports = {
 				type: "secheader",
 			},
 			{
-				label: "-",
-				name: "ebből: értékvesztés",
+				label: "ebből:",
+				name: "Értékvesztés",
 				type: "sum",
 			},
 			{
