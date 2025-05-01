@@ -224,7 +224,12 @@ export const reports = {
 			},
 			{
 				label: "III.",
-				name: "Egyéb bevételek \n Ebből: visszaírt értékvesztés",
+				name: "Egyéb bevételek",
+				type: "secheader",
+			},
+			{
+				label: "-",
+				name: "Ebből: visszaírt értékvesztés",
 				type: "secheader",
 			},
 			{
@@ -271,6 +276,26 @@ export const reports = {
 				label: "12.",
 				name: "Bérjárulékok",
 				type: "selectable",
+			},
+			{
+				label: "V.",
+				name: "Személyi jellegű ráfordítások (10+11+12)",
+				type: "secheader",
+			},
+			{
+				label: "VI.",
+				name: "Értékcsökkenési leírás",
+				type: "secheader",
+			},
+			{
+				label: "VII.",
+				name: "Egyéb ráfordítások",
+				type: "secheader",
+			},
+			{
+				label: "-",
+				name: "Ebből: értékvesztés",
+				type: "secheader",
 			},
 			{
 				label: "A /",
