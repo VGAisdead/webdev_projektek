@@ -301,8 +301,64 @@ export const reports = {
 				label: "A /",
 				name: "ÜZEMI (Üzleti) tevékenység eredménye",
 				type: "mainheader",
+				tooltip: "I±II±III-IV-V-VI-VII",
 			},
-
+			{
+				label: "13.",
+				name: "Kapott (járó) osztalék és részesedés",
+				type: "selectable",
+			},
+			{
+				label: "-",
+				name: "Ebből: kapcsolt vállalkozástól kapott",
+				type: "secheader",
+			},
+			{
+				label: "14.",
+				name: "Részesedésekből származó bevételek, árfolyamnyereségek",
+				type: "selectable",
+			},
+			{
+				label: "-",
+				name: "Ebből: kapcsolt vállalkozástól kapott",
+				type: "secheader",
+			},
+			{
+				label: "15.",
+				name: "Befektetett pénzügyi eszközökből (értékpapírokból, kölcsönökből) származó bevételek, árfolyamnyereségek",
+				type: "selectable",
+			},
+			{
+				label: "-",
+				name: "Ebből: kapcsolt vállalkozástól kapott",
+				type: "secheader",
+			},
+			{
+				label: "16.",
+				name: "Egyéb kapott (járó) kamatok és kamatjellegű bevételek",
+				type: "selectable",
+			},
+			{
+				label: "-",
+				name: "Ebből: kapcsolt vállalkozástól kapott",
+				type: "secheader",
+			},
+			{
+				label: "17.",
+				name: "Pénzügyi műveletek egyéb bevételei",
+				type: "selectable",
+			},
+			{
+				label: "-",
+				name: "Ebből: értékelési különbözet",
+				type: "secheader",
+			},
+			{
+				label: "VIII.",
+				name: "Pénzügyi műveletek bevételei",
+				type: "secheader",
+				tooltip: "13+14+15+16+17",
+			},
 			{
 				label: "I.",
 				name: "Immateriális javak",
