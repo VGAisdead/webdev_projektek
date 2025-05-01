@@ -467,21 +467,25 @@ export const reports = {
 			},
 			{
 				label: "C /",
-				name: "Adózás előtti eredmény",
+				name: "Adózás előtti eredmény (±A±B)",
 				type: "mainheader",
-				tooltip: "±A±B",
+				tooltip:
+					"A vállalkozás adózás előtti eredménye, amely az üzemi tevékenység és pénzügyi műveletek eredményének összege",
 			},
 			{
 				label: "X /",
 				name: "Adófizetési kötelezettség",
 				type: "subheader",
 				tooltip: "",
+				tooltip:
+					"A vállalkozás által fizetendő adó összege, amely az adózás előtti eredmény és a hatályos adókulcs alapján kerül meghatározásra",
 			},
 			{
 				label: "D /",
-				name: "Adózott eredmény",
+				name: "Adózott eredmény (±C-X)",
 				type: "mainheader",
-				tooltip: "±C-X",
+				tooltip:
+					"A vállalkozás adózás utáni eredménye, amely az adófizetési kötelezettség levonása után keletkezik",
 			},
 		],
 	},
