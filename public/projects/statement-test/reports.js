@@ -207,7 +207,7 @@ export const reports = {
 				name: "Értékesítés nettó árbevétele (01+02)",
 				type: "secheader",
 				tooltip:
-					"A termékek, szolgáltatások számlázott, ÁFA nélküli bevétele, csökkentve engedményekkel.",
+					"A termékek, szolgáltatások számlázott, ÁFA nélküli, engedményekkel csökkentett bevétele",
 			},
 			{
 				label: "03.",
@@ -223,6 +223,8 @@ export const reports = {
 				label: "II.",
 				name: "Aktivált saját teljesítmények értéke (±03+04)",
 				type: "secheader",
+				tooltip:
+					"A saját előállítású eszközök és teljesítmények értéke, melyeket aktiválnak a könyvekben",
 			},
 			{
 				label: "III.",
