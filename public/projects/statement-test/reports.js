@@ -230,7 +230,7 @@ export const reports = {
 			{
 				label: "-",
 				name: "ebből: visszaírt értékvesztés",
-				type: "subheader",
+				type: "sum",
 			},
 			{
 				label: "05.",
@@ -295,7 +295,7 @@ export const reports = {
 			{
 				label: "-",
 				name: "ebből: értékvesztés",
-				type: "subheader",
+				type: "sum",
 			},
 			{
 				label: "A /",
