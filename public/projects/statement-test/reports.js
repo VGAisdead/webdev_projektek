@@ -575,9 +575,14 @@ export const reports = {
 				type: "sum",
 			},
 			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye (±III-IV+V-VI)",
+				label: "▲ A /",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye (±III-IV+V-VI) ▲",
 				type: "mainheader",
+			},
+			{
+				label: "",
+				name: "",
+				type: "nothing",
 			},
 			{
 				label: "13.",
@@ -634,11 +639,81 @@ export const reports = {
 				name: "Pénzügyi műveletek bevételei (13+14+15+16+17)",
 				type: "secheader",
 			},
+			{
+				label: "18.",
+				name: "Részesedésekből származó ráfordítások, árfolyamveszteségek",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozásnak adott",
+				type: "sum",
+			},
+			{
+				label: "19.",
+				name: "Befektetett pénzügyi eszközökből (értékpapírokból, kölcsönökből) származó ráfordítások, árfolyamveszteségek",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozásnak adott",
+				type: "sum",
+			},
+			{
+				label: "20.",
+				name: "Fizetendő (fizetett) kamatok és kamatjellegű ráfordítások",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozásnak adott",
+				type: "sum",
+			},
+			{
+				label: "21.",
+				name: "Részesedések, értékpapírok, bankbetétek értékvesztése",
+				type: "selectable",
+			},
+			{
+				label: "22.",
+				name: "Pénzügyi műveletek egyéb ráfordításai",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Értékelési különbözet",
+				type: "sum",
+			},
+			{
+				label: "IX.",
+				name: "Pénzügyi műveletek ráfordításai (18+19+20±21+22)",
+				type: "secheader",
+			},
+			{
+				label: "▲ B /",
+				name: "Pénzügyi műveletek eredménye (VIII-IX) ▲",
+				type: "mainheader",
+			},
+			{
+				label: "",
+				name: "",
+				type: "nothing",
+			},
+			{
+				label: "▲ C /",
+				name: "Adózás előtti eredmény (±A±B) ▲",
+				type: "mainheader",
+			},
 
 			{
-				label: "I.",
-				name: "Immateriális javak",
+				label: "X /",
+				name: "Adófizetési kötelezettség",
 				type: "subheader",
+			},
+			{
+				label: "▲ D /",
+				name: "Adózott eredmény (±C-X) ▲",
+				type: "mainheader",
 			},
 		],
 	},
