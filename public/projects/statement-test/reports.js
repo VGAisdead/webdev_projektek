@@ -724,35 +724,86 @@ export const reports = {
 			"A cashflow kimutatás a pénzforgalmat mutatja be, működési, befektetési és finanszírozási szinten.",
 		rows: [
 			{
-				label: "01.",
-				name: "Belföldi értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
-				label: "02.",
-				name: "Export értékesítés nettó árbevétele",
-				type: "selectable",
-			},
-			{
 				label: "I.",
-				name: "Értékesítés nettó árbevétele (01+02)",
+				name: "Működési cash flow",
 				type: "secheader",
 			},
 			{
-				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
+				label: "1a.",
+				name: "Adózás előtti eredmény +/-",
 				type: "selectable",
 			},
 			{
-				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
+				label: "1b.",
+				name: "Korrekciók az adózás előtti eredményben +/-",
 				type: "selectable",
 			},
 			{
-				label: "II.",
-				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				label: "1.",
+				name: "Korrigált adózás előtti eredmény (1a + 1b) +/-",
+				type: "subheader",
+			},
+			{
+				label: "2.",
+				name: "Elszámolt amortizáció +/-",
+				type: "selectable",
+			},
+			{
+				label: "3.",
+				name: "Elszámolt értékvesztés és visszaírás +/-",
+				type: "selectable",
+			},
+			{
+				label: "4.",
+				name: "Céltartalék képzés és felhasználás különbözete +/-",
+				type: "selectable",
+			},
+			{
+				label: "5.",
+				name: "Befektetett eszközök értékesítésének eredménye +/-",
+				type: "selectable",
+			},
+			{
+				label: "6.",
+				name: "Szállítói kötelezettség változása +/-",
+				type: "selectable",
+			},
+			{
+				label: "7.",
+				name: "Egyéb rövid lejáratú kötelezettség változása +/-",
+				type: "selectable",
+			},
+			{
+				label: "8.",
+				name: "Passzív időbeli elhatárolások változása +/-",
+				type: "selectable",
+			},
+			{
+				label: "9.",
+				name: "Vevőkövetelés változása +/-",
+				type: "selectable",
+			},
+			{
+				label: "10.",
+				name: "Elszámolt amortizáció +/-",
 				type: "secheader",
 			},
+			{
+				label: "11.",
+				name: "Elszámolt amortizáció +/-",
+				type: "selectable",
+			},
+			{
+				label: "12.",
+				name: "Elszámolt amortizáció +/-",
+				type: "selectable",
+			},
+			{
+				label: "13.",
+				name: "Elszámolt amortizáció +/-",
+				type: "selectable",
+			},
+
 			{
 				label: "A /",
 				name: "ÜZEMI (Üzleti) tevékenység eredménye",
