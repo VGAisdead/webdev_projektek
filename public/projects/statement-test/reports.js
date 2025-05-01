@@ -1503,5 +1503,168 @@ export const reports = {
 		],
 	},
 
-	lepcso: {},
+	lepcso: {
+		title: "Egyszerűsített éves beszámoló lépcsőzetes mérlege",
+		description:
+			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja be az adott időpontban, egyoldalas kivitelben.",
+		rows: [
+			{
+				label: "▼ ESZKÖZÖK /",
+				name: "AKTÍVÁK ▼",
+				type: "mainheader",
+				tooltip: "A cég összes eszközét foglalja össze",
+			},
+			{
+				label: "A/",
+				name: "Befektetett eszközök",
+				type: "secheader",
+				tooltip: "Hosszú távú eszközök csoportja",
+			},
+			{
+				label: "I.",
+				name: "Immateriális javak",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Tárgyi eszközök",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Befektetett pénzügyi eszközök",
+				type: "selectable",
+			},
+			{
+				label: "B/",
+				name: "Forgóeszközök",
+				type: "secheader",
+				tooltip: "Rövid távon hasznosítható eszközök",
+			},
+			{
+				label: "I.",
+				name: "Készletek",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Követelések",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Értékpapírok",
+				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Pénzeszközök",
+				type: "selectable",
+			},
+			{
+				label: "C/",
+				name: "Aktív időbeli elhatárolások",
+				type: "secheader",
+				tooltip:
+					"Jövőbeni bevételek, költségek, ráfordítások időbeli elszámolása",
+			},
+			{
+				label: "ESZKÖZÖK ",
+				name: "ÖSSZESEN",
+				type: "sum",
+				tooltip: "A vállalkozás teljes eszközállományának értéke",
+			},
+			{
+				label: "▼ FORRÁSOK / ",
+				name: "PASSZÍVÁK ▼",
+				type: "mainheader",
+				tooltip: "A cég vagyonát biztosító kötelezettségek és tőke",
+			},
+			{
+				label: "D/",
+				name: "Saját tőke",
+				type: "secheader",
+				tooltip:
+					"A cég saját erőforrásai, a teljes vagyon és kötelezettségek különbözete",
+			},
+			{
+				label: "I.",
+				name: "Jegyzett tőke",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Jegyzett, de még be nem fizetett tőke (-)",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Tőketartalék",
+				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Eredménytartalék",
+				type: "selectable",
+			},
+			{
+				label: "V.",
+				name: "Lekötött tartalék",
+				type: "selectable",
+			},
+			{
+				label: "VI.",
+				name: "Értékelési tartalék",
+				type: "selectable",
+			},
+			{
+				label: "VII.",
+				name: "Adózott eredmény",
+				type: "selectable",
+			},
+			{
+				label: "E/",
+				name: "Céltartalékok",
+				type: "secheader",
+				tooltip:
+					"Jövőbeli kiadásokra (pl. garancia, per) előre elkülönített összeg",
+			},
+			{
+				label: "F/",
+				name: "Kötelezettségek",
+				type: "secheader",
+				tooltip:
+					"A cég külső felekkel szembeni tartozásai, pl. hitelek, szállítói számlák",
+			},
+			{
+				label: "I.",
+				name: "Hátrasorolt kötelezettségek",
+				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Hosszú lejáratú kötelezettségek",
+				type: "selectable",
+			},
+			{
+				label: "III.",
+				name: "Rövid lejáratú kötelezettségek",
+				type: "selectable",
+			},
+			{
+				label: "G/",
+				name: "Passzív időbeli elhatárolások",
+				type: "secheader",
+				tooltip:
+					"Később esedékes bevételek, költségek, ráfordítások időbeli elszámolása",
+			},
+			{
+				label: "FORRÁSOK ",
+				name: "ÖSSZESEN",
+				type: "sum",
+				tooltip:
+					"A cég teljes finanszírozása, a saját tőke és a kötelezettségek összege",
+			},
+		],
+	},
 };
