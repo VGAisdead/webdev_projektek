@@ -209,17 +209,23 @@ export const reports = {
 			},
 			{
 				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
+				name: "Saját termelésű készletek állományváltozása (STKÁV)",
 				type: "selectable",
 			},
 			{
 				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
+				name: "Saját előállítású eszközök aktivált értéke (SEEAÉ)",
 				type: "selectable",
 			},
 			{
 				label: "II.",
 				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				type: "secheader",
+			},
+			{
+				label: "III.",
+				name: `Egyéb bevételek
+				Ebből: visszaírt értékvesztés`,
 				type: "secheader",
 			},
 			{
