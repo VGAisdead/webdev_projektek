@@ -319,7 +319,7 @@ export const reports = {
 				name: "ÜZEMI (Üzleti) tevékenység eredménye (I±II±III-IV-V-VI-VII)",
 				type: "mainheader",
 				tooltip:
-					"Az alaptevékenységből származó bevételek és ráfordítások különbözete, amely tükrözi a vállalkozás eredményét",
+					"Az alaptevékenységekből származó bevételek és ráfordítások különbözete, amely tükrözi a vállalkozás eredményét",
 			},
 			{
 				label: "",
