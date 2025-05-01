@@ -190,7 +190,7 @@ export const reports = {
 	osszkoltseg: {
 		title: "Összköltség Eredménykimutatás",
 		description:
-			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve mutatja az eredményt.",
+			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve  mutatja az eredményt.",
 		rows: [
 			{
 				label: "01.",
