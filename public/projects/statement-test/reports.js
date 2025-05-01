@@ -224,9 +224,53 @@ export const reports = {
 			},
 			{
 				label: "III.",
-				name: "Egyéb bevételek" \n
-				"Ebből: visszaírt értékvesztés",
+				name: "Egyéb bevételek \n Ebből: visszaírt értékvesztés",
 				type: "secheader",
+			},
+			{
+				label: "05.",
+				name: "Anyagköltség",
+				type: "selectable",
+			},
+			{
+				label: "06.",
+				name: "Igénybe vett szolgáltatások értéke",
+				type: "selectable",
+			},
+			{
+				label: "07.",
+				name: "Egyéb szolgáltatások értéke",
+				type: "selectable",
+			},
+			{
+				label: "08.",
+				name: "Eladott áruk beszerzési értéke (ELÁBÉ)",
+				type: "selectable",
+			},
+			{
+				label: "09.",
+				name: "Eladott (közvetített) szolgáltatások értéke",
+				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Anyagjellegű ráfordítások (05+06+07+08+09)",
+				type: "secheader",
+			},
+			{
+				label: "10.",
+				name: "Bérköltség",
+				type: "selectable",
+			},
+			{
+				label: "11.",
+				name: "Személyi jellegű egyéb kifizetések",
+				type: "selectable",
+			},
+			{
+				label: "12.",
+				name: "Bérjárulékok",
+				type: "selectable",
 			},
 			{
 				label: "A /",
