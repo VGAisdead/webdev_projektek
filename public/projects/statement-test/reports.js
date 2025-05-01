@@ -472,8 +472,8 @@ export const reports = {
 					"A vállalkozás adózás előtti eredménye, amely az üzemi tevékenység és pénzügyi műveletek eredményének összege",
 			},
 			{
-				label: "▲ X /",
-				name: "Adófizetési kötelezettség ▲",
+				label: "X /",
+				name: "Adófizetési kötelezettség",
 				type: "subheader",
 				tooltip: "",
 				tooltip:
