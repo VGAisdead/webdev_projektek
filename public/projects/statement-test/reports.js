@@ -315,8 +315,8 @@ export const reports = {
 					"A vállalkozás eszközeinek értékvesztéséből adódó egyéb ráfordítások",
 			},
 			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye (I±II±III-IV-V-VI-VII)",
+				label: "▲ A /",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye (I±II±III-IV-V-VI-VII) ▲",
 				type: "mainheader",
 				tooltip:
 					"Az alaptevékenységekből származó bevételek és ráfordítások különbözete, amely tükrözi a vállalkozás eredményét",
@@ -454,8 +454,8 @@ export const reports = {
 					"Pénzügyi műveletekből származó ráfordítások, pl. kamatok, árfolyamveszteségek, értékelési különbözetek",
 			},
 			{
-				label: "B /",
-				name: "Pénzügyi műveletek eredménye (VIII-IX)",
+				label: "▲ B /",
+				name: "Pénzügyi műveletek eredménye (VIII-IX) ▲",
 				type: "mainheader",
 				tooltip:
 					"Pénzügyi műveletekből származó bevételek és ráfordítások különbözete, a vállalkozás pénzügyi tevékenységének eredményét tükrözi",
@@ -466,23 +466,23 @@ export const reports = {
 				type: "nothing",
 			},
 			{
-				label: "C /",
-				name: "Adózás előtti eredmény (±A±B)",
+				label: "▲ C /",
+				name: "Adózás előtti eredmény (±A±B) ▲",
 				type: "mainheader",
 				tooltip:
 					"A vállalkozás adózás előtti eredménye, amely az üzemi tevékenység és pénzügyi műveletek eredményének összege",
 			},
 			{
-				label: "X /",
-				name: "Adófizetési kötelezettség",
+				label: "▲ X /",
+				name: "Adófizetési kötelezettség ▲",
 				type: "subheader",
 				tooltip: "",
 				tooltip:
 					"A vállalkozás által fizetendő adó összege, amely az adózás előtti eredmény és a hatályos adókulcs alapján kerül meghatározásra",
 			},
 			{
-				label: "D /",
-				name: "Adózott eredmény (±C-X)",
+				label: "▲ D /",
+				name: "Adózott eredmény (±C-X) ▲",
 				type: "mainheader",
 				tooltip:
 					"A vállalkozás adózás utáni eredménye, amely az adófizetési kötelezettség levonása után keletkezik",
