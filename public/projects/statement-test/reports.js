@@ -726,7 +726,7 @@ export const reports = {
 			{
 				label: "I.",
 				name: "Működési cash flow",
-				type: "secheader",
+				type: "mainheader",
 			},
 			{
 				label: "1a.",
@@ -786,7 +786,7 @@ export const reports = {
 			{
 				label: "10.",
 				name: "Forgóeszközök (vevőkövetelés és pénzeszköz nélkül) változása +/-",
-				type: "secheader",
+				type: "selectable",
 			},
 			{
 				label: "11.",
@@ -802,6 +802,11 @@ export const reports = {
 				label: "13.",
 				name: "Fizetett osztalék, részesedés –",
 				type: "selectable",
+			},
+			{
+				label: "II.",
+				name: "Befektetési cash flow",
+				type: "mainheader",
 			},
 
 			{
