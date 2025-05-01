@@ -448,15 +448,17 @@ export const reports = {
 			},
 			{
 				label: "IX.",
-				name: "Pénzügyi műveletek ráfordításai",
+				name: "Pénzügyi műveletek ráfordításai (18+19+20±21+22)",
 				type: "secheader",
-				tooltip: "18 + 19 + 20 ± 21 + 22",
+				tooltip:
+					"Pénzügyi műveletekből származó ráfordítások, pl. kamatok, árfolyamveszteségek, értékelési különbözetek",
 			},
 			{
 				label: "B /",
-				name: "Pénzügyi műveletek eredménye",
+				name: "Pénzügyi műveletek eredménye (VIII-IX)",
 				type: "mainheader",
-				tooltip: "VIII - IX",
+				tooltip:
+					"Pénzügyi műveletekből származó bevételek és ráfordítások különbözete, a vállalkozás pénzügyi tevékenységének eredményét tükrözi.",
 			},
 			{
 				label: "",
