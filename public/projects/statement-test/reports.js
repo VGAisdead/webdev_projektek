@@ -224,14 +224,14 @@ export const reports = {
 				name: "Aktivált saját teljesítmények értéke (±03+04)",
 				type: "secheader",
 				tooltip:
-					"Saját előállítású eszközök és szolgáltatások könyv szerinti értéke.",
+					"Saját előállítású eszközök és szolgáltatások könyv szerinti értéke",
 			},
 			{
 				label: "III.",
 				name: "Egyéb bevételek",
 				type: "secheader",
 				tooltip:
-					"Nem alaptevékenységből származó bevételek, például támogatás vagy eszközértékesítés.",
+					"Nem alaptevékenységből származó bevételek, például támogatás vagy eszközértékesítés",
 			},
 			{
 				label: "ebből:",
