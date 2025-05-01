@@ -229,8 +229,8 @@ export const reports = {
 			},
 			{
 				label: "-",
-				name: "Ebből: visszaírt értékvesztés",
-				type: "secheader",
+				name: "ebből: visszaírt értékvesztés",
+				type: "subheader",
 			},
 			{
 				label: "05.",
@@ -294,8 +294,8 @@ export const reports = {
 			},
 			{
 				label: "-",
-				name: "Ebből: értékvesztés",
-				type: "secheader",
+				name: "ebből: értékvesztés",
+				type: "subheader",
 			},
 			{
 				label: "A /",
