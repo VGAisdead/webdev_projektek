@@ -808,17 +808,90 @@ export const reports = {
 				name: "Befektetési cash flow",
 				type: "mainheader",
 			},
-
 			{
-				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
-				type: "mainheader",
+				label: "14.",
+				name: "Befektetett eszközök beszerzése –",
+				type: "selectable",
 			},
-
+			{
+				label: "15.",
+				name: "Befektetett eszközök eladása +",
+				type: "selectable",
+			},
+			{
+				label: "16.",
+				name: "Hosszú lejáratra nyújtott kölcsönök és elhelyezett bankbetétek törlesztése, megszüntetése, beváltása +",
+				type: "selectable",
+			},
+			{
+				label: "17.",
+				name: "Hosszú lejáratra nyújtott kölcsönök és elhelyezett bankbetétek –",
+				type: "selectable",
+			},
+			{
+				label: "18.",
+				name: "Kapott osztalék, részesedés +",
+				type: "selectable",
+			},
 			{
 				label: "I.",
-				name: "Immateriális javak",
-				type: "subheader",
+				name: "Finanszírozási cash flow",
+				type: "mainheader",
+			},
+			{
+				label: "19.",
+				name: "Részvénykibocsátás, tőkebevonás (tőkeemelés) bevétele +",
+				type: "selectable",
+			},
+			{
+				label: "20.",
+				name: "Kötvény és hitelviszonyt megtestesítő értékpapír kibocsátásának bevétele +",
+				type: "selectable",
+			},
+			{
+				label: "21.",
+				name: "Hitel és kölcsön felvétele +",
+				type: "selectable",
+			},
+			{
+				label: "22.",
+				name: "Véglegesen kapott pénzeszköz +",
+				type: "selectable",
+			},
+			{
+				label: "23.",
+				name: "Részvénybevonás, tőkekivonás (tőkeleszállítás) –",
+				type: "selectable",
+			},
+			{
+				label: "24.",
+				name: "Kötvény és hitelviszonyt megtestesítő értékpapír visszafizetése –",
+				type: "selectable",
+			},
+			{
+				label: "25.",
+				name: "Hitel és kölcsön törlesztése, visszafizetése –",
+				type: "selectable",
+			},
+			{
+				label: "26.",
+				name: "Véglegesen átadott pénzeszköz –",
+				type: "selectable",
+			},
+			{
+				label: "VI.",
+				name: "Pénzeszközök változása (I+II+III. sorok) +/-",
+				type: "mainheader",
+			},
+			{
+				label: "27.",
+				name: "27. Devizás pénzeszközök átértékelése +/-",
+				type: "selectable",
+			},
+			{
+				label: "V.",
+				name: "Pénzeszközök mérleg szerinti változása (IV+27. sor) +/-",
+				type: "mainheader",
 			},
 		],
 	},
