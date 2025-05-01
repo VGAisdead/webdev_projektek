@@ -1504,7 +1504,7 @@ export const reports = {
 	},
 
 	lepcso: {
-		title: "Egyszerűsített éves beszámoló lépcsőzetes mérlege",
+		title: "Egyszerűsített éves beszámoló lépcsőzetes mérlege ",
 		description:
 			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja be az adott időpontban, egyoldalas kivitelben.",
 		rows: [
