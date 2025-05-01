@@ -530,9 +530,109 @@ export const reports = {
 				type: "secheader",
 			},
 			{
+				label: "III.",
+				name: "Értékesítés bruttó eredménye (I-II)",
+				type: "secheader",
+			},
+			{
+				label: "06.",
+				name: "Értékesítési, forgalmazási költségek",
+				type: "selectable",
+			},
+			{
+				label: "07.",
+				name: "Igazgatási költségek",
+				type: "selectable",
+			},
+			{
+				label: "08.",
+				name: "Egyéb általános költségek",
+				type: "selectable",
+			},
+			{
+				label: "IV.",
+				name: "Értékesítés közvetett kötlségei (06+07+08)",
+				type: "secheader",
+			},
+			{
+				label: "V.",
+				name: "Egyéb bevételek",
+				type: "secheader",
+			},
+			{
+				label: "ebből:",
+				name: "Visszaírt értékvesztés",
+				type: "sum",
+			},
+			{
+				label: "VI.",
+				name: "Egyéb ráfordítások",
+				type: "secheader",
+			},
+			{
+				label: "ebből:",
+				name: "Értékvesztés",
+				type: "sum",
+			},
+			{
 				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye (±III-IV+V-VI)",
 				type: "mainheader",
+			},
+			{
+				label: "13.",
+				name: "Kapott (járó) osztalék és részesedés",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
+			},
+			{
+				label: "14.",
+				name: "Részesedésekből származó bevételek, árfolyamnyereségek",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
+			},
+			{
+				label: "15.",
+				name: "Befektetett pénzügyi eszközökből (értékpapírokból, kölcsönökből) származó bevételek, árfolyamnyereségek",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
+			},
+			{
+				label: "16.",
+				name: "Egyéb kapott (járó) kamatok és kamatjellegű bevételek",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
+			},
+			{
+				label: "17.",
+				name: "Pénzügyi műveletek egyéb bevételei",
+				type: "selectable",
+			},
+			{
+				label: "ebből:",
+				name: "Értékelési különbözet",
+				type: "sum",
+			},
+			{
+				label: "VIII.",
+				name: "Pénzügyi műveletek bevételei (13+14+15+16+17)",
+				type: "secheader",
 			},
 
 			{
