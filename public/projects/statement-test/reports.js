@@ -224,8 +224,8 @@ export const reports = {
 			},
 			{
 				label: "III.",
-				name: `Egyéb bevételek \n
-				Ebből: visszaírt értékvesztés`,
+				name: "Egyéb bevételek" \n
+				"Ebből: visszaírt értékvesztés",
 				type: "secheader",
 			},
 			{
