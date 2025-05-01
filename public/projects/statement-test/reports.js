@@ -383,8 +383,7 @@ export const reports = {
 				label: "ebből:",
 				name: "Értékelési különbözet",
 				type: "sum",
-				tooltip:
-					"A pénzügyi műveletek során keletkező egyéb bevételek, például az eszközök értékelési különbözete",
+				tooltip: "Pénzügyi műveletek során keletkező egyéb bevételek",
 			},
 			{
 				label: "VIII.",
@@ -444,7 +443,7 @@ export const reports = {
 				name: "Értékelési különbözet",
 				type: "sum",
 				tooltip:
-					"Pénzügyi műveletek során keletkező egyéb ráfordítások, például az eszközök értékelési különbözete",
+					"Pénzügyi műveletek során keletkező egyéb ráfordítások",
 			},
 			{
 				label: "IX.",
