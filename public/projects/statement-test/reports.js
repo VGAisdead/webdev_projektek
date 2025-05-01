@@ -316,7 +316,7 @@ export const reports = {
 			{
 				label: "ebből:",
 				name: "Kapcsolt vállalkozástól kapott",
-				type: "secheader",
+				type: "sum",
 			},
 			{
 				label: "14.",
