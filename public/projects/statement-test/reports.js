@@ -207,7 +207,7 @@ export const reports = {
 				name: "Értékesítés nettó árbevétele (01+02)",
 				type: "secheader",
 				tooltip:
-					"A termékek, szolgáltatások számlázott, ÁFA nélküli, engedményekkel csökkentett bevétele",
+					"A vállalkozás főtevékenységéből származó, ÁFA nélküli bevétele",
 			},
 			{
 				label: "03.",
@@ -224,19 +224,21 @@ export const reports = {
 				name: "Aktivált saját teljesítmények értéke (±03+04)",
 				type: "secheader",
 				tooltip:
-					"A saját előállítású eszközök és teljesítmények értéke, melyeket aktiválnak a könyvekben",
+					"Saját előállítású eszközök és szolgáltatások könyv szerinti értéke.",
 			},
 			{
 				label: "III.",
 				name: "Egyéb bevételek",
 				type: "secheader",
 				tooltip:
-					"Nem alaptevékenységből származó bevételek, pl. támogatások, értékesített eszközök nyeresége",
+					"Nem alaptevékenységből származó bevételek, például támogatás vagy eszközértékesítés.",
 			},
 			{
 				label: "ebből:",
 				name: "Visszaírt értékvesztés",
 				type: "sum",
+				tooltip:
+					"A korábban elszámolt egyéb bevételek értékvesztésének visszaírása",
 			},
 			{
 				label: "05.",
