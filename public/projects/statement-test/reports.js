@@ -206,6 +206,8 @@ export const reports = {
 				label: "I.",
 				name: "Értékesítés nettó árbevétele (01+02)",
 				type: "secheader",
+				tooltip:
+					"A termékek, szolgáltatások számlázott, ÁFA nélküli bevétele, csökkentve engedményekkel.",
 			},
 			{
 				label: "03.",
