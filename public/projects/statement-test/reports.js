@@ -785,22 +785,22 @@ export const reports = {
 			},
 			{
 				label: "10.",
-				name: "Elszámolt amortizáció +/-",
+				name: "Forgóeszközök (vevőkövetelés és pénzeszköz nélkül) változása +/-",
 				type: "secheader",
 			},
 			{
 				label: "11.",
-				name: "Elszámolt amortizáció +/-",
+				name: "Aktív időbeli elhatárolások változása +/-",
 				type: "selectable",
 			},
 			{
 				label: "12.",
-				name: "Elszámolt amortizáció +/-",
+				name: "Fizetett adó (nyereség után) –",
 				type: "selectable",
 			},
 			{
 				label: "13.",
-				name: "Elszámolt amortizáció +/-",
+				name: "Fizetett osztalék, részesedés –",
 				type: "selectable",
 			},
 
