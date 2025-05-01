@@ -314,8 +314,8 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "-",
-				name: "Ebből: kapcsolt vállalkozástól kapott",
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
 				type: "secheader",
 			},
 			{
@@ -324,9 +324,9 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "-",
-				name: "Ebből: kapcsolt vállalkozástól kapott",
-				type: "secheader",
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
 			},
 			{
 				label: "15.",
@@ -334,9 +334,9 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "-",
-				name: "Ebből: kapcsolt vállalkozástól kapott",
-				type: "secheader",
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
 			},
 			{
 				label: "16.",
@@ -344,9 +344,9 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "-",
-				name: "Ebből: kapcsolt vállalkozástól kapott",
-				type: "secheader",
+				label: "ebből:",
+				name: "Kapcsolt vállalkozástól kapott",
+				type: "sum",
 			},
 			{
 				label: "17.",
@@ -354,9 +354,9 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "-",
-				name: "Ebből: értékelési különbözet",
-				type: "secheader",
+				label: "ebből:",
+				name: "Értékelési különbözet",
+				type: "sum",
 			},
 			{
 				label: "VIII.",
