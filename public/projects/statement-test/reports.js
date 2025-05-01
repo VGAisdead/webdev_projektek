@@ -5,7 +5,7 @@ export const reports = {
 		rows: [
 			{
 				label: "▼ TEST",
-				name: "THAT SHIT ▼",
+				name: "IT ▼",
 				type: "mainheader",
 				tooltip: "well u want to check if it works or not?",
 			},
