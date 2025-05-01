@@ -237,8 +237,7 @@ export const reports = {
 				label: "ebből:",
 				name: "Visszaírt értékvesztés",
 				type: "sum",
-				tooltip:
-					"A korábban elszámolt egyéb bevételek értékvesztésének visszaírása",
+				tooltip: "A korábban elszámolt értékvesztések visszaírása",
 			},
 			{
 				label: "05.",
@@ -312,12 +311,15 @@ export const reports = {
 				label: "ebből:",
 				name: "Értékvesztés",
 				type: "sum",
+				tooltip:
+					"A vállalkozás eszközeinek értékvesztéséből adódó egyéb ráfordítások",
 			},
 			{
 				label: "A /",
-				name: "ÜZEMI (Üzleti) tevékenység eredménye",
+				name: "ÜZEMI (Üzleti) tevékenység eredménye (I±II±III-IV-V-VI-VII)",
 				type: "mainheader",
-				tooltip: "I ± II ± III - IV - V - VI - VII",
+				tooltip:
+					"Az alaptevékenységből származó bevételek és ráfordítások különbözete, amely tükrözi a vállalkozás eredményét",
 			},
 			{
 				label: "",
@@ -333,6 +335,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozástól kapott",
 				type: "sum",
+				tooltip:
+					"A vállalkozás által más cégektől kapott osztalék és részesedés, amelyet kapcsolt vállalkozásoktól szerzett",
 			},
 			{
 				label: "14.",
@@ -343,6 +347,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozástól kapott",
 				type: "sum",
+				tooltip:
+					"A kapcsolt vállalkozásoktól származó részesedésekből, árfolyamnyereségekből eredő bevételek",
 			},
 			{
 				label: "15.",
@@ -353,6 +359,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozástól kapott",
 				type: "sum",
+				tooltip:
+					"Kapcsolt vállalkozásoktól származó (értékpapírokból, kölcsönökből) eredő bevételek és árfolyamnyereségek",
 			},
 			{
 				label: "16.",
@@ -363,6 +371,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozástól kapott",
 				type: "sum",
+				tooltip:
+					"Kapcsolt vállalkozásoktól kapott kamatok és kamatjellegű bevételek",
 			},
 			{
 				label: "17.",
@@ -373,12 +383,15 @@ export const reports = {
 				label: "ebből:",
 				name: "Értékelési különbözet",
 				type: "sum",
+				tooltip:
+					"A pénzügyi műveletek során keletkező egyéb bevételek, például az eszközök értékelési különbözete",
 			},
 			{
 				label: "VIII.",
-				name: "Pénzügyi műveletek bevételei",
+				name: "Pénzügyi műveletek bevételei (13+14+15+16+17)",
 				type: "secheader",
-				tooltip: "13 + 14 + 15 + 16 + 17",
+				tooltip:
+					"A pénzügyi műveletekből származó bevételek, például kamatok, osztalékok és árfolyamnyereségek",
 			},
 			{
 				label: "18.",
@@ -389,6 +402,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozásnak adott",
 				type: "sum",
+				tooltip:
+					"Kapcsolt vállalkozásoknak adott részesedésekből származó ráfordítások és árfolyamveszteségek",
 			},
 			{
 				label: "19.",
@@ -399,6 +414,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozásnak adott",
 				type: "sum",
+				tooltip:
+					"Kapcsolt vállalkozásoknak adott pénzügyi eszközökből származó ráfordítások és árfolyamveszteségek",
 			},
 			{
 				label: "20.",
@@ -409,6 +426,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Kapcsolt vállalkozásnak adott",
 				type: "sum",
+				tooltip:
+					"Kapcsolt vállalkozásoknak fizetendő kamatok és kamatjellegű ráfordítások",
 			},
 			{
 				label: "21.",
@@ -424,6 +443,8 @@ export const reports = {
 				label: "ebből:",
 				name: "Értékelési különbözet",
 				type: "sum",
+				tooltip:
+					"Pénzügyi műveletek során keletkező egyéb ráfordítások, például az eszközök értékelési különbözete",
 			},
 			{
 				label: "IX.",
