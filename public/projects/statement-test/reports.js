@@ -438,6 +438,11 @@ export const reports = {
 				tooltip: "VIII - IX",
 			},
 			{
+				label: "",
+				name: "",
+				type: "nothing",
+			},
+			{
 				label: "C /",
 				name: "Adózás előtti eredmény",
 				type: "mainheader",
