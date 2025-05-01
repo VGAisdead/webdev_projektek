@@ -511,17 +511,22 @@ export const reports = {
 			},
 			{
 				label: "03.",
-				name: "Saját termelésű készletek állományváltozása",
+				name: "Értékesítés elszámolt közvetlen önköltsége",
 				type: "selectable",
 			},
 			{
 				label: "04.",
-				name: "Saját előállítású eszközök aktivált értéke",
+				name: "Eladott áruk beszerzési értéke (ELÁBÉ)",
+				type: "selectable",
+			},
+			{
+				label: "05.",
+				name: "Eladott (közvetített) szolgáltatások értéke",
 				type: "selectable",
 			},
 			{
 				label: "II.",
-				name: "Aktivált saját teljesítmények értéke (±03+04)",
+				name: "Értékesítés közvetlen költségei (03+04+05)",
 				type: "secheader",
 			},
 			{
