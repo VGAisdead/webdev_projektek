@@ -291,16 +291,22 @@ export const reports = {
 				label: "V.",
 				name: "Személyi jellegű ráfordítások (10+11+12)",
 				type: "secheader",
+				tooltip:
+					"A munkavállalóknak kifizetett bérköltségek, járulékok és egyéb személyi jellegű kifizetések",
 			},
 			{
 				label: "VI.",
 				name: "Értékcsökkenési leírás",
 				type: "secheader",
+				tooltip:
+					"Az eszközök használatából vagy elöregedéséből adódó értékcsökkenés",
 			},
 			{
 				label: "VII.",
 				name: "Egyéb ráfordítások",
 				type: "secheader",
+				tooltip:
+					"Az alaptevékenységen kívüli, de a vállalkozás működéséhez kapcsolódó költségek",
 			},
 			{
 				label: "ebből:",
