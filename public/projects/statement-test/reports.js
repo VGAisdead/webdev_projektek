@@ -20,7 +20,7 @@ export const reports = {
 	emerleg: {
 		title: "Egyszerűsített éves beszámoló mérlege",
 		description:
-			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja (csak mérlegsorok) az adott időpontban.",
+			"A vállalkozás egyszerűsített vagyoni helyzetét mutatja be (csak mérlegsorok) az adott időpontban.",
 		rows: [
 			{
 				label: "▼ ESZKÖZÖK /",
@@ -190,7 +190,7 @@ export const reports = {
 	osszkoltseg: {
 		title: "Összköltség Eredménykimutatás",
 		description:
-			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve  mutatja az eredményt.",
+			"Az összköltség eredménykimutatás a bevételeket és ráfordításokat összesítve  mutatja be az eredményt.",
 		rows: [
 			{
 				label: "01.",
