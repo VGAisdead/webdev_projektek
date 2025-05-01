@@ -458,7 +458,7 @@ export const reports = {
 				name: "Pénzügyi műveletek eredménye (VIII-IX)",
 				type: "mainheader",
 				tooltip:
-					"Pénzügyi műveletekből származó bevételek és ráfordítások különbözete, a vállalkozás pénzügyi tevékenységének eredményét tükrözi.",
+					"Pénzügyi műveletekből származó bevételek és ráfordítások különbözete, a vállalkozás pénzügyi tevékenységének eredményét tükrözi",
 			},
 			{
 				label: "",
