@@ -301,7 +301,7 @@ export const reports = {
 				label: "A /",
 				name: "ÜZEMI (Üzleti) tevékenység eredménye",
 				type: "mainheader",
-				tooltip: "I±II±III-IV-V-VI-VII",
+				tooltip: "I ± II ± III - IV - V - VI - VII",
 			},
 			{
 				label: "",
@@ -362,7 +362,7 @@ export const reports = {
 				label: "VIII.",
 				name: "Pénzügyi műveletek bevételei",
 				type: "secheader",
-				tooltip: "13+14+15+16+17",
+				tooltip: "13 + 14 + 15 + 16 + 17",
 			},
 			{
 				label: "I.",
