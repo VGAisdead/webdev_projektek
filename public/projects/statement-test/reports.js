@@ -269,6 +269,8 @@ export const reports = {
 				label: "IV.",
 				name: "Anyagjellegű ráfordítások (05+06+07+08+09)",
 				type: "secheader",
+				tooltip:
+					"Az alaptevékenységhez szükséges anyagok, energiák és egyéb alapanyagok beszerzésének költségei",
 			},
 			{
 				label: "10.",
