@@ -304,6 +304,11 @@ export const reports = {
 				tooltip: "I±II±III-IV-V-VI-VII",
 			},
 			{
+				label: "",
+				name: "",
+				type: "nothing",
+			},
+			{
 				label: "13.",
 				name: "Kapott (járó) osztalék és részesedés",
 				type: "selectable",
