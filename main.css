@@ -46,6 +46,12 @@ body {
 	justify-content: flex-end;
 }
 
+.navbar-dark,
+.navbar[data-bs-theme="dark"] {
+	--bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.475);
+	--bs-navbar-disabled-color: rgb(255 255 255 / 0.25);
+}
+
 li.nav-item {
 	justify-items: center;
 }
