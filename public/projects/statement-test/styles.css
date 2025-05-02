@@ -56,7 +56,7 @@ td {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
-	z-index: 9999;
+	z-index: 99999;
 }
 
 .modal.show {
@@ -69,7 +69,7 @@ td {
 	border-radius: 10px;
 	max-height: 95%;
 	width: 95%;
-	max-width: 550px;
+	max-width: 600px;
 	text-align: center;
 	overflow: auto;
 	display: flex;
