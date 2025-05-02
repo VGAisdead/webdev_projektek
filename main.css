@@ -60,6 +60,7 @@ li.nav-item {
 	background-color: black;
 	color: white;
 	font-family: rubik;
+	z-index: 99;
 }
 
 .heroimg {
