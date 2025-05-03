@@ -56,3 +56,28 @@ document.addEventListener("DOMContentLoaded", function () {
 			});
 	});
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+	// First determine if we're on GitHub Pages and get the repo name if needed
+	let basePath = "";
+
+	// If on GitHub Pages in a project repository
+	if (
+		window.location.hostname.endsWith("github.io") &&
+		window.location.pathname.split("/").length > 1
+	) {
+		// Extract repository name
+		basePath = "/" + window.location.pathname.split("/")[1];
+	}
+
+	// Fix navigation links
+	document.querySelectorAll('#header a[href^="/"]').forEach((link) => {
+		// Skip anchors and external links
+		if (
+			!link.getAttribute("href").startsWith("/#") &&
+			!link.getAttribute("href").startsWith("http")
+		) {
+			link.href = basePath + link.getAttribute("href");
+		}
+	});
+});
