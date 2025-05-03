@@ -1,197 +1,185 @@
 * {
-  box-sizing: border-box;
-  margin: 0px;
+	box-sizing: border-box;
+	margin: 0px;
 }
 
 html::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-html {
-  background-image: url("../../../assets/images/background.jpg");
-  background-color: antiquewhite;
-  font-family: Rubik, sans-serif;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center top;
-  background-size: cover;
-  height: 100vh;
-  width: 100vw;
+	display: none;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
 
 h2 {
-  text-align: center;
-  font-size: 18px;
-  margin: 3px;
-  font-weight: 500;
+	text-align: center;
+	font-size: 18px;
+	margin: 3px;
+	font-weight: 500;
 }
 
 hr {
-  border-style: solid;
-  color: black;
-  border-width: 1px 0px;
+	border-style: solid;
+	color: black;
+	border-width: 1px 0px;
 }
 
 .btnx {
-  font-size: 16px;
-  font-family: Rubik, sans-serif;
-  cursor: pointer;
-  min-width: 80px;
-  max-width: 150px;
-  margin: 10px;
-  color: white;
-  background-color: black;
-  background-image: linear-gradient(darkgrey, black);
-  border-color: white;
-  border-width: 2px;
-  padding: 10px 10px;
-  border-radius: 15px;
+	font-size: 16px;
+	font-family: Rubik, sans-serif;
+	cursor: pointer;
+	min-width: 80px;
+	max-width: 150px;
+	margin: 10px;
+	color: white;
+	background-color: black;
+	background-image: linear-gradient(darkgrey, black);
+	border-color: white;
+	border-width: 2px;
+	padding: 10px 10px;
+	border-radius: 15px;
 }
 
 .btn-container {
-  display: flex;
+	display: flex;
 }
 
 .btn:hover {
-  background-image: linear-gradient(black, darkgrey);
+	background-image: linear-gradient(black, darkgrey);
 }
 
 .rules-container {
-  width: fit-content;
-  max-width: 80%;
-  padding: 10px 10px;
-  margin: 20px auto 0 auto;
-  border-radius: 25px;
-  border: 2px solid;
-  color: black;
-  text-align: center;
+	width: fit-content;
+	max-width: 80%;
+	padding: 10px 10px;
+	margin: 20px auto 0 auto;
+	border-radius: 25px;
+	border: 2px solid;
+	color: black;
+	text-align: center;
 }
 
 .rules-container ul {
-  list-style-type: none;
-  padding: 0;
+	list-style-type: none;
+	padding: 0;
 }
 
 .rules-container p {
-  margin: 10px 0;
+	margin: 10px 0;
 }
 
 .score-container {
-  display: flex;
-  justify-content: center;
-  margin: 30px 0;
-  font-size: 1.2rem;
-  gap: 50px;
-  text-align: center;
+	display: flex;
+	justify-content: center;
+	margin: 30px 0;
+	font-size: 1.2rem;
+	gap: 50px;
+	text-align: center;
 }
 
 .score {
-  font-weight: 500;
+	font-weight: 500;
 }
 
 .results-container {
-  font-size: 1.3rem;
-  height: 20;
+	font-size: 1.3rem;
+	height: 20;
 }
 
 #winner-msg {
-  margin-top: 25px;
+	margin-top: 25px;
 }
 
 #reset-game-btn {
-  display: none;
-  margin: 20px auto;
+	display: none;
+	margin: 20px auto;
 }
 
 .options-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 }
 
 .options-container > h2 {
-  flex-basis: 100%;
-  margin: 20px 0;
+	flex-basis: 100%;
+	margin: 20px 0;
 }
 
 .results-container {
-  text-align: center;
+	text-align: center;
 }
 
 .kopapirollo {
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  overflow: hidden;
+	height: 10rem;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: relative;
+	overflow: hidden;
 }
 
 #jatekosvalasztas {
-  will-change: transform;
-  height: 50px;
-  object-fit: cover;
+	will-change: transform;
+	height: 50px;
+	object-fit: cover;
 }
 
 #szamitogepvalasztas {
-  will-change: transform;
-  height: 50px;
-  object-fit: cover;
+	will-change: transform;
+	height: 50px;
+	object-fit: cover;
 }
 
 .jobbkez-animacio {
-  will-change: transform;
-  animation: jobbkez 0.8s ease-in-out forwards;
+	will-change: transform;
+	animation: jobbkez 0.8s ease-in-out forwards;
 }
 
 .balkez-animacio {
-  will-change: transform;
-  animation: balkez 0.8s ease-in-out forwards;
+	will-change: transform;
+	animation: balkez 0.8s ease-in-out forwards;
 }
 
 @keyframes jobbkez {
-  0% {
-    transform: rotate(90deg);
-    transform-origin: 0% 2000%;
-  }
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 0% 2000%;
-  }
+	0% {
+		transform: rotate(90deg);
+		transform-origin: 0% 2000%;
+	}
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 0% 2000%;
+	}
 }
 
 @keyframes balkez {
-  0% {
-    transform: rotate(-90deg);
-    transform-origin: 0% 2000%;
-  }
-  100% {
-    transform: rotate(0deg);
-    transform-origin: 0% 2000%;
-  }
+	0% {
+		transform: rotate(-90deg);
+		transform-origin: 0% 2000%;
+	}
+	100% {
+		transform: rotate(0deg);
+		transform-origin: 0% 2000%;
+	}
 }
 
 @media only screen and (min-width: 1200px) {
-  #jatekosvalasztas {
-    height: 200px;
-  }
-  #szamitogepvalasztas {
-    height: 200px;
-  }
-  .kopapirollo {
-    height: 300px;
-  }
+	#jatekosvalasztas {
+		height: 200px;
+	}
+	#szamitogepvalasztas {
+		height: 200px;
+	}
+	.kopapirollo {
+		height: 300px;
+	}
 }
 
 @media print and (max-width: 800px) {
-  h1 {
-    max-width: 250px;
-  }
+	h1 {
+		max-width: 250px;
+	}
 }
 
 .hidden {
-  display: none;
+	display: none;
 }
