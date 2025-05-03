@@ -29,64 +29,65 @@
 
     <div data-include="../../../assets/components/header.html"></div>
 
-    <br />
-    <h1 class="text-black text-center">Kő Papír Olló</h1>
+    <div class="min-vh-100 min-vw-100">
+      <br />
+      <h1 class="text-black text-center">Kő Papír Olló</h1>
 
-    <h2 class="lead">Jobb vagy mint a random algoritmus?</h2>
-    <br />
+      <h2 class="lead">Jobb vagy mint a random algoritmus?</h2>
+      <br />
 
-    <hr />
+      <hr />
 
-    <details class="rules-container lead fs-6">
-      <summary>Szabályok</summary>
+      <details class="rules-container lead fs-6">
+        <summary>Szabályok</summary>
 
-      <p>A számítógép ellen fogsz játszani.</p>
-      <p>Kő, papír és olló közül választhatsz.</p>
-      <p>Aki először három pontot szerez, az nyer.</p>
+        <p>A számítógép ellen fogsz játszani.</p>
+        <p>Kő, papír és olló közül választhatsz.</p>
+        <p>Aki először három pontot szerez, az nyer.</p>
 
-      <p>Íme a játék pontszerzésének szabályai:</p>
-      <ul>
-        <li>A kő veri az ollót</li>
-        <li>Az olló vágja a papírt</li>
-        <li>A papír legyőzi a követ</li>
-      </ul>
-      <p>
-        Ha a játékos és a számítógép ugyanazt az opciót választja (pl. papír és
-        papír), akkor senki nem kap pontot.
-      </p>
-    </details>
+        <p>Íme a játék pontszerzésének szabályai:</p>
+        <ul>
+          <li>A kő veri az ollót</li>
+          <li>Az olló vágja a papírt</li>
+          <li>A papír legyőzi a követ</li>
+        </ul>
+        <p>
+          Ha a játékos és a számítógép ugyanazt az opciót választja (pl. papír és
+          papír), akkor senki nem kap pontot.
+        </p>
+      </details>
 
-    <div class="score-container lead fw-normal">
-      <strong>Játékos pontjai: <span class="score" id="player-score">0</span></strong>
-      <strong>Számítógép pontjai:
-        <span class="score" id="computer-score">0</span></strong>
-    </div>
-
-    <section class="options-container">
-      <h2>Válassz egy lehetőséget:</h2>
-      <div class="btn-container">
-        <button id="rock-btn" class="btnx">Kő</button>
-        <button id="paper-btn" class="btnx">Papír</button>
-        <button id="scissors-btn" class="btnx">Olló</button>
+      <div class="score-container lead fw-normal">
+        <strong>Játékos pontjai: <span class="score" id="player-score">0</span></strong>
+        <strong>Számítógép pontjai:
+          <span class="score" id="computer-score">0</span></strong>
       </div>
-    </section>
 
-    <div class="results-container">
-      <p id="results-msg"></p>
-      <p id="winner-msg"></p>
-      <button class="btnx" id="reset-game-btn">Még egy kör?</button>
+      <section class="options-container">
+        <h2>Válassz egy lehetőséget:</h2>
+        <div class="btn-container">
+          <button id="rock-btn" class="btnx">Kő</button>
+          <button id="paper-btn" class="btnx">Papír</button>
+          <button id="scissors-btn" class="btnx">Olló</button>
+        </div>
+      </section>
+
+      <div class="results-container">
+        <p id="results-msg"></p>
+        <p id="winner-msg"></p>
+        <button class="btnx" id="reset-game-btn">Még egy kör?</button>
+      </div>
+
+      <div class="kopapirollo">
+        <span id="kopapirollospan">
+          <img id="jatekosvalasztas" src="" />
+        </span>
+
+        <span id="kopapirollospan">
+          <img id="szamitogepvalasztas" src="" />
+        </span>
+      </div>
     </div>
-
-    <div class="kopapirollo">
-      <span id="kopapirollospan">
-        <img id="jatekosvalasztas" src="" />
-      </span>
-
-      <span id="kopapirollospan">
-        <img id="szamitogepvalasztas" src="" />
-      </span>
-    </div>
-
 
 
     <div data-include="../../../assets/components/footer.html"></div>

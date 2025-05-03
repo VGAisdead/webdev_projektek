@@ -31,122 +31,127 @@
 
         <div data-include="../../../assets/components/header.html"></div>
 
-        <br />
-        <h1 class="text-center text-black">Pénzügyi, számviteli kimutatások</h1>
-        <p class="text-center lead">Ez a projekt segít abban, hogy a felhasználó magabiztossá váljon a pénzügyi
-            kimutatások elkészítésében.</p>
-        <hr>
+        <div class="min-vh-100 min-vw-100">
+            <br />
+            <h1 class="text-center text-black">Pénzügyi, számviteli kimutatások</h1>
+            <p class="text-center lead">Ez a projekt segít abban, hogy a felhasználó magabiztossá váljon a pénzügyi
+                kimutatások elkészítésében.</p>
+            <hr>
 
-        <!-- Kimutatás kiválasztása -->
-        <div id="start-modal" class="modal">
-            <div class="modal-content">
-                <h3 class="fs-4 mb-3" ;">Válaszd ki, melyik beszámoló típust szeretnéd gyakorolni:
-                </h3>
+            <!-- Kimutatás kiválasztása -->
+            <div id="start-modal" class="modal">
+                <div class="modal-content">
+                    <h3 class="fs-4 mb-3" ;">Válaszd ki, melyik beszámoló típust szeretnéd gyakorolni:
+                    </h3>
 
 
-                <ul id="report-selection">
-                    <!--
+                    <ul id="report-selection">
+                        <!--
                     <li class="select-report" data-type="test">Teszt kimutatás</li>
                     -->
-                    <li class="select-report" data-type="emerleg">Egyszerűsített éves beszámoló mérlege&nbsp
+                        <li class="select-report" data-type="emerleg">Egyszerűsített éves beszámoló mérlege&nbsp
+                            <i class="bi bi-1-circle-fill"></i>
+                        </li>
+                        <li class="select-report" data-type="lepcso">Egyszerűsített éves lépcsőzetes mérleg&nbsp
+                            <i class="bi bi-1-circle-fill"></i>
+                        </li>
+                        <li class="select-report" data-type="osszkoltseg">Összköltség Eredménykimutatás &nbsp &nbsp
+                            &nbsp
+                            &nbsp
+                            &nbsp &nbsp &nbsp
+                            <i class="bi bi-2-circle-fill"></i>
+                        </li>
+                        <li class="select-report" data-type="forgalmi">Forgalmi Költség Eredménykimutatás
+                            &nbsp&nbsp&nbsp&nbsp
+                            <i class="bi bi-2-circle-fill"></i>
+                        </li>
+                        <li class="select-report" data-type="cashflow">Cashflow kimutatás &nbsp
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <i class="bi bi-3-circle-fill"></i>
+                        </li>
+                        <li class="select-report" data-type="merleg">Éves beszámoló mérlege
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                            <i class="bi bi-3-circle-fill"></i>
+                        </li>
+
+                    </ul>
+
+                    <h3 class="fs-6 mt-4 fw-normal">Könnyű &nbsp &nbsp
                         <i class="bi bi-1-circle-fill"></i>
-                    </li>
-                    <li class="select-report" data-type="lepcso">Egyszerűsített éves lépcsőzetes mérleg&nbsp
-                        <i class="bi bi-1-circle-fill"></i>
-                    </li>
-                    <li class="select-report" data-type="osszkoltseg">Összköltség Eredménykimutatás &nbsp &nbsp &nbsp
-                        &nbsp
-                        &nbsp &nbsp &nbsp
+                        <i class="bi bi-2-circle"></i>
+                        <i class="bi bi-3-circle"></i>
+                    </h3>
+                    <h3 class="fs-6 fw-normal">Közepes &nbsp
+                        <i class="bi bi-1-circle"></i>
                         <i class="bi bi-2-circle-fill"></i>
-                    </li>
-                    <li class="select-report" data-type="forgalmi">Forgalmi Költség Eredménykimutatás
-                        &nbsp&nbsp&nbsp&nbsp
-                        <i class="bi bi-2-circle-fill"></i>
-                    </li>
-                    <li class="select-report" data-type="cashflow">Cashflow kimutatás &nbsp
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                        <i class="bi bi-3-circle"></i>
+                    </h3>
+                    <h3 class="fs-6 fw-normal mb-3">Nehéz &nbsp &nbsp &nbsp
+                        <i class="bi bi-1-circle"></i>
+                        <i class="bi bi-2-circle"></i>
                         <i class="bi bi-3-circle-fill"></i>
-                    </li>
-                    <li class="select-report" data-type="merleg">Éves beszámoló mérlege
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        <i class="bi bi-3-circle-fill"></i>
-                    </li>
-
-                </ul>
-
-                <h3 class="fs-6 mt-4 fw-normal">Könnyű &nbsp &nbsp
-                    <i class="bi bi-1-circle-fill"></i>
-                    <i class="bi bi-2-circle"></i>
-                    <i class="bi bi-3-circle"></i>
-                </h3>
-                <h3 class="fs-6 fw-normal">Közepes &nbsp
-                    <i class="bi bi-1-circle"></i>
-                    <i class="bi bi-2-circle-fill"></i>
-                    <i class="bi bi-3-circle"></i>
-                </h3>
-                <h3 class="fs-6 fw-normal mb-3">Nehéz &nbsp &nbsp &nbsp
-                    <i class="bi bi-1-circle"></i>
-                    <i class="bi bi-2-circle"></i>
-                    <i class="bi bi-3-circle-fill"></i>
-                </h3>
-            </div>
-        </div>
-
-
-        <!-- Kimutatás -->
-        <div id="sheet" class="wrapper col-10 col-lg-6 mt-5 mb-5 hidden">
-            <!-- Táblázat -->
-            <div class="headingbg container-fluid">
-                <h3 id="report-title" class="text-center text-black"></h3>
-                <h6 id="report-description" class="text-center text-black fw-normal justify-content-center"></h6>
-            </div>
-
-            <table id="report-table"></table>
-            <!-- Ellenőrzés gomb -->
-            <div class="footingbg container-fluid d-flex">
-                <button id="reset-statement" class="btn btn-primary check"><span class="arrow-repeat">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor"
-                            class="bi bi-arrow-repeat" viewBox="0 0 16 16">
-                            <path
-                                d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
-                            <path fill-rule="evenodd"
-                                d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
-                        </svg>
-                    </span></button>
-                <button id="check-button" class="btn btn-primary check">Ellenőrzés</button>
-            </div>
-        </div>
-
-        <!-- Modal ablak a táblázathoz -->
-        <div id="modal" class="modal">
-            <div class="modal-content">
-                <h3 class="fs-4" style="margin-bottom: 20px;">Válassz egy elemet:</h3>
-                <ul id="option-list"> </ul>
-                <div class="btns">
-                    <li><button id="delete-row-btn" class="delete-btn" style="display: none;">Sor törlése</button></li>
-                    <li><button id="close-modal">Bezárás</button></li>
+                    </h3>
                 </div>
             </div>
-        </div>
 
-        <!-- Modal az eredmények megjelenítésére -->
-        <div id="error-modal" class="modal">
-            <div class="modal-content">
-                <h3>Eredmény:</h3>
-                <div id="progress-container">
-                    <span id="percentage-text" class="fs-4">0%</span>
-                    <div id="progress-bar">
-                        <div id="progress-fill"></div>
+
+            <!-- Kimutatás -->
+            <div id="sheet" class="wrapper col-10 col-lg-6 mt-5 mb-5 hidden ">
+                <!-- Táblázat -->
+                <div class="headingbg container-fluid">
+                    <h3 id="report-title" class="text-center text-black"></h3>
+                    <h6 id="report-description" class="text-center text-black fw-normal justify-content-center"></h6>
+                </div>
+
+                <table id="report-table"></table>
+                <!-- Ellenőrzés gomb -->
+                <div class="footingbg container-fluid d-flex">
+                    <button id="reset-statement" class="btn btn-primary check"><span class="arrow-repeat">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em" fill="currentColor"
+                                class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                                <path
+                                    d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9" />
+                                <path fill-rule="evenodd"
+                                    d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z" />
+                            </svg>
+                        </span></button>
+                    <button id="check-button" class="btn btn-primary check">Ellenőrzés</button>
+                </div>
+            </div>
+
+            <!-- Modal ablak a táblázathoz -->
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <h3 class="fs-4" style="margin-bottom: 20px;">Válassz egy elemet:</h3>
+                    <ul id="option-list"> </ul>
+                    <div class="btns">
+                        <li><button id="delete-row-btn" class="delete-btn" style="display: none;">Sor törlése</button>
+                        </li>
+                        <li><button id="close-modal">Bezárás</button></li>
                     </div>
                 </div>
-                <ul id="error-list"></ul>
-                <button id="close-error-modal">Bezárás</button>
             </div>
+
+            <!-- Modal az eredmények megjelenítésére -->
+            <div id="error-modal" class="modal">
+                <div class="modal-content">
+                    <h3>Eredmény:</h3>
+                    <div id="progress-container">
+                        <span id="percentage-text" class="fs-4">0%</span>
+                        <div id="progress-bar">
+                            <div id="progress-fill"></div>
+                        </div>
+                    </div>
+                    <ul id="error-list"></ul>
+                    <button id="close-error-modal">Bezárás</button>
+                </div>
+            </div>
+
+            <canvas id="confetti-canvas"></canvas>
+
+            <div class="my-auto py-auto" style="min-height: 50px;"></div>
+
         </div>
-
-        <canvas id="confetti-canvas"></canvas>
-
-        <div class="my-auto py-auto" style="min-height: 50px;"></div>
 
         <div data-include="../../../assets/components/footer.html"></div>
 
