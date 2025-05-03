@@ -6,22 +6,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// Get base path (for GitHub Pages compatibility)
 	const getBasePath = () => {
-		// Get the repo name from the URL for GitHub Pages
-		const pathParts = window.location.pathname.split("/");
-		if (
-			pathParts.length > 1 &&
-			window.location.hostname.includes("github.io/webdev_projektek/")
-		) {
-			// We're on GitHub Pages, likely format: /repo-name/...
-			return "/" + pathParts[1];
+		// For your specific repository: webdev_projektek
+		if (window.location.hostname.includes("github.io")) {
+			return "/webdev_projektek";
 		}
 		return "";
 	};
 
 	const basePath = getBasePath();
+	console.log("Base path detected:", basePath); // Debug output
 
 	// Function to fix navigation links - will be called after components are loaded
 	const fixNavigationLinks = () => {
+		console.log("Fixing navigation links with basePath:", basePath); // Debug output
+
 		// Fix navigation links in the header
 		document.querySelectorAll('#header a[href^="/"]').forEach((link) => {
 			// Skip anchors and external links
@@ -29,7 +27,9 @@ document.addEventListener("DOMContentLoaded", function () {
 				!link.getAttribute("href").startsWith("/#") &&
 				!link.getAttribute("href").startsWith("http")
 			) {
-				link.href = basePath + link.getAttribute("href");
+				const originalHref = link.getAttribute("href");
+				link.href = basePath + originalHref;
+				console.log(`Updated link: ${originalHref} → ${link.href}`); // Debug output
 			}
 		});
 
@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
 			file = basePath + file;
 		}
 
+		console.log("Loading component from:", file); // Debug output
+
 		// Fetch the component file
 		fetch(file)
 			.then((response) => {
@@ -84,9 +86,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 				// Count loaded components
 				componentsLoaded++;
+				console.log(
+					`Component loaded: ${componentsLoaded}/${includes.length}`
+				); // Debug output
 
 				// If all components are loaded, fix navigation links
 				if (componentsLoaded === includes.length) {
+					console.log(
+						"All components loaded, fixing navigation links"
+					); // Debug output
 					fixNavigationLinks();
 				}
 			})
