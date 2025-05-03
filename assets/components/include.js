@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		const pathParts = window.location.pathname.split("/");
 		if (
 			pathParts.length > 1 &&
-			window.location.hostname.includes("github.io")
+			window.location.hostname.includes("github.io/webdev_projektek/")
 		) {
 			// We're on GitHub Pages, likely format: /repo-name/...
 			return "/" + pathParts[1];
