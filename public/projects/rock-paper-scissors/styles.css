@@ -3,6 +3,10 @@
 	margin: 0px;
 }
 
+body {
+	background-color: antiquewhite;
+}
+
 html::-webkit-scrollbar {
 	display: none;
 	-ms-overflow-style: none;
