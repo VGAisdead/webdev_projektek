@@ -7,3 +7,5 @@ Thumbs.db          # Windows
 temp/
 build/
 dist/
+# Local Netlify folder
+.netlify
