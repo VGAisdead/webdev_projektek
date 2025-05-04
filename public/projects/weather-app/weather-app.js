@@ -23,9 +23,10 @@ searchBtn.addEventListener("click", () => {
 
 // API fetch
 const getWeather = () => {
-	const locationKey = locationInput.value;
-	if (locationKey) {
-		fetch(`/.netlify/functions/weather?locationKey=${locationKey}`)
+	const cityName = locationInput.value.trim(); // Városnév az inputból
+
+	if (cityName) {
+		fetch(`/.netlify/functions/weather?cityName=${cityName}`) // Városnév küldése
 			.then((response) => response.json())
 			.then((data) => {
 				displayWeather(data);
@@ -37,6 +38,7 @@ const getWeather = () => {
 			});
 	} else {
 		weatherInfoDiv.textContent = "Kérlek, add meg a hely nevét.";
+		weatherInfoDiv.style.color = "red";
 	}
 };
 
@@ -67,8 +69,30 @@ function displayWeather(weatherData) {
 		} else {
 			weatherInfoDiv.querySelector("#country").textContent = "N/A";
 		}
+	} else if (weatherData && !Array.isArray(weatherData)) {
+		// Ha a válasz nem tömb, hanem objektum (pl. Current Conditions API)
+		if (weatherData.Temperature && weatherData.Temperature.Metric) {
+			weatherInfoDiv.querySelector("#temp").textContent =
+				weatherData.Temperature.Metric.Value + " °C";
+		} else {
+			weatherInfoDiv.querySelector("#temp").textContent = "N/A";
+		}
+
+		if (weatherData.LocalizedName) {
+			weatherInfoDiv.querySelector("#city").textContent =
+				weatherData.LocalizedName;
+		} else {
+			weatherInfoDiv.querySelector("#city").textContent = "N/A";
+		}
+
+		if (weatherData.Country && weatherData.Country.LocalizedName) {
+			weatherInfoDiv.querySelector("#country").textContent =
+				weatherData.Country.LocalizedName;
+		} else {
+			weatherInfoDiv.querySelector("#country").textContent = "N/A";
+		}
 	} else {
 		weatherInfoDiv.textContent = "Nincs adat a megadott helyhez.";
-		weatherInfoDiv.style.color = "red"; // Hiba jelzése
+		weatherInfoDiv.style.color = "red";
 	}
 }

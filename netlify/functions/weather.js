@@ -1,27 +1,41 @@
 "use strict";
+
 const fetch = require("node-fetch");
 
 exports.handler = async (event, context) => {
-	const apiKey = process.env.ACCUWEATHER_API_KEY; // Környezeti változóból olvassuk ki
-	const locationKey = event.queryStringParameters.locationKey;
+	const apiKey = process.env.ACCUWEATHER_API_KEY;
+	const cityName = event.queryStringParameters.cityName;
 
-	if (!locationKey) {
+	if (!cityName) {
 		return {
 			statusCode: 400,
-			body: JSON.stringify({ error: "Hiányzó locationKey paraméter" }),
+			body: JSON.stringify({ error: "Hiányzó cityName paraméter" }),
 		};
 	}
 
-	const apiUrl = `http://dataservice.accuweather.com/locations/v1/<span class="math-inline">\{locationKey\}?apikey\=</span>{apiKey}&language=hu-hu`;
+	const locationApiUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${cityName}&language=hu-hu`;
 
 	try {
-		const response = await fetch(apiUrl);
-		const data = await response.json();
+		const locationResponse = await fetch(locationApiUrl);
+		const locationData = await locationResponse.json();
 
-		return {
-			statusCode: 200,
-			body: JSON.stringify(data),
-		};
+		if (locationData && locationData.length > 0) {
+			const locationKey = locationData[0].Key;
+
+			const currentWeatherApiUrl = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
+			const currentWeatherResponse = await fetch(currentWeatherApiUrl);
+			const currentWeatherData = await currentWeatherResponse.json();
+
+			return {
+				statusCode: 200,
+				body: JSON.stringify(currentWeatherData),
+			};
+		} else {
+			return {
+				statusCode: 404,
+				body: JSON.stringify({ error: "Nem található ilyen város" }),
+			};
+		}
 	} catch (error) {
 		console.error("Hiba az AccuWeather API hívásakor:", error);
 		return {
