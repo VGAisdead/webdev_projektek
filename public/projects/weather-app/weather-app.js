@@ -41,17 +41,34 @@ const getWeather = () => {
 };
 
 function displayWeather(weatherData) {
-	// Itt jelenítsd meg az időjárási adatokat a weatherInfoDiv-ben
-	console.log(weatherData);
-	if (weatherData && weatherData.length > 0) {
-		// Ellenőrizzük, hogy van-e adat
-		weatherInfoDiv.querySelector("#temp").textContent =
-			weatherData[0].Temperature.Metric.Value + " °C"; // Példa
-		weatherInfoDiv.querySelector("#city").textContent =
-			weatherData[0].LocalizedName;
-		weatherInfoDiv.querySelector("#country").textContent =
-			weatherData[0].Country.LocalizedName;
+	console.log("API válasz:", weatherData); // Nagyon fontos!
+
+	if (weatherData && Array.isArray(weatherData) && weatherData.length > 0) {
+		const firstResult = weatherData[0]; // Első eredmény (ha tömb)
+
+		// Ellenőrizd, hogy ezek a tulajdonságok léteznek-e az objektumban
+		if (firstResult.Temperature && firstResult.Temperature.Metric) {
+			weatherInfoDiv.querySelector("#temp").textContent =
+				firstResult.Temperature.Metric.Value + " °C";
+		} else {
+			weatherInfoDiv.querySelector("#temp").textContent = "N/A";
+		}
+
+		if (firstResult.LocalizedName) {
+			weatherInfoDiv.querySelector("#city").textContent =
+				firstResult.LocalizedName;
+		} else {
+			weatherInfoDiv.querySelector("#city").textContent = "N/A";
+		}
+
+		if (firstResult.Country && firstResult.Country.LocalizedName) {
+			weatherInfoDiv.querySelector("#country").textContent =
+				firstResult.Country.LocalizedName;
+		} else {
+			weatherInfoDiv.querySelector("#country").textContent = "N/A";
+		}
 	} else {
 		weatherInfoDiv.textContent = "Nincs adat a megadott helyhez.";
+		weatherInfoDiv.style.color = "red"; // Hiba jelzése
 	}
 }
