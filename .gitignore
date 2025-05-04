@@ -1,0 +1,9 @@
+config.js
+node_modules/
+.env
+.DS_Store         # macOS
+Thumbs.db          # Windows
+*.log
+temp/
+build/
+dist/
