@@ -727,6 +727,8 @@ export const reports = {
 				label: "I.",
 				name: "Működési cash flow",
 				type: "mainheader",
+				tooltip:
+					"A működési cash flow a vállalat alaptevékenységéből származó pénzbeáramlásokat és -kiáramlásokat mutatja, például vevői bevételeket, szállítói kifizetéseket, béreket és adókat. Ez jelzi, hogy a cég mennyire képes a napi működéséből fedezni kiadásait.",
 			},
 			{
 				label: "1a.",
@@ -807,6 +809,8 @@ export const reports = {
 				label: "II.",
 				name: "Befektetési cash flow",
 				type: "mainheader",
+				tooltip:
+					"Tartalmazza például a tárgyi eszközök (gépek, ingatlanok) vásárlását vagy eladását, pénzügyi befektetések (részvények, kötvények) vételét vagy értékesítését, illetve leányvállalatokba történő befektetéseket. Ez a szekció általában negatív előjelű, ha a vállalat épp bővít vagy fejleszt.",
 			},
 			{
 				label: "14.",
@@ -834,9 +838,11 @@ export const reports = {
 				type: "selectable",
 			},
 			{
-				label: "I.",
+				label: "III.",
 				name: "Finanszírozási cash flow",
 				type: "mainheader",
+				tooltip:
+					"Tartalmazza a tőkeemelést, hitelek felvételét vagy törlesztését, osztalékfizetést, részvényvásárlást vagy -kibocsátást – tehát minden olyan pénzmozgást, amely a vállalat saját tőkéjének vagy kötelezettségeinek változásából ered.",
 			},
 			{
 				label: "19.",
