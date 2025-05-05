@@ -33,8 +33,10 @@ exports.handler = async (event, context) => {
 
 		if (locationData && locationData.length > 0) {
 			const locationKey = locationData[0].Key;
-
 			const currentWeatherApiUrl = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
+
+			console.log("Current Weather API URL:", currentWeatherApiUrl); // LOGOLÁS!
+
 			const currentWeatherResponse = await fetch(currentWeatherApiUrl);
 			if (!currentWeatherResponse.ok) {
 				const errorText = await currentWeatherResponse.text();
