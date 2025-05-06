@@ -51,7 +51,7 @@ function hideModal() {
 	autocompleteList.classList.remove("show");
 }
 
-// Get weather data - can be called with either city name or locationKey
+// Get weather data - can be called with either city name or location Key
 async function getWeather() {
 	let city = locationInput.value.trim();
 	startModalError.textContent = ""; // Clear previous error messages
@@ -92,7 +92,7 @@ async function getWeather() {
 	try {
 		let weatherData;
 
-		// Ha szám, akkor locationKey alapján kérjük le
+		// Ha szám, akkor location Key alapján kérjük le
 		if (!isNaN(city)) {
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?q=${city}`
@@ -130,7 +130,7 @@ async function getWeather() {
 			}
 
 			const weatherRes = await fetch(
-				`/.netlify/functions/weather?locationKey=${locationKey}`
+				`/.netlify/functions/weather?q=${city}`
 			);
 
 			if (!weatherRes.ok)

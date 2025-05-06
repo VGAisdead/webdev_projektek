@@ -50,7 +50,7 @@ exports.handler = async function (event) {
 			const weatherRes = await fetch(weatherUrl);
 			const weatherData = await weatherRes.json();
 
-			const locationUrl = `https://dataservice.accuweather.com/locations/v1/${locationKey}?apikey=${apiKey}&language=hu-hu`;
+			const locationUrl = `https://dataservice.accuweather.com/locations/v1/${q}?apikey=${apiKey}&language=hu-hu`;
 			const locationRes = await fetch(locationUrl);
 			const locationData = await locationRes.json();
 
