@@ -25,37 +25,53 @@ searchBtn.addEventListener("click", () => {
 // API fetch
 const getWeather = () => {
 	const cityName = locationInput.value.trim();
-
-	// hibaüzenet törlése
 	startModalError.textContent = "";
-
+    
 	if (cityName) {
-		fetch(`/.netlify/functions/weather?cityName=${cityName}`)
-			.then((response) => response.json())
-			.then((data) => {
-				displayWeather(data);
-			})
-			.catch((error) => {
-				if (weatherInfoDiv) {
-					const errorElement = document.createElement("h6");
-					errorElement.innerHTML =
-						`Hiba történt<br> az időjárás adatok lekérésekor.`;
-					errorElement.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
-					weatherInfoDiv.appendChild(errorElement);
-				}
-				console.error("Hiba:", error);
-			});
+	    fetch(`/.netlify/functions/weather?cityName=${cityName}`)
+		.then(response => {
+		    if (!response.ok) {
+			return response.json().then(err => { throw new Error(err.error || 'Hiba történt a lekérdezés során.'); });
+		    }
+		    return response.json();
+		})
+		.then(data => {
+		    if (Array.isArray(data) && data.length > 0) {
+			displayWeather(data);
+			startModal.classList.remove("show");
+		    } else if (!Array.isArray(data) && Object.keys(data).length > 0) {
+			displayWeather(data);
+			startModal.classList.remove("show");
+		    }
+		    else {
+			const noInputMsg = document.createElement("h6");
+			noInputMsg.innerHTML = `Nem található ilyen város.`;
+			noInputMsg.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
+			startModalError.appendChild(noInputMsg);
+			startModal.classList.add("show");
+		    }
+		})
+		.catch(error => {
+		    console.error("Hiba:", error);
+		    if (weatherInfoDiv) {
+			const errorElement = document.createElement("h6");
+			errorElement.innerHTML = `Hiba történt<br> az időjárás adatok lekérésekor. ${error.message}`;
+			errorElement.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
+			weatherInfoDiv.appendChild(errorElement);
+			startModal.classList.remove("show");
+		    }
+		});
 	} else {
-		const noInputMsg = 
-		document.createElement("h6");
-					noInputMsg.innerHTML =
-						`Kérlek, add meg a hely nevét`;
-					noInputMsg.classList.add("fw-light", "mt-2","text-white", "fs-5", "m-0", "text-end", "text-sm-start");
-					startModalError.appendChild(noInputMsg);
-        	startModal.classList.add("show"); // Biztosítjuk, hogy a modal látható legyen
+	    const noInputMsg = document.createElement("h6");
+	    noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
+	    noInputMsg.classList.add("fw-light", "mt-2", "text-white", "fs-5", "m-0", "text-end", "text-sm-start");
+	    startModalError.appendChild(noInputMsg);
+	    startModal.classList.add("show");
 	}
-};
+    };
 
+
+    
 function displayWeather(weatherData) {
 	console.log("API válasz:", weatherData);
 
