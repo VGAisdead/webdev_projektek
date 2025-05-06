@@ -95,7 +95,7 @@ async function getWeather() {
 		// Ha szám, akkor locationKey alapján kérjük le
 		if (!isNaN(city)) {
 			const weatherRes = await fetch(
-				`/.netlify/functions/weather?locationKey=${city}`
+				`/.netlify/functions/weather?q=${city}`
 			);
 			if (!weatherRes.ok)
 				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
@@ -103,9 +103,7 @@ async function getWeather() {
 		} else {
 			// Ha szöveg, akkor autocomplete + az első találatból a key
 			const autoRes = await fetch(
-				`/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(
-					city
-				)}`
+				`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
 			);
 			if (!autoRes.ok) {
 				const errorDataAutoRes = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt

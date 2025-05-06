@@ -8,8 +8,7 @@ exports.handler = async function (event) {
 	};
 
 	const apiKey = process.env.ACCUWEATHER_API_KEY;
-	const { cityName, type, locationKey, language } =
-		event.queryStringParameters || {};
+	const { q, language } = event.queryStringParameters || {};
 
 	if (!apiKey) {
 		return {
@@ -20,11 +19,11 @@ exports.handler = async function (event) {
 	}
 
 	// Autocomplete keresés
-	if (type === "autocomplete" && typeof cityName === "string") {
+	if (typeof q === "string" && q !== "") {
 		try {
-			const url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${encodeURIComponent(
-				cityName
-			)}&language=hu-hu`;
+			let url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${encodeURIComponent(
+				q
+			)}&language=${language}`;
 			const response = await fetch(url);
 			const data = await response.json();
 			return {
@@ -45,9 +44,9 @@ exports.handler = async function (event) {
 	}
 
 	// Időjárás locationKey alapján
-	if (locationKey) {
+	else if (!isNaN(q) && q !== "") {
 		try {
-			const weatherUrl = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
+			const weatherUrl = `https://dataservice.accuweather.com/currentconditions/v1/${q}?apikey=${apiKey}&language=hu-hu&details=true`;
 			const weatherRes = await fetch(weatherUrl);
 			const weatherData = await weatherRes.json();
 
