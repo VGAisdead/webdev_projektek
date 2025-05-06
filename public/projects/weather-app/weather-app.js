@@ -18,12 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	// Show modal initially
 	showModal();
 
-	// Event listeners
-	inputBtn.addEventListener("click", getWeather);
-	searchBtn.addEventListener("click", () => {
-		showModal();
-	});
-
 	// Add event listener for Enter key
 	locationInput.addEventListener("keydown", (e) => {
 		if (e.key === "Enter") {
@@ -33,6 +27,13 @@ document.addEventListener("DOMContentLoaded", () => {
 			autocompleteList.classList.remove("show");
 		}
 	});
+});
+
+// Event listeners
+inputBtn.addEventListener("click", () => getWeather());
+
+searchBtn.addEventListener("click", () => {
+	showModal();
 });
 
 function showModal() {
