@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 exports.handler = async function (event, context) {
 	// CORS headers
@@ -122,6 +122,10 @@ exports.handler = async function (event, context) {
 				headers,
 				body: JSON.stringify(result),
 			};
+
+			// TESTING
+			console.log("locationKey:", locationKey);
+			console.log("weatherData:", weatherData);
 		} else {
 			// City search by name if we don't have a locationKey
 			const locationUrl = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${encodeURIComponent(
@@ -195,6 +199,9 @@ exports.handler = async function (event, context) {
 				headers,
 				body: JSON.stringify(result),
 			};
+
+			console.log("locationKey:", locationKey);
+			console.log("weatherData:", weatherData);
 		}
 	} catch (error) {
 		console.error("Server error:", error);

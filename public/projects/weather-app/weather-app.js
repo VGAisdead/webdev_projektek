@@ -15,7 +15,6 @@ const weatherIcon = document.getElementById("weatherIcon");
 
 // Show modal when page loads
 document.addEventListener("DOMContentLoaded", () => {
-	// Show modal initially
 	showModal();
 
 	// Add event listener for Enter key
@@ -30,7 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // Event listeners
-inputBtn.addEventListener("click", () => getWeather());
+inputBtn.addEventListener("click", () => {
+	getWeather();
+	console.log(locationInput.value);
+});
 
 searchBtn.addEventListener("click", () => {
 	showModal();
