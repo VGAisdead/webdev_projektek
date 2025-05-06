@@ -20,9 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	locationInput.addEventListener("keydown", (e) => {
 		if (e.key === "Enter") {
 			getWeather();
-		} else if (e.key === "Escape") {
-			autocompleteList.innerHTML = "";
-			autocompleteList.classList.remove("show");
 		}
 	});
 });
@@ -47,8 +44,6 @@ function hideModal() {
 	startModal.classList.remove("show");
 	// Clear the input field when the modal is hidden
 	locationInput.value = "";
-	autocompleteList.innerHTML = "";
-	autocompleteList.classList.remove("show");
 }
 
 // Get weather data - can be called with either city name or location Key
