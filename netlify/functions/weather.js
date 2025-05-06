@@ -8,7 +8,7 @@ exports.handler = async function (event) {
 	};
 
 	const apiKey = process.env.ACCUWEATHER_API_KEY;
-	const { q, language } = event.queryStringParameters || {};
+	const q = event.queryStringParameters?.q;
 
 	if (!apiKey) {
 		return {
@@ -23,7 +23,7 @@ exports.handler = async function (event) {
 		try {
 			let url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${encodeURIComponent(
 				q
-			)}&language=${language}`;
+			)}&language=hu-hu`;
 			const response = await fetch(url);
 			const data = await response.json();
 			return {
@@ -72,11 +72,11 @@ exports.handler = async function (event) {
 				}),
 			};
 		}
+	} else {
+		return {
+			statusCode: 400,
+			headers,
+			body: JSON.stringify({ error: "Missing or invalid parameters" }),
+		};
 	}
-
-	return {
-		statusCode: 400,
-		headers,
-		body: JSON.stringify({ error: "Missing or invalid parameters" }),
-	};
 };

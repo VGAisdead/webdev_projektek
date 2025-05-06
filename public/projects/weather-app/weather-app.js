@@ -129,8 +129,6 @@ async function getWeather() {
 				}
 			}
 
-			const locationKey = autoData[0].Key;
-
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?locationKey=${locationKey}`
 			);
