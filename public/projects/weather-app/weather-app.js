@@ -9,69 +9,97 @@ const weatherInfoDiv = document.getElementById("weatherInfo");
 
 // Induló modal megjelenítése
 document.addEventListener("DOMContentLoaded", () => {
-	if (startModal) startModal.classList.add("show");
+	inputBtn.addEventListener("click", getWeather);
+
+	searchBtn.addEventListener("click", () => {
+		showModal();
+	});
 });
 
-// Keresés gombok eseménykezelői
-inputBtn.addEventListener("click", () => {
-
-	getWeather();
-});
-
-searchBtn.addEventListener("click", () => {
+function showModal() {
 	startModal.classList.add("show");
-});
+}
+
+function hideModal() {
+	startModal.classList.remove("show");
+}
 
 // API fetch
 const getWeather = () => {
 	const cityName = locationInput.value.trim();
 	startModalError.textContent = "";
-    
-	if (cityName) {
-	    fetch(`/.netlify/functions/weather?cityName=${cityName}`)
-		.then(response => {
-		    if (!response.ok) {
-			return response.json().then(err => { throw new Error(err.error || 'Hiba történt a lekérdezés során.'); });
-		    }
-		    return response.json();
-		})
-		.then(data => {
-		    if (Array.isArray(data) && data.length > 0) {
-			displayWeather(data);
-			startModal.classList.remove("show");
-		    } else if (!Array.isArray(data) && Object.keys(data).length > 0) {
-			displayWeather(data);
-			startModal.classList.remove("show");
-		    }
-		    else {
-			const noInputMsg = document.createElement("h6");
-			noInputMsg.innerHTML = `Nem található ilyen város.`;
-			noInputMsg.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
-			startModalError.appendChild(noInputMsg);
-			startModal.classList.add("show");
-		    }
-		})
-		.catch(error => {
-		    console.error("Hiba:", error);
-		    if (weatherInfoDiv) {
-			const errorElement = document.createElement("h6");
-			errorElement.innerHTML = `Hiba történt<br> az időjárás adatok lekérésekor. ${error.message}`;
-			errorElement.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
-			weatherInfoDiv.appendChild(errorElement);
-			startModal.classList.remove("show");
-		    }
-		});
-	} else {
-	    const noInputMsg = document.createElement("h6");
-	    noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
-	    noInputMsg.classList.add("fw-light", "mt-2", "text-white", "fs-5", "m-0", "text-end", "text-sm-start");
-	    startModalError.appendChild(noInputMsg);
-	    startModal.classList.add("show");
+
+	if (!cityName) {
+		// Üres input esetén hibaüzenet + modal marad nyitva
+		const noInputMsg = document.createElement("h6");
+		noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
+		noInputMsg.classList.add(
+			"fw-light",
+			"mt-2",
+			"text-white",
+			"fs-5",
+			"m-0",
+			"text-end",
+			"text-sm-start"
+		);
+		startModalError.appendChild(noInputMsg);
+		showModal();
+		return;
 	}
-    };
 
+	// Itt minden más esetben rögtön bezárjuk a modalt (még ha hibázik is később)
+	startModal.classList.remove("show");
 
-    
+	fetch(`/.netlify/functions/weather?cityName=${cityName}`)
+		.then(async (response) => {
+			if (!response.ok) {
+				const statusCode = response.status;
+				throw new Error(`Location API hiba: ${statusCode}`);
+			}
+			return response.json();
+		})
+		.then((data) => {
+			// Érvénytelen város (üres válaszlista) esetén: modal újra megnyílik
+			if (!data || (Array.isArray(data) && data.length === 0)) {
+				weatherInfoDiv.innerHTML = "";
+				const notFoundMsg = document.createElement("h6");
+				notFoundMsg.innerHTML = `Nem található ilyen város.`;
+				notFoundMsg.classList.add(
+					"text-black",
+					"fs-5",
+					"m-0",
+					"text-end",
+					"text-sm-start"
+				);
+				weatherInfoDiv.appendChild(notFoundMsg);
+				showModal();
+				return;
+			}
+
+			// Sikeres válasz → megjelenítjük az időjárást
+			displayWeather(data);
+			hideModal();
+		})
+		.catch((error) => {
+			console.error("Hiba:", error.message);
+			weatherInfoDiv.innerHTML = "";
+			const errorElement = document.createElement("h6");
+			errorElement.innerHTML = `
+		    Hiba történt az időjárás adatok lekérésekor<br>
+		    ${error.message}
+		`;
+			errorElement.classList.add(
+				"text-black",
+				"fs-5",
+				"m-0",
+				"text-end",
+				"text-sm-start"
+			);
+			hideModal();
+			weatherInfoDiv.appendChild(errorElement);
+		});
+};
+
 function displayWeather(weatherData) {
 	console.log("API válasz:", weatherData);
 
