@@ -5,15 +5,12 @@ const inputBtn = document.getElementById("inputBtn");
 const startModal = document.getElementById("start-modal");
 const startModalError = document.getElementById("start-modal-error");
 const locationInput = document.getElementById("locationInput");
-const autocompleteList = document.getElementById("autocompleteList");
 const weatherInfoDiv = document.getElementById("weatherInfo");
 const tempElement = document.getElementById("temp");
 const cityElement = document.getElementById("city");
 const countryElement = document.getElementById("country");
 const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
-
-let locationValue = locationInput.value;
 
 // Show modal when page loads
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,13 +53,13 @@ function hideModal() {
 
 // Get weather data - can be called with either city name or locationKey
 async function getWeather() {
-	let city = locationValue.trim();
-	startModalError.textContent = "";
+	let city = locationInput.value.trim();
+	startModalError.textContent = ""; // Clear previous error messages
 	startModalError.innerHTML = ""; // Clear previous error messages
 
 	// If we don't have a location key and the input is empty
 	if (!city) {
-		// Empty input case - error message + modal stays open
+		// Empty input case
 		const noInputMsg = document.createElement("h6");
 		noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
 		noInputMsg.classList.add(
@@ -78,9 +75,7 @@ async function getWeather() {
 		return;
 	}
 
-	console.log(locationValue);
-
-	// Add loading indicator
+	// Add loading message
 	const loadingMsg = document.createElement("h6");
 	loadingMsg.innerHTML = `Keresés...`;
 	loadingMsg.classList.add(
@@ -94,100 +89,60 @@ async function getWeather() {
 	);
 	startModalError.appendChild(loadingMsg);
 
-	// Determine what API endpoint to call based on available info
-	let url = "";
-	if (!isNaN(city) && city !== "") {
-		// Csak szám -> locationKey
-		url = `/.netlify/functions/weather?locationKey=${city}`;
-	} else if (typeof input === "string" && input !== "") {
-		// Nem szám -> cityName (autocomplete)
-		url = `/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(
-			city
-		)}`;
-	} else {
-		const wrongInputMsg = document.createElement("h6");
-		wrongInputMsg.innerHTML = `Helytelen helységnév formátum.`;
-		wrongInputMsg.classList.add(
-			"fw-light",
+	try {
+		let weatherData;
+
+		// Ha szám, akkor locationKey alapján kérjük le
+		if (!isNaN(city)) {
+			const weatherRes = await fetch(
+				`/.netlify/functions/weather?locationKey=${city}`
+			);
+			if (!weatherRes.ok)
+				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
+			weatherData = await weatherRes.json();
+		} else {
+			// Ha szöveg, akkor autocomplete + az első találatból a key
+			const autoRes = await fetch(
+				`/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(
+					city
+				)}`
+			);
+			if (!autoRes.ok)
+				throw new Error("Nem sikerült lekérni a helységek listáját.");
+			const autoData = await autoRes.json();
+
+			if (!Array.isArray(autoData) || autoData.length === 0) {
+				throw new Error("Nem található ilyen város.");
+			}
+
+			const locationKey = autoData[0].Key;
+			const weatherRes = await fetch(
+				`/.netlify/functions/weather?locationKey=${locationKey}`
+			);
+			if (!weatherRes.ok)
+				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
+			weatherData = await weatherRes.json();
+		}
+
+		// Megjelenítjük az adatokat
+		displayWeather(weatherData.weather || weatherData); // a .weather egy tömb lehet
+		hideModal();
+	} catch (error) {
+		console.error("Hiba:", error.message);
+		startModalError.innerHTML = "";
+		const errorElement = document.createElement("h6");
+		errorElement.innerHTML = `Hiba történt:<br>${error.message}`;
+		errorElement.classList.add(
 			"text-white",
+			"fw-light",
 			"mt-2",
 			"text-danger",
 			"fs-5",
 			"m-0",
 			"text-center"
 		);
-		startModalError.appendChild(wrongInputMsg);
+		startModalError.appendChild(errorElement);
 	}
-
-	// Make the API request
-	fetch(url)
-		.then(async (response) => {
-			if (!response.ok) {
-				const statusCode = response.status;
-				throw new Error(`API hiba: ${statusCode}`);
-			}
-			return response.json();
-		})
-		.then((data) => {
-			console.log("API Response:", data);
-
-			// Check for error in the response
-			if (data.error) {
-				startModalError.innerHTML = "";
-				const errorMsg = document.createElement("h6");
-				errorMsg.innerHTML = data.error;
-				errorMsg.classList.add(
-					"fw-light",
-					"mt-2",
-					"text-danger",
-					"fs-5",
-					"m-0",
-					"text-center"
-				);
-				startModalError.appendChild(errorMsg);
-				return;
-			}
-
-			// Invalid city (empty response) case: show error
-			if (!data) {
-				startModalError.innerHTML = "";
-				const notFoundMsg = document.createElement("h6");
-				notFoundMsg.innerHTML = `Nem található ilyen város.`;
-				notFoundMsg.classList.add(
-					"fw-light",
-					"mt-2",
-					"text-danger",
-					"fs-5",
-					"m-0",
-					"text-center"
-				);
-				startModalError.appendChild(notFoundMsg);
-				return;
-			}
-
-			// Success → display the weather
-			displayWeather(data);
-			hideModal();
-		})
-		.catch((error) => {
-			console.error("Hiba:", error.message);
-			startModalError.innerHTML = "";
-			const errorElement = document.createElement("h6");
-			errorElement.innerHTML = `
-                Hiba történt az időjárás adatok lekérésekor:<br>
-                ${error.message}
-            `;
-			errorElement.classList.add(
-				"text-white",
-				"fw-light",
-				"mt-2",
-				"text-danger",
-				"fs-5",
-				"m-0",
-				"text-center"
-			);
-			startModalError.appendChild(errorElement);
-		});
 }
 
 function displayWeather(weatherData) {

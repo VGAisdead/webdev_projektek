@@ -8,7 +8,8 @@ exports.handler = async function (event) {
 	};
 
 	const apiKey = process.env.ACCUWEATHER_API_KEY;
-	const { cityName, type, locationKey } = event.queryStringParameters || {};
+	const { cityName, type, locationKey, language } =
+		event.queryStringParameters || {};
 
 	if (!apiKey) {
 		return {
@@ -19,7 +20,7 @@ exports.handler = async function (event) {
 	}
 
 	// Autocomplete keresés
-	if (type === "autocomplete" && cityName) {
+	if (type === "autocomplete" && typeof cityName === "string") {
 		try {
 			const url = `https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${encodeURIComponent(
 				cityName
