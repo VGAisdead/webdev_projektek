@@ -108,23 +108,25 @@ async function getWeather() {
 				)}`
 			);
 			if (!autoRes.ok) {
-				const errorData = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt
+				const errorDataAutoRes = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt
 
 				// Ellenőrizzük a konkrét üzenetet
-				if (errorData.Message === "Api Authorization failed") {
-					throw new Error("Hibás vagy hiányzó API kulcs.");
+				if (errorDataAutoRes.Message === "Api Authorization failed") {
+					throw new Error(
+						"Hibás vagy hiányzó API kulcs (autocomplete search)."
+					);
 				} else if (
-					errorData.Message ===
+					errorDataAutoRes.Message ===
 					"The allowed number of requests has been exceeded."
 				) {
 					throw new Error(
 						"Túl sok API kérés, próbáld újra később..."
 					);
-				} else if (errorData.Message === "Api Authorization failed") {
-					throw new Error("API kulcs probléma");
 				} else {
 					throw new Error(
-						`API hiba: ${errorData.Message || "Ismeretlen hiba"}`
+						`API hiba: ${
+							errorDataAutoRes.Message || "Ismeretlen hiba"
+						}`
 					);
 				}
 			}
@@ -134,6 +136,7 @@ async function getWeather() {
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?locationKey=${locationKey}`
 			);
+
 			if (!weatherRes.ok)
 				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
 			weatherData = await weatherRes.json();
