@@ -14,11 +14,11 @@ document.addEventListener("DOMContentLoaded", function () {
 	};
 
 	const basePath = getBasePath();
-	console.log("Base path detected:", basePath); // Debug output
+	console.log("Base path detected ", basePath); // Debug output
 
 	// Function to fix navigation links - will be called after components are loaded
 	const fixNavigationLinks = () => {
-		console.log("Fixing navigation links with basePath:", basePath); // Debug output
+		console.log("Fixing navigation links with basePath ", basePath); // Debug output
 
 		// Fix navigation links in the header
 		document.querySelectorAll('#header a[href^="/"]').forEach((link) => {
@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			file = basePath + file;
 		}
 
-		console.log("Loading component from:", file); // Debug output
+		// console.log("Loading component from:", file); // Debug output
 
 		// Fetch the component file
 		fetch(file)

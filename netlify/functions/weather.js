@@ -2,9 +2,9 @@
 
 import fetch from "node-fetch";
 
-exports.handler = async (event, context) => {
+export const handler = async (event, context) => {
 	const apiKey = process.env.ACCUWEATHER_API_KEY;
-	const cityName = event.queryStringParameters.cityName;
+	const { cityName, type } = event.queryStringParameters;
 
 	if (!cityName) {
 		return {
@@ -14,60 +14,92 @@ exports.handler = async (event, context) => {
 		};
 	}
 
-	const locationApiUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${cityName}&language=hu-hu`;
-
 	try {
-		const locationResponse = await fetch(locationApiUrl);
-		if (!locationResponse.ok) {
-			const errorText = await locationResponse.text();
-			console.error(
-				"Location API hiba:",
-				locationResponse.status,
-				errorText
-			);
-			throw new Error(
-				`Location API hiba: ${locationResponse.status} - ${errorText}`
-			);
-		}
-		const locationData = await locationResponse.json();
+		if (type === "autocomplete") {
+			// Autocomplete endpoint
+			const autocompleteUrl = `http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${encodeURIComponent(
+				cityName
+			)}&language=hu-hu`;
+			const response = await fetch(autocompleteUrl);
 
-		if (locationData && locationData.length > 0) {
-			const locationKey = locationData[0].Key;
-			const currentWeatherApiUrl = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
-
-			console.log("Current Weather API URL:", currentWeatherApiUrl); // LOGOLÁS!
-
-			const currentWeatherResponse = await fetch(currentWeatherApiUrl);
-			if (!currentWeatherResponse.ok) {
-				const errorText = await currentWeatherResponse.text();
-				console.error(
-					"Current Weather API hiba:",
-					currentWeatherResponse.status,
-					errorText
-				);
-				throw new Error(
-					`Current Weather API hiba: ${currentWeatherResponse.status} - ${errorText}`
-				);
+			if (!response.ok) {
+				throw new Error(`Autocomplete API hiba: ${response.status}`);
 			}
-			const currentWeatherData = await currentWeatherResponse.json();
 
+			const data = await response.json();
 			return {
 				statusCode: 200,
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify(currentWeatherData),
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*",
+				},
+				body: JSON.stringify(data),
 			};
 		} else {
-			return {
-				statusCode: 404,
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ error: "Nem található ilyen város" }),
-			};
+			// Alapértelmezett: teljes város + időjárás lekérés
+			const locationApiUrl = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${encodeURIComponent(
+				cityName
+			)}&language=hu-hu`;
+
+			const locationResponse = await fetch(locationApiUrl);
+			if (!locationResponse.ok) {
+				const errorText = await locationResponse.text();
+				throw new Error(
+					`Location API hiba: ${locationResponse.status} - ${errorText}`
+				);
+			}
+			const locationData = await locationResponse.json();
+
+			if (locationData && locationData.length > 0) {
+				const locationKey = locationData[0].Key;
+				const currentWeatherApiUrl = `http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
+
+				const currentWeatherResponse = await fetch(
+					currentWeatherApiUrl
+				);
+				if (!currentWeatherResponse.ok) {
+					const errorText = await currentWeatherResponse.text();
+					throw new Error(
+						`Current Weather API hiba: ${currentWeatherResponse.status} - ${errorText}`
+					);
+				}
+				const currentWeatherData = await currentWeatherResponse.json();
+
+				// Merge location data with weather data
+				const enrichedData = {
+					...locationData[0],
+					...currentWeatherData[0],
+				};
+
+				return {
+					statusCode: 200,
+					headers: {
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*",
+					},
+					body: JSON.stringify(enrichedData),
+				};
+			} else {
+				return {
+					statusCode: 404,
+					headers: {
+						"Content-Type": "application/json",
+						"Access-Control-Allow-Origin": "*",
+					},
+					body: JSON.stringify({
+						error: "Nem található ilyen város",
+					}),
+				};
+			}
 		}
 	} catch (error) {
 		console.error("Hiba az AccuWeather API hívásakor:", error);
 		return {
 			statusCode: 500,
-			headers: { "Content-Type": "application/json" },
+			headers: {
+				"Content-Type": "application/json",
+				"Access-Control-Allow-Origin": "*",
+			},
 			body: JSON.stringify({
 				error: `Időjárás adatok lekérése sikertelen: ${error.message}`,
 			}),
