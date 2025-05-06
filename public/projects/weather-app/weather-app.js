@@ -122,6 +122,14 @@ async function getWeather() {
 			if (!weatherRes.ok)
 				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
 			weatherData = await weatherRes.json();
+
+			if (
+				weatherData.Message ===
+				"The allowed number of requests has been exceeded."
+			) {
+				throw new Error("Túl sok API kérés, próbáld újra később...");
+				weatherData = await weatherRes.json();
+			}
 		}
 
 		// Megjelenítjük az adatokat
