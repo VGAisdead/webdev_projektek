@@ -77,6 +77,7 @@ const getWeather = (locationKey = null) => {
 	loadingMsg.innerHTML = `Keresés...`;
 	loadingMsg.classList.add(
 		"fw-light",
+		"text-white",
 		"mt-2",
 		"text-info",
 		"fs-5",
@@ -156,6 +157,7 @@ const getWeather = (locationKey = null) => {
                 ${error.message}
             `;
 			errorElement.classList.add(
+				"text-white",
 				"fw-light",
 				"mt-2",
 				"text-danger",
