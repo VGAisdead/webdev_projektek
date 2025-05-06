@@ -38,6 +38,7 @@
 .modal-content ul li {
 	display: block;
 	visibility: visible;
+	position: relative
 }
 
 .modal ul {
@@ -92,6 +93,10 @@
 	border: 2px solid black;
 }
 
+.inputbtn:hover {
+	background-color: white;
+}
+
 input::placeholder {
 	color: rgba(0, 0, 0, 0.5);
 	text-align: start;
@@ -102,5 +107,38 @@ input:focus::placeholder {
 	transition: color 1s ease-out, color 1s ease-in;
 	color: rgba(0, 0, 0, 0);
 	padding-left: 5px;
+	
 }
 
+input:focus {
+	transition: background-color 2s ease-out, color 2s ease-in;
+	background-color: rgb(255, 255, 255);
+}
+
+.autocomplete-list {
+	display: none;
+	position: absolute;
+	top: 40px;
+	z-index: 10;
+	background: white;
+	border: 1px solid #000000;
+	border-radius: 25% 0 25% 0;
+	list-style: none;
+	padding: 10px;
+	max-height: 200px;
+	overflow-y: auto;
+	width: 100%;
+}
+
+.autocomplete-list.show {
+	display: block;
+}
+
+.autocomplete-list li {
+	padding: 0.5rem;
+	cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+	background-color: #f0f0f0;
+}

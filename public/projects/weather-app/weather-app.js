@@ -5,6 +5,7 @@ const inputBtn = document.getElementById("inputBtn");
 const startModal = document.getElementById("start-modal");
 const startModalError = document.getElementById("start-modal-error");
 const locationInput = document.getElementById("locationInput");
+const autocompleteList = document.getElementById("autocompleteList");
 const weatherInfoDiv = document.getElementById("weatherInfo");
 
 // Induló modal megjelenítése
@@ -166,3 +167,76 @@ function displayWeather(weatherData) {
 		weatherInfoDiv.appendChild(noDataElement);
 	}
 }
+
+// autocomplete
+
+locationInput.addEventListener("input", async () => {
+	const query = locationInput.value.trim();
+
+	if (data.length > 0) {
+		autocompleteList.classList.add("show");
+
+		data.forEach((location) => {
+			const listItem = document.createElement("li");
+			listItem.textContent = `${location.LocalizedName}, ${location.Country.LocalizedName}`;
+			listItem.dataset.key = location.Key;
+			listItem.addEventListener("click", () => {
+				locationInput.value = location.LocalizedName;
+				autocompleteList.innerHTML = "";
+				autocompleteList.classList.remove("show");
+			});
+			autocompleteList.appendChild(listItem);
+		});
+	} else {
+		autocompleteList.classList.remove("show");
+	}
+
+	if (query.length < 2) {
+		autocompleteList.innerHTML = "";
+		autocompleteList.classList.remove("show");
+		return;
+	}
+
+	try {
+		const response = await fetch(
+			`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${API_KEY}&q=${query}&language=hu-hu`
+		);
+
+		if (!response.ok)
+			throw new Error("Nem sikerült betölteni a javaslatokat.");
+
+		const data = await response.json();
+
+		// töröljük a korábbi javaslatokat
+		autocompleteList.innerHTML = "";
+
+		data.forEach((location) => {
+			const listItem = document.createElement("li");
+			listItem.textContent = `${location.LocalizedName}, ${location.Country.LocalizedName}`;
+			listItem.dataset.key = location.Key; // későbbi használathoz
+			listItem.addEventListener("click", () => {
+				locationInput.value = location.LocalizedName;
+				autocompleteList.innerHTML = "";
+				// itt esetleg bezárhatod a modalt vagy hívhatod a getWeather-t is
+			});
+			autocompleteList.appendChild(listItem);
+		});
+	} catch (error) {
+		console.error("Autocomplete hiba:", error);
+		autocompleteList.innerHTML = "";
+	}
+});
+
+document.addEventListener("click", (e) => {
+	if (!startModal.contains(e.target)) {
+		autocompleteList.innerHTML = "";
+		autocompleteList.classList.remove("show");
+	}
+});
+
+locationInput.addEventListener("keydown", (e) => {
+	if (e.key === "Escape") {
+		autocompleteList.innerHTML = "";
+		autocompleteList.classList.remove("show");
+	}
+});
