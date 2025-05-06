@@ -130,6 +130,11 @@ async function getWeather() {
 				throw new Error("Túl sok API kérés, próbáld újra később...");
 				weatherData = await weatherRes.json();
 			}
+
+			if (weatherData.Message === "Api Authorization failed") {
+				throw new Error("API kulcs probléma");
+				weatherData = await weatherRes.json();
+			}
 		}
 
 		// Megjelenítjük az adatokat
