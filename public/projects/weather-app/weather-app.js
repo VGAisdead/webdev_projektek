@@ -43,16 +43,21 @@ function showModal() {
 
 function hideModal() {
 	startModal.classList.remove("show");
+	// Clear the input field when the modal is hidden
+	locationInput.value = "";
+	autocompleteList.innerHTML = "";
+	autocompleteList.classList.remove("show");
 }
 
-// API fetch
-const getWeather = () => {
+// Get weather data - can be called with either city name or locationKey
+const getWeather = (locationKey = null) => {
 	const cityName = locationInput.value.trim();
 	startModalError.textContent = "";
 	startModalError.innerHTML = ""; // Clear previous error messages
 
-	if (!cityName) {
-		// Üres input esetén hibaüzenet + modal marad nyitva
+	// If we don't have a location key and the input is empty
+	if (!locationKey && !cityName) {
+		// Empty input case - error message + modal stays open
 		const noInputMsg = document.createElement("h6");
 		noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
 		noInputMsg.classList.add(
@@ -80,14 +85,24 @@ const getWeather = () => {
 	);
 	startModalError.appendChild(loadingMsg);
 
+	// Determine what API endpoint to call based on available info
+	let apiUrl;
+	if (locationKey) {
+		// If we have a location key, use it directly (more efficient)
+		apiUrl = `/.netlify/functions/weather?locationKey=${locationKey}`;
+	} else {
+		// Otherwise use the city name
+		apiUrl = `/.netlify/functions/weather?cityName=${encodeURIComponent(
+			cityName
+		)}`;
+	}
+
 	// Make the API request
-	fetch(
-		`/.netlify/functions/weather?cityName=${encodeURIComponent(cityName)}`
-	)
+	fetch(apiUrl)
 		.then(async (response) => {
 			if (!response.ok) {
 				const statusCode = response.status;
-				throw new Error(`Location API hiba: ${statusCode}`);
+				throw new Error(`API hiba: ${statusCode}`);
 			}
 			return response.json();
 		})
@@ -111,7 +126,7 @@ const getWeather = () => {
 				return;
 			}
 
-			// Érvénytelen város (üres válaszlista) esetén: hibaüzenet
+			// Invalid city (empty response) case: show error
 			if (!data) {
 				startModalError.innerHTML = "";
 				const notFoundMsg = document.createElement("h6");
@@ -128,7 +143,7 @@ const getWeather = () => {
 				return;
 			}
 
-			// Sikeres válasz → megjelenítjük az időjárást
+			// Success → display the weather
 			displayWeather(data);
 			hideModal();
 		})
@@ -162,7 +177,7 @@ function displayWeather(weatherData) {
 		tempElement.textContent = "N/A";
 	}
 
-	// Update city
+	// Update city name
 	if (weatherData.LocalizedName) {
 		cityElement.textContent = weatherData.LocalizedName;
 	} else {
@@ -183,63 +198,73 @@ function displayWeather(weatherData) {
 		postcodeElement.textContent = ""; // Hide if not available
 	}
 
+	// Add weather text description if available
+	if (weatherData.WeatherText) {
+		console.log("Weather condition:", weatherData.WeatherText);
+	}
+
 	// Update weather icon based on weather condition if available
-	updateWeatherIcon(weatherData.WeatherIcon);
+	updateWeatherIcon(weatherData.WeatherIcon, weatherData.IsDayTime);
 }
 
 // Function to map weather condition codes to icon paths
-function updateWeatherIcon(iconCode) {
+function updateWeatherIcon(iconCode, isDayTime = true) {
 	// Default icon
 	let iconPath = "../../../assets/images/weather/cloudy.png";
 
-	// Map weather icon codes to your images
-	if (iconCode) {
-		// This is a simple placeholder - customize based on your actual icons
+	// Use the AccuWeather icon codes to map to our icon paths
+	if (iconCode !== undefined) {
+		// This is a mapping based on your provided icon paths and AccuWeather codes
 		const iconMap = {
-			1: "../../../assets/images/weather/sunny.png",
-			2: "../../../assets/images/weather/sunny.png",
-			3: "../../../assets/images/weather/partly-cloudy.png",
-			4: "../../../assets/images/weather/partly-cloudy.png",
-			5: "../../../assets/images/weather/partly-cloudy.png",
-			6: "../../../assets/images/weather/cloudy.png",
-			7: "../../../assets/images/weather/cloudy.png",
-			8: "../../../assets/images/weather/cloudy.png",
-			11: "../../../assets/images/weather/fog.png",
-			12: "../../../assets/images/weather/rain.png",
-			13: "../../../assets/images/weather/rain.png",
-			14: "../../../assets/images/weather/rain.png",
-			15: "../../../assets/images/weather/rain.png",
-			16: "../../../assets/images/weather/rain.png",
-			17: "../../../assets/images/weather/thunderstorm.png",
-			18: "../../../assets/images/weather/rain.png",
-			19: "../../../assets/images/weather/snow.png",
-			20: "../../../assets/images/weather/snow.png",
-			21: "../../../assets/images/weather/snow.png",
-			22: "../../../assets/images/weather/snow.png",
-			23: "../../../assets/images/weather/snow.png",
-			24: "../../../assets/images/weather/ice.png",
-			25: "../../../assets/images/weather/ice.png",
-			26: "../../../assets/images/weather/ice.png",
-			29: "../../../assets/images/weather/rain.png",
-			30: "../../../assets/images/weather/sunny.png",
-			31: "../../../assets/images/weather/cloudy.png",
-			32: "../../../assets/images/weather/wind.png",
-			33: "../../../assets/images/weather/night-clear.png",
-			34: "../../../assets/images/weather/night-partly-cloudy.png",
-			35: "../../../assets/images/weather/night-partly-cloudy.png",
-			36: "../../../assets/images/weather/night-partly-cloudy.png",
-			37: "../../../assets/images/weather/night-fog.png",
-			38: "../../../assets/images/weather/night-cloudy.png",
-			39: "../../../assets/images/weather/night-rain.png",
-			40: "../../../assets/images/weather/night-rain.png",
-			41: "../../../assets/images/weather/night-thunderstorm.png",
-			42: "../../../assets/images/weather/night-snow.png",
-			43: "../../../assets/images/weather/night-snow.png",
-			44: "../../../assets/images/weather/night-ice.png",
+			1: "../../../assets/images/weather/sunny.png", // Sunny
+			2: "../../../assets/images/weather/sunny.png", // Mostly Sunny
+			3: "../../../assets/images/weather/partly-cloudy.png", // Partly Sunny
+			4: "../../../assets/images/weather/partly-cloudy.png", // Intermittent Clouds
+			5: "../../../assets/images/weather/partly-cloudy.png", // Hazy Sunshine
+			6: "../../../assets/images/weather/cloudy.png", // Mostly Cloudy
+			7: "../../../assets/images/weather/cloudy.png", // Cloudy
+			8: "../../../assets/images/weather/cloudy.png", // Dreary
+			11: "../../../assets/images/weather/fog.png", // Fog
+			12: "../../../assets/images/weather/rain.png", // Showers
+			13: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ Showers
+			14: "../../../assets/images/weather/rain.png", // Partly Sunny w/ Showers
+			15: "../../../assets/images/weather/thunderstorm.png", // T-Storms
+			16: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ T-Storms
+			17: "../../../assets/images/weather/thunderstorm.png", // Partly Sunny w/ T-Storms
+			18: "../../../assets/images/weather/rain.png", // Rain
+			19: "../../../assets/images/weather/snow.png", // Flurries
+			20: "../../../assets/images/weather/snow.png", // Mostly Cloudy w/ Flurries
+			21: "../../../assets/images/weather/snow.png", // Partly Sunny w/ Flurries
+			22: "../../../assets/images/weather/snow.png", // Snow
+			23: "../../../assets/images/weather/snow.png", // Mostly Cloudy w/ Snow
+			24: "../../../assets/images/weather/ice.png", // Ice
+			25: "../../../assets/images/weather/ice.png", // Sleet
+			26: "../../../assets/images/weather/ice.png", // Freezing Rain
+			29: "../../../assets/images/weather/rain.png", // Rain and Snow
+			30: "../../../assets/images/weather/sunny.png", // Hot
+			31: "../../../assets/images/weather/cloudy.png", // Cold
+			32: "../../../assets/images/weather/wind.png", // Windy
+			33: "../../../assets/images/weather/night-clear.png", // Clear (night)
+			34: "../../../assets/images/weather/night-partly-cloudy.png", // Mostly Clear (night)
+			35: "../../../assets/images/weather/night-partly-cloudy.png", // Partly Cloudy (night)
+			36: "../../../assets/images/weather/night-partly-cloudy.png", // Intermittent Clouds (night)
+			37: "../../../assets/images/weather/night-fog.png", // Hazy (night)
+			38: "../../../assets/images/weather/night-cloudy.png", // Mostly Cloudy (night)
+			39: "../../../assets/images/weather/night-rain.png", // Partly Cloudy w/ Showers (night)
+			40: "../../../assets/images/weather/night-rain.png", // Mostly Cloudy w/ Showers (night)
+			41: "../../../assets/images/weather/night-thunderstorm.png", // Partly Cloudy w/ T-Storms (night)
+			42: "../../../assets/images/weather/night-snow.png", // Mostly Cloudy w/ T-Storms (night)
+			43: "../../../assets/images/weather/night-snow.png", // Mostly Cloudy w/ Flurries (night)
+			44: "../../../assets/images/weather/night-ice.png", // Mostly Cloudy w/ Snow (night)
 		};
 
 		if (iconMap[iconCode]) {
 			iconPath = iconMap[iconCode];
+		} else {
+			// Fallback to day/night default if the code isn't mapped
+			iconPath = isDayTime
+				? "../../../assets/images/weather/cloudy.png"
+				: "../../../assets/images/weather/night-cloudy.png";
 		}
 	}
 
@@ -282,7 +307,8 @@ locationInput.addEventListener("input", async () => {
 					locationInput.value = location.LocalizedName;
 					autocompleteList.innerHTML = "";
 					autocompleteList.classList.remove("show");
-					getWeather(); // Trigger search on selection
+					// Use the location key for more efficient lookup
+					getWeather(location.Key);
 				});
 				autocompleteList.appendChild(listItem);
 			});
