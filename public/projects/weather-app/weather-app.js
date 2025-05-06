@@ -11,6 +11,7 @@ const tempElement = document.getElementById("temp");
 const cityElement = document.getElementById("city");
 const countryElement = document.getElementById("country");
 const postcodeElement = document.getElementById("postcode");
+const weatherIcon = document.getElementById("weatherIcon");
 
 // Show modal when page loads
 document.addEventListener("DOMContentLoaded", () => {
@@ -93,8 +94,25 @@ const getWeather = () => {
 		.then((data) => {
 			console.log("API Response:", data);
 
+			// Check for error in the response
+			if (data.error) {
+				startModalError.innerHTML = "";
+				const errorMsg = document.createElement("h6");
+				errorMsg.innerHTML = data.error;
+				errorMsg.classList.add(
+					"fw-light",
+					"mt-2",
+					"text-danger",
+					"fs-5",
+					"m-0",
+					"text-center"
+				);
+				startModalError.appendChild(errorMsg);
+				return;
+			}
+
 			// Érvénytelen város (üres válaszlista) esetén: hibaüzenet
-			if (!data || (Array.isArray(data) && data.length === 0)) {
+			if (!data) {
 				startModalError.innerHTML = "";
 				const notFoundMsg = document.createElement("h6");
 				notFoundMsg.innerHTML = `Nem található ilyen város.`;
@@ -119,12 +137,11 @@ const getWeather = () => {
 			startModalError.innerHTML = "";
 			const errorElement = document.createElement("h6");
 			errorElement.innerHTML = `
-                Hiba történt az időjárás adatok lekérésekor<br>
+                Hiba történt az időjárás adatok lekérésekor:<br>
                 ${error.message}
             `;
 			errorElement.classList.add(
 				"fw-light",
-				"text-white",
 				"mt-2",
 				"text-danger",
 				"fs-5",
@@ -138,69 +155,95 @@ const getWeather = () => {
 function displayWeather(weatherData) {
 	console.log("Megjelenítendő adatok:", weatherData);
 
-	// Handle both array response and direct object response
-	const data = Array.isArray(weatherData) ? weatherData[0] : weatherData;
-
-	if (!data) {
-		console.error("Nincs feldolgozható adat");
-		return;
-	}
-
 	// Update temperature
-	if (data.Temperature && data.Temperature.Metric) {
-		tempElement.textContent = `${data.Temperature.Metric.Value} °C`;
+	if (weatherData.Temperature && weatherData.Temperature.Metric) {
+		tempElement.textContent = `${weatherData.Temperature.Metric.Value} °C`;
 	} else {
 		tempElement.textContent = "N/A";
 	}
 
 	// Update city
-	if (data.LocalizedName) {
-		cityElement.textContent = data.LocalizedName;
+	if (weatherData.LocalizedName) {
+		cityElement.textContent = weatherData.LocalizedName;
 	} else {
 		cityElement.textContent = "N/A";
 	}
 
 	// Update country
-	if (data.Country && data.Country.LocalizedName) {
-		countryElement.textContent = data.Country.LocalizedName;
+	if (weatherData.Country && weatherData.Country.LocalizedName) {
+		countryElement.textContent = weatherData.Country.LocalizedName;
 	} else {
 		countryElement.textContent = "N/A";
 	}
 
-	// Update postcode if available
-	if (data.PrimaryPostalCode) {
-		postcodeElement.textContent = data.PrimaryPostalCode;
+	// Update postal code if available
+	if (weatherData.PrimaryPostalCode) {
+		postcodeElement.textContent = weatherData.PrimaryPostalCode;
 	} else {
 		postcodeElement.textContent = ""; // Hide if not available
 	}
 
 	// Update weather icon based on weather condition if available
-	// This is a placeholder - you would need to map weather conditions to your icon files
-	if (data.WeatherIcon) {
-		const weatherIcon = document.getElementById("weatherIcon");
-		const iconPath = getWeatherIconPath(data.WeatherIcon);
-		weatherIcon.src = iconPath;
-	}
+	updateWeatherIcon(weatherData.WeatherIcon);
 }
 
 // Function to map weather condition codes to icon paths
-function getWeatherIconPath(iconCode) {
-	// This is a simple placeholder - you would need to customize this based on your available icons
-	// and the API's icon codes
-	const defaultIcon = "../../../assets/images/weather/cloudy.png";
+function updateWeatherIcon(iconCode) {
+	// Default icon
+	let iconPath = "../../../assets/images/weather/cloudy.png";
 
-	// Mapping could be like this:
-	const iconMap = {
-		1: "../../../assets/images/weather/sunny.png",
-		2: "../../../assets/images/weather/sunny.png",
-		3: "../../../assets/images/weather/partly-cloudy.png",
-		4: "../../../assets/images/weather/partly-cloudy.png",
-		5: "../../../assets/images/weather/partly-cloudy.png",
-		6: "../../../assets/images/weather/cloudy.png",
-		// Add more mappings as needed
-	};
+	// Map weather icon codes to your images
+	if (iconCode) {
+		// This is a simple placeholder - customize based on your actual icons
+		const iconMap = {
+			1: "../../../assets/images/weather/sunny.png",
+			2: "../../../assets/images/weather/sunny.png",
+			3: "../../../assets/images/weather/partly-cloudy.png",
+			4: "../../../assets/images/weather/partly-cloudy.png",
+			5: "../../../assets/images/weather/partly-cloudy.png",
+			6: "../../../assets/images/weather/cloudy.png",
+			7: "../../../assets/images/weather/cloudy.png",
+			8: "../../../assets/images/weather/cloudy.png",
+			11: "../../../assets/images/weather/fog.png",
+			12: "../../../assets/images/weather/rain.png",
+			13: "../../../assets/images/weather/rain.png",
+			14: "../../../assets/images/weather/rain.png",
+			15: "../../../assets/images/weather/rain.png",
+			16: "../../../assets/images/weather/rain.png",
+			17: "../../../assets/images/weather/thunderstorm.png",
+			18: "../../../assets/images/weather/rain.png",
+			19: "../../../assets/images/weather/snow.png",
+			20: "../../../assets/images/weather/snow.png",
+			21: "../../../assets/images/weather/snow.png",
+			22: "../../../assets/images/weather/snow.png",
+			23: "../../../assets/images/weather/snow.png",
+			24: "../../../assets/images/weather/ice.png",
+			25: "../../../assets/images/weather/ice.png",
+			26: "../../../assets/images/weather/ice.png",
+			29: "../../../assets/images/weather/rain.png",
+			30: "../../../assets/images/weather/sunny.png",
+			31: "../../../assets/images/weather/cloudy.png",
+			32: "../../../assets/images/weather/wind.png",
+			33: "../../../assets/images/weather/night-clear.png",
+			34: "../../../assets/images/weather/night-partly-cloudy.png",
+			35: "../../../assets/images/weather/night-partly-cloudy.png",
+			36: "../../../assets/images/weather/night-partly-cloudy.png",
+			37: "../../../assets/images/weather/night-fog.png",
+			38: "../../../assets/images/weather/night-cloudy.png",
+			39: "../../../assets/images/weather/night-rain.png",
+			40: "../../../assets/images/weather/night-rain.png",
+			41: "../../../assets/images/weather/night-thunderstorm.png",
+			42: "../../../assets/images/weather/night-snow.png",
+			43: "../../../assets/images/weather/night-snow.png",
+			44: "../../../assets/images/weather/night-ice.png",
+		};
 
-	return iconMap[iconCode] || defaultIcon;
+		if (iconMap[iconCode]) {
+			iconPath = iconMap[iconCode];
+		}
+	}
+
+	weatherIcon.src = iconPath;
 }
 
 // Autocomplete functionality
