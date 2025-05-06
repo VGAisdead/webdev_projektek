@@ -37,7 +37,7 @@ searchBtn.addEventListener("click", () => {
 function showModal() {
 	startModal.classList.add("show");
 	// Focus on input field when modal opens
-	setTimeout(() => locationInput.focus(), 100);
+	setTimeout(() => locationInput.focus(), 2000);
 }
 
 function hideModal() {
@@ -61,7 +61,6 @@ async function getWeather() {
 			"fw-light",
 			"text-white",
 			"mt-2",
-			"text-danger",
 			"fs-5",
 			"m-0",
 			"text-center"
@@ -77,7 +76,6 @@ async function getWeather() {
 		"fw-light",
 		"text-white",
 		"mt-2",
-		"text-info",
 		"fs-5",
 		"m-0",
 		"text-center"
@@ -87,7 +85,7 @@ async function getWeather() {
 	try {
 		let weatherData;
 
-		// Ha szám, akkor location Key alapján kérjük le
+		// Ha szám, akkor location Key alapján kérjük le az időjárást
 		if (!isNaN(city)) {
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?q=${city}`
@@ -100,6 +98,7 @@ async function getWeather() {
 			const autoRes = await fetch(
 				`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
 			);
+
 			if (!autoRes.ok) {
 				const errorDataAutoRes = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt
 
@@ -124,8 +123,19 @@ async function getWeather() {
 				}
 			}
 
+			const locationsData = await autoRes.json();
+
+			// Ellenőrizzük, hogy van-e találat
+			if (!locationsData || locationsData.length === 0) {
+				throw new Error("Nem található a megadott város.");
+			}
+
+			// Az első találat locationKey-jét használjuk
+			const locationKey = locationsData[0].Key;
+
+			// Most lekérjük az időjárás adatokat a locationKey alapján
 			const weatherRes = await fetch(
-				`/.netlify/functions/weather?q=${city}`
+				`/.netlify/functions/weather?q=${locationKey}`
 			);
 
 			if (!weatherRes.ok)
