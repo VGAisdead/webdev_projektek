@@ -13,6 +13,8 @@ const countryElement = document.getElementById("country");
 const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
 
+let locationValue = locationInput.value;
+
 // Show modal when page loads
 document.addEventListener("DOMContentLoaded", () => {
 	showModal();
@@ -53,8 +55,8 @@ function hideModal() {
 }
 
 // Get weather data - can be called with either city name or locationKey
-const getWeather() => {
-	const city = locationInput.value.trim();
+async function getWeather() {
+	let city = locationValue.trim();
 	startModalError.textContent = "";
 	startModalError.innerHTML = ""; // Clear previous error messages
 
@@ -76,6 +78,8 @@ const getWeather() => {
 		return;
 	}
 
+	console.log(locationValue);
+
 	// Add loading indicator
 	const loadingMsg = document.createElement("h6");
 	loadingMsg.innerHTML = `Keresés...`;
@@ -93,15 +97,17 @@ const getWeather() => {
 	// Determine what API endpoint to call based on available info
 	let url = "";
 	if (!isNaN(city) && city !== "") {
-	  // Csak szám -> locationKey
-	  url = `/.netlify/functions/weather?locationKey=${city}`;
+		// Csak szám -> locationKey
+		url = `/.netlify/functions/weather?locationKey=${city}`;
 	} else if (typeof input === "string" && input !== "") {
-	  // Nem szám -> cityName (autocomplete)
-	  url = `/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(city)}`;
+		// Nem szám -> cityName (autocomplete)
+		url = `/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(
+			city
+		)}`;
 	} else {
 		const wrongInputMsg = document.createElement("h6");
-		noInputMsg.innerHTML = `Helytelen helységnév formátum.`;
-		noInputMsg.classList.add(
+		wrongInputMsg.innerHTML = `Helytelen helységnév formátum.`;
+		wrongInputMsg.classList.add(
 			"fw-light",
 			"text-white",
 			"mt-2",
@@ -114,7 +120,7 @@ const getWeather() => {
 	}
 
 	// Make the API request
-	fetch(apiUrl)
+	fetch(url)
 		.then(async (response) => {
 			if (!response.ok) {
 				const statusCode = response.status;
@@ -182,7 +188,7 @@ const getWeather() => {
 			);
 			startModalError.appendChild(errorElement);
 		});
-};
+}
 
 function displayWeather(weatherData) {
 	console.log("Megjelenítendő adatok:", weatherData);
@@ -287,61 +293,3 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 
 	weatherIcon.src = iconPath;
 }
-
-// Autocomplete functionality
-locationInput.addEventListener("input", async () => {
-	const query = locationInput.value.trim();
-
-	if (query.length < 2) {
-		autocompleteList.innerHTML = "";
-		autocompleteList.classList.remove("show");
-		return;
-	}
-
-	try {
-		const response = await fetch(
-			`/.netlify/functions/weather?cityName=${encodeURIComponent(
-				query
-			)}&type=autocomplete`
-		);
-
-		if (!response.ok)
-			throw new Error("Nem sikerült betölteni a javaslatokat.");
-
-		const data = await response.json();
-		console.log("Autocomplete data:", data);
-
-		autocompleteList.innerHTML = "";
-
-		if (data && data.length > 0) {
-			autocompleteList.classList.add("show");
-
-			data.forEach((location) => {
-				const listItem = document.createElement("li");
-				listItem.textContent = `${location.LocalizedName}, ${location.Country.LocalizedName}`;
-				listItem.dataset.key = location.Key;
-				listItem.addEventListener("click", () => {
-					locationInput.value = location.LocalizedName;
-					autocompleteList.innerHTML = "";
-					autocompleteList.classList.remove("show");
-					// Use the location key for more efficient lookup
-					getWeather(location.Key);
-				});
-				autocompleteList.appendChild(listItem);
-			});
-		} else {
-			autocompleteList.classList.remove("show");
-		}
-	} catch (error) {
-		console.error("Autocomplete hiba:", error);
-		autocompleteList.innerHTML = "";
-	}
-});
-
-// Close autocomplete list when clicking outside
-document.addEventListener("click", (e) => {
-	if (!autocompleteList.contains(e.target) && e.target !== locationInput) {
-		autocompleteList.innerHTML = "";
-		autocompleteList.classList.remove("show");
-	}
-});
