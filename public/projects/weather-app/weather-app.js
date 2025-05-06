@@ -111,7 +111,7 @@ async function getWeather() {
 				throw new Error("Nem sikerült lekérni a helységek listáját.");
 			const autoData = await autoRes.json();
 
-			if (!Array.isArray(autoData) || autoData.length === 0) {
+			if (weatherData.Message === "No places found") {
 				throw new Error("Nem található ilyen város.");
 			}
 
