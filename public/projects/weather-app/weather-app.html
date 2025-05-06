@@ -39,7 +39,7 @@
 
 
                         <div id="weather"
-                                class="weather my-5 container d-flex flex-row justify-content-center  align-items-end gap-4">
+                                class="weather my-5 container d-flex flex-column flex-sm-row justify-content-center align-items-center   align-items-sm-end gap-4">
 
                                 <div class="weatherIconDiv">
                                         <img id="weatherIcon" class="img-fluid" style="width: 16rem;"
@@ -48,8 +48,8 @@
 
 
 
-                                <div
-                                        class="weatherInfoDiv d-flex flex-column justify-content-center align-items-end align-items-sm-start mb-4 gap-1 gap-sm-0">
+                                <div id="weatherInfo"
+                                        class="weatherInfoDiv d-flex flex-column justify-content-center align-items-end align-items-sm-start mb-4 gap-0 gap-sm-0 p-3 p-sm-2">
 
                                         <button id="searchBtn" class="searchBtn"><img
                                                         src="../../../assets/images/weather/search.svg"
@@ -61,7 +61,8 @@
                                 </div>
                         </div>
 
-                        <div id="start-modal" class="modal">
+                        <div id="start-modal" class="modal d-flex flex-column">
+
                                 <div
                                         class="modal-content d-flex flex-row justify-content-center m-0 p-1 gap-1 rounded-5">
 
@@ -74,6 +75,7 @@
                                         </button>
 
                                 </div>
+                                <div id="start-modal-error" class="error-msg"></div>
                         </div>
 
                 </div>

@@ -1,6 +1,6 @@
 "use strict";
 
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 exports.handler = async (event, context) => {
 	const apiKey = process.env.ACCUWEATHER_API_KEY;

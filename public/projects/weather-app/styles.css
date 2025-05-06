@@ -4,7 +4,7 @@
 }
 
 .modal {
-	display: none; /* Alapértelmezetten rejtve */
+	display: none; /* alapértelmezetten rejtve */
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -18,7 +18,7 @@
 }
 
 .modal.show {
-	display: flex; /* Megjeleníti a modált, ha hozzáadjuk a "show" osztályt */
+	display: flex;
 }
 
 .modal-content {

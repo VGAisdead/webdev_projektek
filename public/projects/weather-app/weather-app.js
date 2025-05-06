@@ -3,6 +3,7 @@
 const searchBtn = document.getElementById("searchBtn");
 const inputBtn = document.getElementById("inputBtn");
 const startModal = document.getElementById("start-modal");
+const startModalError = document.getElementById("start-modal-error");
 const locationInput = document.getElementById("locationInput");
 const weatherInfoDiv = document.getElementById("weatherInfo");
 
@@ -13,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Keresés gombok eseménykezelői
 inputBtn.addEventListener("click", () => {
-	startModal.classList.remove("show");
+
 	getWeather();
 });
 
@@ -25,6 +26,9 @@ searchBtn.addEventListener("click", () => {
 const getWeather = () => {
 	const cityName = locationInput.value.trim();
 
+	// hibaüzenet törlése
+	startModalError.textContent = "";
+
 	if (cityName) {
 		fetch(`/.netlify/functions/weather?cityName=${cityName}`)
 			.then((response) => response.json())
@@ -33,21 +37,22 @@ const getWeather = () => {
 			})
 			.catch((error) => {
 				if (weatherInfoDiv) {
-					const errorElement = document.createElement("p");
-					errorElement.textContent =
-						"Hiba történt az időjárás adatok lekérésekor.";
-					errorElement.style.color = "red";
+					const errorElement = document.createElement("h6");
+					errorElement.innerHTML =
+						`Hiba történt<br> az időjárás adatok lekérésekor.`;
+					errorElement.classList.add("text-black", "fs-5", "m-0", "text-end", "text-sm-start");
 					weatherInfoDiv.appendChild(errorElement);
 				}
 				console.error("Hiba:", error);
 			});
 	} else {
-		if (weatherInfoDiv) {
-			const errorElement = document.createElement("p");
-			errorElement.textContent = "Kérlek, add meg a hely nevét.";
-			errorElement.style.color = "red";
-			weatherInfoDiv.appendChild(errorElement);
-		}
+		const noInputMsg = 
+		document.createElement("h6");
+					noInputMsg.innerHTML =
+						`Kérlek, add meg a hely nevét`;
+					noInputMsg.classList.add("fw-light", "mt-2","text-white", "fs-5", "m-0", "text-end", "text-sm-start");
+					startModalError.appendChild(noInputMsg);
+        	startModal.classList.add("show"); // Biztosítjuk, hogy a modal látható legyen
 	}
 };
 
