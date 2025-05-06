@@ -107,29 +107,36 @@ async function getWeather() {
 					city
 				)}`
 			);
-			if (!autoRes.ok)
-				throw new Error("Nem sikerült lekérni a helységek listáját.");
-			const autoData = await autoRes.json();
+			if (!autoRes.ok) {
+				const errorData = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt
 
-			if (weatherData.Message === "No places found") {
-				throw new Error("Nem található ilyen város.");
+				// Ellenőrizzük a konkrét üzenetet
+				if (errorData.Message === "Api Authorization failed") {
+					throw new Error("Hibás vagy hiányzó API kulcs.");
+				} else if (
+					errorData.Message ===
+					"The allowed number of requests has been exceeded."
+				) {
+					throw new Error(
+						"Túl sok API kérés, próbáld újra később..."
+					);
+				} else if (errorData.Message === "Api Authorization failed") {
+					throw new Error("API kulcs probléma");
+				} else {
+					throw new Error(
+						`API hiba: ${errorData.Message || "Ismeretlen hiba"}`
+					);
+				}
 			}
 
 			const locationKey = autoData[0].Key;
+
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?locationKey=${locationKey}`
 			);
 			if (!weatherRes.ok)
 				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
 			weatherData = await weatherRes.json();
-
-			if (
-				weatherData.Message ===
-				"The allowed number of requests has been exceeded."
-			) {
-				throw new Error("Túl sok API kérés, próbáld újra később...");
-				weatherData = await weatherRes.json();
-			}
 
 			if (weatherData.Message === "Api Authorization failed") {
 				throw new Error("API kulcs probléma");
