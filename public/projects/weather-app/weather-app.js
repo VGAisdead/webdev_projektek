@@ -53,18 +53,19 @@ function hideModal() {
 }
 
 // Get weather data - can be called with either city name or locationKey
-const getWeather = (locationKey = null) => {
-	const cityName = locationInput.value.trim();
+const getWeather() => {
+	const city = locationInput.value.trim();
 	startModalError.textContent = "";
 	startModalError.innerHTML = ""; // Clear previous error messages
 
 	// If we don't have a location key and the input is empty
-	if (!locationKey && !cityName) {
+	if (!city) {
 		// Empty input case - error message + modal stays open
 		const noInputMsg = document.createElement("h6");
 		noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
 		noInputMsg.classList.add(
 			"fw-light",
+			"text-white",
 			"mt-2",
 			"text-danger",
 			"fs-5",
@@ -90,15 +91,26 @@ const getWeather = (locationKey = null) => {
 	startModalError.appendChild(loadingMsg);
 
 	// Determine what API endpoint to call based on available info
-	let apiUrl;
-	if (locationKey) {
-		// If we have a location key, use it directly (more efficient)
-		apiUrl = `/.netlify/functions/weather?locationKey=${locationKey}`;
+	let url = "";
+	if (!isNaN(city) && city !== "") {
+	  // Csak szám -> locationKey
+	  url = `/.netlify/functions/weather?locationKey=${city}`;
+	} else if (typeof input === "string" && input !== "") {
+	  // Nem szám -> cityName (autocomplete)
+	  url = `/.netlify/functions/weather?type=autocomplete&cityName=${encodeURIComponent(city)}`;
 	} else {
-		// Otherwise use the city name
-		apiUrl = `/.netlify/functions/weather?cityName=${encodeURIComponent(
-			cityName
-		)}`;
+		const wrongInputMsg = document.createElement("h6");
+		noInputMsg.innerHTML = `Helytelen helységnév formátum.`;
+		noInputMsg.classList.add(
+			"fw-light",
+			"text-white",
+			"mt-2",
+			"text-danger",
+			"fs-5",
+			"m-0",
+			"text-center"
+		);
+		startModalError.appendChild(wrongInputMsg);
 	}
 
 	// Make the API request
