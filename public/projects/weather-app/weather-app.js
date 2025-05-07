@@ -56,7 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
 // Event listeners
 inputBtn.addEventListener("click", () => {
 	getWeather();
-	console.log(locationInput.value);
 });
 
 searchBtn.addEventListener("click", () => {
