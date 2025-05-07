@@ -46,11 +46,12 @@ function hideModal() {
 	locationInput.value = "";
 }
 
-// Get weather data - can be called with either city name or location Key
+// Get weather data - either with city name or location Key
 async function getWeather() {
 	let city = locationInput.value.trim();
 	startModalError.textContent = ""; // Clear previous error messages
 	startModalError.innerHTML = ""; // Clear previous error messages
+	console.log("Keresés:", city);
 
 	// If we don't have a location key and the input is empty
 	if (!city) {
@@ -94,62 +95,55 @@ async function getWeather() {
 				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
 			weatherData = await weatherRes.json();
 		} else {
-			// Ha szöveg, akkor autocomplete + az első találatból a key
-			const autoRes = await fetch(
+			// Ha szöveg, akkor közvetlen keresés a városnév alapján
+			// A backendben már kombináljuk az adatokat
+
+			const weatherRes = await fetch(
 				`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
 			);
 
-			if (!autoRes.ok) {
-				const errorDataAutoRes = await autoRes.json(); // próbáljuk értelmezni a JSON hibaválaszt
+			if (!weatherRes.ok) {
+				try {
+					const errorData = await weatherRes.json();
 
-				// Ellenőrizzük a konkrét üzenetet
-				if (errorDataAutoRes.Message === "Api Authorization failed") {
+					if (errorData.Message === "Api Authorization failed") {
+						throw new Error("Hibás vagy hiányzó API kulcs.");
+					} else if (
+						errorData.Message ===
+						"The allowed number of requests has been exceeded."
+					) {
+						throw new Error(
+							"Túl sok API kérés, próbáld újra később..."
+						);
+					} else if (
+						errorData.error === "Nem található a megadott város"
+					) {
+						throw new Error("Nem található a megadott város.");
+					} else {
+						throw new Error(
+							`API hiba: ${
+								errorData.Message ||
+								errorData.error ||
+								"Ismeretlen hiba"
+							}`
+						);
+					}
+				} catch (jsonError) {
 					throw new Error(
-						"Hibás vagy hiányzó API kulcs (autocomplete search)."
-					);
-				} else if (
-					errorDataAutoRes.Message ===
-					"The allowed number of requests has been exceeded."
-				) {
-					throw new Error(
-						"Túl sok API kérés, próbáld újra később..."
-					);
-				} else {
-					throw new Error(
-						`API hiba: ${
-							errorDataAutoRes.Message || "Ismeretlen hiba"
-						}`
+						"Nem sikerült lekérni az időjárás adatokat."
 					);
 				}
 			}
 
-			const locationsData = await autoRes.json();
-
-			// Ellenőrizzük, hogy van-e találat
-			if (!locationsData || locationsData.length === 0) {
-				throw new Error("Nem található a megadott város.");
-			}
-
-			// Az első találat locationKey-jét használjuk
-			const locationKey = locationsData[0].Key;
-
-			// Most lekérjük az időjárás adatokat a locationKey alapján
-			const weatherRes = await fetch(
-				`/.netlify/functions/weather?q=${locationKey}`
-			);
-
-			if (!weatherRes.ok)
-				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
 			weatherData = await weatherRes.json();
-
-			if (weatherData.Message === "Api Authorization failed") {
-				throw new Error("API kulcs probléma");
-				weatherData = await weatherRes.json();
-			}
+			console.log("Kapott adat:", weatherData);
 		}
 
 		// Megjelenítjük az adatokat
-		displayWeather(weatherData.weather || weatherData); // a .weather egy tömb lehet
+		console.log("Teljes válasz:", weatherData);
+
+		// Már kombináltuk az adatokat a backendben, így egyszerűen használhatjuk
+		displayWeather(weatherData);
 		hideModal();
 	} catch (error) {
 		console.error("Hiba:", error.message);
@@ -229,14 +223,14 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 			11: "../../../assets/images/weather/fog.png", // Fog
 			12: "../../../assets/images/weather/rain.png", // Showers
 			13: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ Showers
-			14: "../../../assets/images/weather/rain.png", // Partly Sunny w/ Showers
+			14: "../../../assets/images/weather/sunny-rain.png", // Partly Sunny w/ Showers
 			15: "../../../assets/images/weather/thunderstorm.png", // T-Storms
 			16: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ T-Storms
 			17: "../../../assets/images/weather/thunderstorm.png", // Partly Sunny w/ T-Storms
 			18: "../../../assets/images/weather/rain.png", // Rain
-			19: "../../../assets/images/weather/snow.png", // Flurries
-			20: "../../../assets/images/weather/snow.png", // Mostly Cloudy w/ Flurries
-			21: "../../../assets/images/weather/snow.png", // Partly Sunny w/ Flurries
+			19: "../../../assets/images/weather/flurries.png", // Flurries
+			20: "../../../assets/images/weather/flurries.png", // Mostly Cloudy w/ Flurries
+			21: "../../../assets/images/weather/flurries.png", // Partly Sunny w/ Flurries
 			22: "../../../assets/images/weather/snow.png", // Snow
 			23: "../../../assets/images/weather/snow.png", // Mostly Cloudy w/ Snow
 			24: "../../../assets/images/weather/ice.png", // Ice
