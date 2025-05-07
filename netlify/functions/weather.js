@@ -29,6 +29,9 @@ exports.handler = async function (event) {
 				q
 			)}&language=hu-hu`;
 
+			console.log("Searching for city:", q);
+			console.log("API URL:", url);
+
 			const response = await fetch(url);
 			const responseStatus = response.status;
 
@@ -118,6 +121,8 @@ exports.handler = async function (event) {
 			// Kérjük le rögtön az időjárást az első találat alapján
 			const locationKey = data[0].Key;
 			const weatherUrl = `https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiKey}&language=hu-hu&details=true`;
+			console.log("Fetching weather for location key:", locationKey);
+			console.log("Weather API URL:", weatherUrl);
 			const weatherRes = await fetch(weatherUrl);
 
 			const weatherStatus = weatherRes.status;
@@ -232,6 +237,9 @@ exports.handler = async function (event) {
 		try {
 			const weatherUrl = `https://dataservice.accuweather.com/currentconditions/v1/${q}?apikey=${apiKey}&language=hu-hu&details=true`;
 
+			console.log("Fetching weather by location key:", q);
+			console.log("Weather API URL:", weatherUrl);
+
 			const weatherRes = await fetch(weatherUrl);
 
 			const weatherStatus = weatherRes.status;
@@ -315,7 +323,27 @@ exports.handler = async function (event) {
 
 			const locationUrl = `https://dataservice.accuweather.com/locations/v1/${q}?apikey=${apiKey}&language=hu-hu`;
 
+			console.log("Fetching location details:", q);
+			console.log("Location API URL:", locationUrl);
+
 			const locationRes = await fetch(locationUrl);
+			const locationStatus = locationRes.status;
+
+			// Capture location response text
+			let locationText;
+			try {
+				locationText = await locationRes.text();
+
+				console.log("Lokáció API válasz státusz:", locationStatus);
+
+				console.log("Lokáció API válasz:", locationText);
+			} catch (textError) {
+				console.error(
+					"Nem sikerült kiolvasni a lokáció válasz szövegét:",
+
+					textError
+				);
+			}
 
 			if (!locationRes.ok) {
 				console.error("Lokáció API hiba - státusz:", locationStatus);

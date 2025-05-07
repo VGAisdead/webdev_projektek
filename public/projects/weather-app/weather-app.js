@@ -77,6 +77,22 @@ function hideModal() {
 	startModalError.innerHTML = "";
 }
 
+// Display error message
+function displayError(message) {
+	startModalError.innerHTML = "";
+	const errorElement = document.createElement("h6");
+	errorElement.innerHTML = message;
+	errorElement.classList.add(
+		"text-white",
+		"fw-light",
+		"mt-2",
+		"fs-5",
+		"m-0",
+		"text-center"
+	);
+	startModalError.appendChild(errorElement);
+}
+
 // Get weather data - either with city name or location Key
 async function getWeather() {
 	let city = locationInput.value.trim();
@@ -87,17 +103,7 @@ async function getWeather() {
 	// If we don't have a location key and the input is empty
 	if (!city) {
 		// Empty input case
-		const noInputMsg = document.createElement("h6");
-		noInputMsg.innerHTML = `Kérlek, add meg a hely nevét.`;
-		noInputMsg.classList.add(
-			"fw-light",
-			"text-white",
-			"mt-2",
-			"fs-5",
-			"m-0",
-			"text-center"
-		);
-		startModalError.appendChild(noInputMsg);
+		displayError("Kérlek, add meg a hely nevét.");
 		return;
 	}
 
@@ -115,139 +121,72 @@ async function getWeather() {
 	startModalError.appendChild(loadingMsg);
 
 	try {
+		// Call the Netlify function with proper error handling
+		const response = await fetch(
+			`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
+		);
+
+		console.log("API response status:", response.status);
+
+		// Get the response as text first for better error handling
+		const responseText = await response.text();
+		console.log("API response text:", responseText);
+
+		// Try to parse as JSON
+
 		let weatherData;
 
-		// Ha szám, akkor location Key alapján kérjük le az időjárást
-		if (!isNaN(city)) {
-			const weatherRes = await fetch(
-				`/.netlify/functions/weather?q=${city}`
-			);
+		try {
+			weatherData = JSON.parse(responseText);
+		} catch (jsonError) {
+			console.error("Failed to parse JSON response:", jsonError);
 
-			// Kérjük le a teljes választ szöveg formában a hibakereséshez
-			const responseJson = await weatherRes.json();
-
-			console.log("API válasz (szöveg):", responseJson.text());
-
-			// Ha nem OK a válasz, próbáljuk feldolgozni a hibaüzenetet
-			if (!weatherRes.ok) {
-				let errorMessage =
-					"Nem sikerült lekérni az időjárás adatokat.<br>";
-
-				try {
-					const errorData = responseJson;
-
-					if (errorData.error) {
-						errorMessage = errorData.error;
-					}
-
-					if (errorData.message) {
-						errorMessage += ": " + errorData.message;
-					}
-
-					if (errorData.details) {
-						console.error("Részletes hiba:", errorData.details);
-					}
-
-					throw new Error(errorMessage);
-				} catch (jsonError) {
-					// Ha nem JSON a válasz, vagy nem sikerült a parse
-
-					throw new Error(
-						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseJson?.error}`
-					);
-				}
-			}
-
-			// Ha OK a válasz, dolgozzuk fel JSON-ként
-
-			try {
-				weatherData = responseJson;
-			} catch (jsonError) {
-				throw new Error(
-					`Nem sikerült feldolgozni a választ: ${responseJson?.error}`
-				);
-			}
-		} else {
-			// Ha szöveg, akkor közvetlen keresés a városnév alapján
-			// A backendben már kombináljuk az adatokat
-
-			const weatherRes = await fetch(
-				`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
-			);
-
-			const responseJson = await weatherRes.json();
-
-			if (!weatherRes.ok) {
-				try {
-					const errorData = responseJson;
-
-					if (errorData.error === "API key is missing") {
-						throw new Error("Hibás vagy hiányzó API kulcs.");
-					} else if (
-						errorData.message === "Api Authorization failed"
-					) {
-						throw new Error("Hibás vagy hiányzó API kulcs.");
-					} else if (
-						errorData.message ===
-						"The allowed number of requests has been exceeded."
-					) {
-						throw new Error(
-							"Túl sok API kérés, próbáld újra később..."
-						);
-					} else if (
-						errorData.error === "Nem található a megadott város"
-					) {
-						throw new Error("Nem található a megadott város.");
-					} else {
-						throw new Error(
-							`API: ${
-								errorData.Message ||
-								errorData.error ||
-								"Ismeretlen hiba"
-							}`
-						);
-					}
-				} catch (jsonError) {
-					throw new Error(
-						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseJson?.error}`
-					);
-				}
-			}
-
-			// Ha OK a válasz, dolgozzuk fel JSON-ként
-			try {
-				weatherData = responseJson;
-
-				console.log("Kapott adat:", weatherData);
-
-				hideModal();
-			} catch (jsonError) {
-				throw new Error(
-					`Nem sikerült feldolgozni a választ: ${responseJson?.error}`
-				);
-			}
+			throw new Error(`Invalid response format: ${responseText}`);
 		}
 
-		// Megjelenítjük az adatokat
-		console.log("Teljes válasz:", weatherData);
+		// Check if the response contains an error
+		if (!response.ok || weatherData.error) {
+			// Extract the error message from the response
+			const errorMessage =
+				weatherData.error || weatherData.message || "Unknown error";
 
-		// Már kombináltuk az adatokat a backendben, így egyszerűen használhatjuk
+			throw new Error(errorMessage);
+		}
+
+		// If we got here, we have valid weather data
+		console.log("Weather data received:", weatherData);
+
+		// Display the weather data and hide the modal
 		displayWeather(weatherData);
+		hideModal();
 	} catch (error) {
-		console.error("Hiba:", error.message);
-		startModalError.innerHTML = "";
-		const errorElement = document.createElement("h6");
-		errorElement.innerHTML = `Hiba történt az időjárásadatok lekérdezése közben:<br>${error.message}`;
-		errorElement.classList.add(
-			"text-white",
-			"fw-light",
-			"mt-2",
-			"text-danger",
-			"fs-5",
-			"m-0",
-			"text-center"
-		);
-		startModalError.appendChild(errorElement);
+		console.error("Error fetching weather data:", error);
+
+		// Display a user-friendly error message
+		let errorMessage =
+			"Hiba történt az időjárásadatok lekérdezése közben:<br>";
+
+		if (
+			error.message.includes("Failed to fetch") ||
+			error.message.includes("NetworkError")
+		) {
+			errorMessage +=
+				"Nem sikerült kapcsolódni a szerverhez. Ellenőrizd az internetkapcsolatot.";
+		} else if (error.message.includes("API key is missing")) {
+			errorMessage += "Az API kulcs hiányzik vagy érvénytelen.";
+		} else if (error.message.includes("Nem található a megadott város")) {
+			errorMessage += "A megadott város nem található.";
+		} else if (
+			error.message.includes(
+				"The allowed number of requests has been exceeded"
+			)
+		) {
+			errorMessage += "Túl sok API kérés, próbáld újra később.";
+		} else {
+			errorMessage += error.message;
+		}
+
+		displayError(errorMessage);
 	}
 }
 
