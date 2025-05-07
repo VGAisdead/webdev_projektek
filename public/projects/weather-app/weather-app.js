@@ -123,9 +123,51 @@ async function getWeather() {
 			const weatherRes = await fetch(
 				`/.netlify/functions/weather?q=${city}`
 			);
-			if (!weatherRes.ok)
-				throw new Error("Nem sikerült lekérni az időjárás adatokat.");
-			weatherData = await weatherRes.json();
+
+			// Kérjük le a teljes választ szöveg formában a hibakereséshez
+			const responseText = await weatherRes.text();
+
+			console.log("API válasz (szöveg):", responseText);
+
+			// Ha nem OK a válasz, próbáljuk feldolgozni a hibaüzenetet
+			if (!weatherRes.ok) {
+				let errorMessage =
+					"Nem sikerült lekérni az időjárás adatokat.<br>";
+
+				try {
+					const errorData = JSON.parse(responseText);
+
+					if (errorData.error) {
+						errorMessage = errorData.error;
+					}
+
+					if (errorData.message) {
+						errorMessage += ": " + errorData.message;
+					}
+
+					if (errorData.details) {
+						console.error("Részletes hiba:", errorData.details);
+					}
+
+					throw new Error(errorMessage);
+				} catch (jsonError) {
+					// Ha nem JSON a válasz, vagy nem sikerült a parse
+
+					throw new Error(
+						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseText}`
+					);
+				}
+			}
+
+			// Ha OK a válasz, dolgozzuk fel JSON-ként
+
+			try {
+				weatherData = JSON.parse(responseText);
+			} catch (jsonError) {
+				throw new Error(
+					`Nem sikerült feldolgozni a választ: ${responseText}`
+				);
+			}
 		} else {
 			// Ha szöveg, akkor közvetlen keresés a városnév alapján
 			// A backendben már kombináljuk az adatokat
@@ -136,12 +178,16 @@ async function getWeather() {
 
 			if (!weatherRes.ok) {
 				try {
-					const errorData = await weatherRes.json();
+					const errorData = JSON.parse(responseText);
 
-					if (errorData.Message === "Api Authorization failed") {
+					if (errorData.error === "API key is missing") {
 						throw new Error("Hibás vagy hiányzó API kulcs.");
 					} else if (
-						errorData.Message ===
+						errorData.message === "Api Authorization failed"
+					) {
+						throw new Error("Hibás vagy hiányzó API kulcs.");
+					} else if (
+						errorData.message ===
 						"The allowed number of requests has been exceeded."
 					) {
 						throw new Error(
@@ -162,14 +208,23 @@ async function getWeather() {
 					}
 				} catch (jsonError) {
 					throw new Error(
-						"Nem sikerült lekérni az időjárás adatokat."
+						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseText}`
 					);
 				}
 			}
 
-			weatherData = await weatherRes.json();
-			console.log("Kapott adat:", weatherData);
-			hideModal();
+			// Ha OK a válasz, dolgozzuk fel JSON-ként
+			try {
+				weatherData = JSON.parse(responseText);
+
+				console.log("Kapott adat:", weatherData);
+
+				hideModal();
+			} catch (jsonError) {
+				throw new Error(
+					`Nem sikerült feldolgozni a választ: ${responseText}`
+				);
+			}
 		}
 
 		// Megjelenítjük az adatokat
