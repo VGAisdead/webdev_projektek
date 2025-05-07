@@ -191,7 +191,7 @@ async function getWeather() {
 				.toString()
 				.includes("The allowed number of requests has been exceeded")
 		) {
-			errorMessage += `(${weatherData.status}) Túl sok API kérés, próbáld újra később <br><p class="fs-6 fw-light">& give me money</p>`;
+			errorMessage += `(${weatherData.status}) Túl sok API kérés, próbáld újra később <br><p class="fs-6 fw-lighter">& give me money</p>`;
 		} else {
 			errorMessage += error;
 		}
