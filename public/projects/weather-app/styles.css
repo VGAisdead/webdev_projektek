@@ -91,6 +91,7 @@ input {
 	box-sizing: border-box; /* Opera/IE 8+ */
 	width: 100%;
 	padding-left: 16px;
+	padding-top: 2px;
 }
 
 .inputform,
