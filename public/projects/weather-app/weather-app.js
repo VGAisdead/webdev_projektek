@@ -12,6 +12,7 @@ const stateElement = document.getElementById("state");
 const countryElement = document.getElementById("country");
 const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
+let weatherData;
 
 // Show modal when page loads
 document.addEventListener("DOMContentLoaded", () => {
@@ -108,15 +109,17 @@ async function getWeather() {
 	}
 
 	// Add loading message
-	const loadingMsg = document.createElement("h6");
-	loadingMsg.innerHTML = `Keresés...`;
+	const loadingMsg = document.createElement("div");
+	loadingMsg.innerHTML = `<span class="visually-hidden">Keresés...</span>`;
+	loadingMsg.role = "status";
 	loadingMsg.classList.add(
 		"fw-light",
 		"text-white",
 		"mt-2",
 		"fs-5",
 		"m-0",
-		"text-center"
+		"text-center",
+		"spinner-border"
 	);
 	startModalError.appendChild(loadingMsg);
 
@@ -133,8 +136,6 @@ async function getWeather() {
 		console.log("API response text:", responseText);
 
 		// Try to parse as JSON
-
-		let weatherData;
 
 		try {
 			weatherData = JSON.parse(responseText);
