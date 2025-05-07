@@ -172,7 +172,7 @@ async function getWeather() {
 		hideModal();
 	} catch (error) {
 		console.log("Weather data not received:", weatherData);
-		console.log("Error:", error);
+		console.log(error);
 
 		// Display a user-friendly error message
 		let errorMessage = "Hiba történt az adatok lekérdezése közben:<br>";
@@ -184,6 +184,8 @@ async function getWeather() {
 			errorMessage += `(${weatherData.status}) Nem sikerült kapcsolódni a szerverhez <br>Ellenőrizd az internetkapcsolatot`;
 		} else if (error.toString().includes("API key is missing")) {
 			errorMessage += `(${weatherData.status}) Az API kulcs hiányzik vagy érvénytelen`;
+		} else if (error.toString().includes("Api Authorization failed")) {
+			errorMessage += `(${weatherData.status}) API hitelesítés sikertelen`;
 		} else if (weatherData.error === "Nem található a megadott város") {
 			errorMessage += `(404) Nem található a megadott város`;
 		} else if (
