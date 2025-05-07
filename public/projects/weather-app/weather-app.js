@@ -153,7 +153,7 @@ async function getWeather() {
 						throw new Error("Nem található a megadott város.");
 					} else {
 						throw new Error(
-							`API hiba: ${
+							`API: ${
 								errorData.Message ||
 								errorData.error ||
 								"Ismeretlen hiba"
@@ -181,7 +181,7 @@ async function getWeather() {
 		console.error("Hiba:", error.message);
 		startModalError.innerHTML = "";
 		const errorElement = document.createElement("h6");
-		errorElement.innerHTML = `Hiba történt:<br>${error.message}`;
+		errorElement.innerHTML = `Hiba történt az időjárásadatok lekérdezése közben:<br>${error.message}`;
 		errorElement.classList.add(
 			"text-white",
 			"fw-light",
@@ -213,8 +213,11 @@ function displayWeather(weatherData) {
 	}
 
 	// Update state
-	if (weatherData.AdministrativeArea && weatherData.Country.LocalizedName) {
-		stateElement.textContent = weatherData.Country.LocalizedName;
+	if (
+		weatherData.AdministrativeArea &&
+		weatherData.AdministrativeArea.LocalizedName
+	) {
+		stateElement.textContent = weatherData.AdministrativeArea.LocalizedName;
 	} else {
 		stateElement.textContent = "N/A";
 	}
