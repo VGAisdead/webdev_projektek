@@ -351,3 +351,21 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 
 	weatherIcon.src = iconPath;
 }
+
+// Bootstrap tooltip-ek inicializálása
+const tooltipTriggerList = document.querySelectorAll(
+	'[data-bs-toggle="tooltip"]'
+);
+const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => {
+	const tooltip = new bootstrap.Tooltip(tooltipTriggerEl);
+	tooltipTriggerEl.addEventListener("shown.bs.tooltip", () => {
+		// Az összes látható tooltip nyílának módosítása
+		const arrows = document.querySelectorAll(
+			".tooltip.bs-tooltip-bottom .tooltip-arrow"
+		);
+		arrows.forEach((arrow) => {
+			arrow.style.borderBottomColor = "#333"; // Inline felülírás
+		});
+	});
+	return tooltip;
+});

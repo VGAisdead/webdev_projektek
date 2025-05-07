@@ -124,3 +124,19 @@ input:focus {
 	transition: background-color 2s ease-out, color 2s ease-in;
 	background-color: rgb(255, 255, 255);
 }
+
+.tooltip {
+	--bs-tooltip-bg: #000000;
+	opacity: 1;
+}
+
+.tooltip-inner {
+	color: #fff;
+	font-family: Rubik, sans-serif;
+	font-size: 14px;
+	padding: 8px 12px;
+}
+
+.tooltip.show {
+	opacity: 1;
+}
