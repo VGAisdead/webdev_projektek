@@ -118,7 +118,7 @@ async function getWeather() {
 	loadingMsg.innerHTML = `<span class="visually-hidden">Keresés...</span>`;
 	loadingMsg.role = "status";
 	loadingMsg.classList.add(
-		"fw-light",
+		"fw-lighter",
 		"text-white",
 		"mt-2",
 		"fs-5",
@@ -301,7 +301,7 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 			7: "../../../assets/images/weather/cloudy.png", // Cloudy
 			8: "../../../assets/images/weather/cloudy.png", // Dreary
 			11: "../../../assets/images/weather/fog.png", // Fog
-			12: "../../../assets/images/weather/rain.png", // Showers
+			12: "../../../assets/images/weather/weak-rain.png", // Showers
 			13: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ Showers
 			14: "../../../assets/images/weather/sunny-rain.png", // Partly Sunny w/ Showers
 			15: "../../../assets/images/weather/thunderstorm.png", // T-Storms
