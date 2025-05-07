@@ -49,44 +49,65 @@
 
 
                                 <div id="weatherInfo"
-                                        class="weatherInfoDiv d-flex flex-column justify-content-center align-items-end align-items-sm-start mb-4 gap-0 p-3 p-sm-2">
+                                        class="weatherInfoDiv d-flex flex-column justify-content-center align-items-end align-items-sm-start gap-1 p-sm-2">
 
                                         <button id="searchBtn" class="searchBtn"><img
                                                         src="../../../assets/images/weather/search.svg"
                                                         alt="Search Button" style="width: 1.2rem;"> </button>
-                                        <p id="weatherText" class="text-black fs-5 m-0" data-bs-toggle="tooltip"
+                                        <p id="weatherText" class="text-black fs-6 m-0" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-custom-class="tooltip"
-                                                data-bs-title="Időjárási körülmények.">--</p>
-                                        <h2 id="temp" class="text-black fs-1 m-0">-- °C</h2>
-                                        <h3 id="city" class="text-black fs-2 m-0">--</h3>
-                                        <h4 id="postcode" class="text-black fs-3 m-0">--</h4>
-                                        <h5 id="state" class="text-black fs-4 m-0">--</h5>
-                                        <h6 id="country" class="text-black fs-5 m-0">--</h6>
-                                        <span id="countryCode"
-                                                class="badge text-bg-dark text-white fw-normal m-0">--</span>
+                                                data-bs-title="Időjárási körülmények">--</p>
+                                        <h2 id="temp" class="text-black fs-1 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Hőmérséklet">-- °C</h2>
+                                        <h3 id="city" class="text-black fs-2 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Város/község">--</h3>
+                                        <h4 id="state" class="text-black fs-4 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Megye">--</h4>
+                                        <h5 id="country" class="text-black fs-5 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Ország">--</h5>
+                                        <h6 id="countryCode" class="badge text-bg-dark text-white fw-normal m-0"
+                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                data-bs-custom-class="tooltip" data-bs-title="Országkód">--</h6>
                                 </div>
                         </div>
 
                         <div id="weatherInfo2"
-                                class="weatherInfoDiv d-flex flex-row justify-content-center align-items-center gap-4 gap-2 p-3 p-sm-2 my-5">
+                                class="weatherInfoDiv d-flex flex-row justify-content-center align-items-center gap-2 p-0 p-sm-2 my-5">
 
-                                <img id="weatherIcon" class="img-fluid" style="width: 8rem;"
-                                        src="../../../assets/images/weather/wind.png" alt="Wind Icon">
+                                <img id="windIcon" class="img-fluid" style="width: 8rem;"
+                                        src="../../../assets/images/weather/wind.png" alt="Wind Icon"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="tooltip"
+                                        data-bs-title="Szél erőssége, iránya">
 
 
                                 <div
                                         class="wind d-flex flex-column justify-content-center align-items-end align-items-sm-start gap-0 p-3 p-sm-2">
-                                        <h4 id="wind" class="text-black fs-6 m-0">--</h4>
-                                        <h4 id="windDirection" class="text-black fs-6 m-0">--</h4>
+                                        <h4 id="wind" class="text-black fs-6 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Szélsebesség">--</h4>
+                                        <h4 id="windDirection" class="text-black fs-6 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Szélirány">--</h4>
                                 </div>
 
-                                <img id="weatherIcon" class="img-fluid" style="width: 6rem;"
-                                        src="../../../assets/images/weather/humidity.png" alt="Humidity Icon">
+                                <img id="humidityIcon" class="img-fluid" style="width: 6rem;"
+                                        src="../../../assets/images/weather/humidity.png" alt="Humidity Icon"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" data-bs-custom-class="tooltip"
+                                        data-bs-title="Relatív páratartalom">
 
                                 <div
                                         class="humidity d-flex flex-column justify-content-center align-items-end align-items-sm-start gap-0 p-3 p-sm-2">
-                                        <h4 id="indoorHumidity" class="text-black fs-6 m-0">--</h4>
-                                        <h4 id="outdoorHumidity" class="text-black fs-6 m-0">--</h4>
+                                        <h4 id="indoorHumidity" class="text-black fs-6 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Rel. beltéri páratartalom">--</h4>
+
+                                        <h4 id="outdoorHumidity" class="text-black fs-6 m-0" data-bs-toggle="tooltip"
+                                                data-bs-placement="top" data-bs-custom-class="tooltip"
+                                                data-bs-title="Rel. kültéri páratartalom">--</h4>
 
                                 </div>
 

@@ -12,7 +12,6 @@ const cityElement = document.getElementById("city");
 const stateElement = document.getElementById("state");
 const countryElement = document.getElementById("country");
 const countryCodeElement = document.getElementById("countryCode");
-const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
 const windElement = document.getElementById("wind");
 const windDirectionElement = document.getElementById("windDirection");
@@ -155,11 +154,11 @@ async function getWeather() {
 		if (!response.ok || weatherData.error) {
 			// Extract the error reason from the response
 			const errorReason =
-				weatherData.details.Message ||
-				weatherData.details.Code ||
-				weatherData.error ||
-				weatherData.message ||
-				weatherData.errorType ||
+				weatherData?.details?.Message ||
+				weatherData?.details?.Code ||
+				weatherData?.error ||
+				weatherData?.message ||
+				weatherData?.errorType ||
 				"Unknown error";
 
 			throw new Error(errorReason);
@@ -174,7 +173,6 @@ async function getWeather() {
 	} catch (error) {
 		console.log("Weather data not received:", weatherData);
 		console.log("Error:", error);
-		console.log("Error toString():", error.toString());
 
 		// Display a user-friendly error message
 		let errorMessage = "Hiba történt az adatok lekérdezése közben:<br>";
@@ -183,13 +181,11 @@ async function getWeather() {
 			error.toString().includes("Failed to fetch") ||
 			error.toString().includes("NetworkError")
 		) {
-			errorMessage += `(${weatherData.status}) Nem sikerült kapcsolódni a szerverhez. <br>Ellenőrizd az internetkapcsolatot.`;
+			errorMessage += `(${weatherData.status}) Nem sikerült kapcsolódni a szerverhez <br>Ellenőrizd az internetkapcsolatot`;
 		} else if (error.toString().includes("API key is missing")) {
-			errorMessage += `(${weatherData.status}) Az API kulcs hiányzik vagy érvénytelen.`;
-		} else if (
-			error.toString().includes("Nem található a megadott város")
-		) {
-			errorMessage += `(${weatherData.status})A megadott város nem található.`;
+			errorMessage += `(${weatherData.status}) Az API kulcs hiányzik vagy érvénytelen`;
+		} else if (weatherData.error === "Nem található a megadott város") {
+			errorMessage += `(404) Nem található a megadott város`;
 		} else if (
 			error
 				.toString()
@@ -266,13 +262,6 @@ function displayWeather(weatherData) {
 		outdoorHumidityElement.textContent = "N/A";
 	}
 
-	// Update postal code if available
-	if (weatherData.PrimaryPostalCode) {
-		postcodeElement.textContent = weatherData.PrimaryPostalCode;
-	} else {
-		postcodeElement.textContent = ""; // Hide if not available
-	}
-
 	// Update country code if available
 	if (weatherData.Country && weatherData.Country.ID) {
 		countryCodeElement.textContent = weatherData.Country.ID;
@@ -285,7 +274,7 @@ function displayWeather(weatherData) {
 		weatherText.textContent = weatherData.WeatherText;
 		console.log("Weather condition:", weatherData.WeatherText);
 	} else {
-		postcodeElement.textContent = ""; // Hide if not available
+		weatherText.textContent = ""; // Hide if not available
 	}
 
 	// Update weather icon based on weather condition if available
