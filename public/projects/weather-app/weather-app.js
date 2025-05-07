@@ -149,7 +149,10 @@ async function getWeather() {
 		if (!response.ok || weatherData.error) {
 			// Extract the error message from the response
 			const errorMessage =
-				weatherData.error || weatherData.message || "Unknown error";
+				weatherData.error ||
+				weatherData.message ||
+				weatherData.errorType ||
+				"Unknown error";
 
 			throw new Error(errorMessage);
 		}

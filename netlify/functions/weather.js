@@ -158,9 +158,7 @@ exports.handler = async function (event) {
 
 						body: JSON.stringify({
 							error: "Időjárás API hiba",
-
 							details: errorJson,
-
 							status: weatherStatus,
 						}),
 					};
@@ -169,14 +167,10 @@ exports.handler = async function (event) {
 
 					return {
 						statusCode: weatherStatus,
-
 						headers,
-
 						body: JSON.stringify({
 							error: "Időjárás API hiba",
-
 							message: weatherText,
-
 							status: weatherStatus,
 						}),
 					};
