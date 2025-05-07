@@ -1,5 +1,3 @@
-import fetch from "node-fetch";
-
 export const handler = async function (event) {
 	const headers = {
 		"Access-Control-Allow-Origin": "*",
