@@ -6,12 +6,18 @@ const startModal = document.getElementById("start-modal");
 const startModalError = document.getElementById("start-modal-error");
 const locationInput = document.getElementById("locationInput");
 const weatherInfoDiv = document.getElementById("weatherInfo");
+const weatherText = document.getElementById("weatherText");
 const tempElement = document.getElementById("temp");
 const cityElement = document.getElementById("city");
 const stateElement = document.getElementById("state");
 const countryElement = document.getElementById("country");
+const countryCodeElement = document.getElementById("countryCode");
 const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
+const windElement = document.getElementById("wind");
+const windDirectionElement = document.getElementById("windDirection");
+const indoorHumidityElement = document.getElementById("indoorHumidity");
+const outdoorHumidityElement = document.getElementById("outdoorHumidity");
 let weatherData;
 
 // Show modal when page loads
@@ -228,6 +234,34 @@ function displayWeather(weatherData) {
 		countryElement.textContent = "N/A";
 	}
 
+	// Update wind
+	if (weatherData.WindGust && weatherData.WindGust.Speed) {
+		windElement.textContent = `${weatherData.WindGust.Speed.Metric.Value} km/h`;
+	} else {
+		windElement.textContent = "N/A";
+	}
+
+	// Update wind direction
+	if (weatherData.Wind && weatherData.Wind.Direction.Localized) {
+		windDirectionElement.textContent = `${weatherData.Wind.Direction.Localized}`;
+	} else {
+		windDirectionElement.textContent = "N/A";
+	}
+
+	// Update indoor humidity
+	if (weatherData.IndoorRelativeHumidity) {
+		indoorHumidityElement.textContent = `Beltér: ${weatherData.IndoorRelativeHumidity}%`;
+	} else {
+		indoorHumidityElement.textContent = "N/A";
+	}
+
+	// Update outdoor humidity
+	if (weatherData.RelativeHumidity) {
+		outdoorHumidityElement.textContent = `Kültér: ${weatherData.RelativeHumidity}%`;
+	} else {
+		outdoorHumidityElement.textContent = "N/A";
+	}
+
 	// Update postal code if available
 	if (weatherData.PrimaryPostalCode) {
 		postcodeElement.textContent = weatherData.PrimaryPostalCode;
@@ -235,9 +269,19 @@ function displayWeather(weatherData) {
 		postcodeElement.textContent = ""; // Hide if not available
 	}
 
+	// Update country code if available
+	if (weatherData.Country && weatherData.Country.ID) {
+		countryCodeElement.textContent = weatherData.Country.ID;
+	} else {
+		countryCodeElement.textContent = ""; // Hide if not available
+	}
+
 	// Add weather text description if available
 	if (weatherData.WeatherText) {
+		weatherText.textContent = weatherData.WeatherText;
 		console.log("Weather condition:", weatherData.WeatherText);
+	} else {
+		postcodeElement.textContent = ""; // Hide if not available
 	}
 
 	// Update weather icon based on weather condition if available
