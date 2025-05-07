@@ -125,9 +125,9 @@ async function getWeather() {
 			);
 
 			// Kérjük le a teljes választ szöveg formában a hibakereséshez
-			const responseText = await weatherRes.text();
+			const responseJson = await weatherRes.json();
 
-			console.log("API válasz (szöveg):", responseText);
+			console.log("API válasz (szöveg):", responseJson.text());
 
 			// Ha nem OK a válasz, próbáljuk feldolgozni a hibaüzenetet
 			if (!weatherRes.ok) {
@@ -135,7 +135,7 @@ async function getWeather() {
 					"Nem sikerült lekérni az időjárás adatokat.<br>";
 
 				try {
-					const errorData = JSON.parse(responseText);
+					const errorData = responseJson;
 
 					if (errorData.error) {
 						errorMessage = errorData.error;
@@ -154,7 +154,7 @@ async function getWeather() {
 					// Ha nem JSON a válasz, vagy nem sikerült a parse
 
 					throw new Error(
-						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseText}`
+						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseJson?.error}`
 					);
 				}
 			}
@@ -162,10 +162,10 @@ async function getWeather() {
 			// Ha OK a válasz, dolgozzuk fel JSON-ként
 
 			try {
-				weatherData = JSON.parse(responseText);
+				weatherData = responseJson;
 			} catch (jsonError) {
 				throw new Error(
-					`Nem sikerült feldolgozni a választ: ${responseText}`
+					`Nem sikerült feldolgozni a választ: ${responseJson?.error}`
 				);
 			}
 		} else {
@@ -176,9 +176,11 @@ async function getWeather() {
 				`/.netlify/functions/weather?q=${encodeURIComponent(city)}`
 			);
 
+			const responseJson = await weatherRes.json();
+
 			if (!weatherRes.ok) {
 				try {
-					const errorData = JSON.parse(responseText);
+					const errorData = responseJson;
 
 					if (errorData.error === "API key is missing") {
 						throw new Error("Hibás vagy hiányzó API kulcs.");
@@ -208,21 +210,21 @@ async function getWeather() {
 					}
 				} catch (jsonError) {
 					throw new Error(
-						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseText}`
+						`Nem sikerült lekérni az időjárás adatokat. <br>Válasz: ${responseJson?.error}`
 					);
 				}
 			}
 
 			// Ha OK a válasz, dolgozzuk fel JSON-ként
 			try {
-				weatherData = JSON.parse(responseText);
+				weatherData = responseJson;
 
 				console.log("Kapott adat:", weatherData);
 
 				hideModal();
 			} catch (jsonError) {
 				throw new Error(
-					`Nem sikerült feldolgozni a választ: ${responseText}`
+					`Nem sikerült feldolgozni a választ: ${responseJson?.error}`
 				);
 			}
 		}
