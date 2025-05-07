@@ -153,14 +153,16 @@ async function getWeather() {
 
 		// Check if the response contains an error
 		if (!response.ok || weatherData.error) {
-			// Extract the error message from the response
-			const errorMessage =
+			// Extract the error reason from the response
+			const errorReason =
+				weatherData.details.Message ||
+				weatherData.details.Code ||
 				weatherData.error ||
 				weatherData.message ||
 				weatherData.errorType ||
 				"Unknown error";
 
-			throw new Error(errorMessage);
+			throw new Error(errorReason);
 		}
 
 		// If we got here, we have valid weather data
@@ -170,30 +172,32 @@ async function getWeather() {
 		displayWeather(weatherData);
 		hideModal();
 	} catch (error) {
-		console.error("Error fetching weather data:", error);
+		console.log("Weather data not received:", weatherData);
+		console.log("Error:", error);
+		console.log("Error toString():", error.toString());
 
 		// Display a user-friendly error message
-		let errorMessage =
-			"Hiba történt az időjárásadatok lekérdezése közben:<br>";
+		let errorMessage = "Hiba történt az adatok lekérdezése közben:<br>";
 
 		if (
-			error.message.includes("Failed to fetch") ||
-			error.message.includes("NetworkError")
+			error.toString().includes("Failed to fetch") ||
+			error.toString().includes("NetworkError")
 		) {
-			errorMessage +=
-				"Nem sikerült kapcsolódni a szerverhez. Ellenőrizd az internetkapcsolatot.";
-		} else if (error.message.includes("API key is missing")) {
-			errorMessage += "Az API kulcs hiányzik vagy érvénytelen.";
-		} else if (error.message.includes("Nem található a megadott város")) {
-			errorMessage += "A megadott város nem található.";
+			errorMessage += `(${weatherData.status}) Nem sikerült kapcsolódni a szerverhez. <br>Ellenőrizd az internetkapcsolatot.`;
+		} else if (error.toString().includes("API key is missing")) {
+			errorMessage += `(${weatherData.status}) Az API kulcs hiányzik vagy érvénytelen.`;
 		} else if (
-			error.message.includes(
-				"The allowed number of requests has been exceeded"
-			)
+			error.toString().includes("Nem található a megadott város")
 		) {
-			errorMessage += "Túl sok API kérés, próbáld újra később.";
+			errorMessage += `(${weatherData.status})A megadott város nem található.`;
+		} else if (
+			error
+				.toString()
+				.includes("The allowed number of requests has been exceeded")
+		) {
+			errorMessage += `(${weatherData.status}) Túl sok API kérés, próbáld újra később <br><p class="fs-6">& give me money</p>`;
 		} else {
-			errorMessage += error.message;
+			errorMessage += error;
 		}
 
 		displayError(errorMessage);
