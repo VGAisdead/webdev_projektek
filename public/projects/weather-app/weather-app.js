@@ -20,6 +20,34 @@ document.addEventListener("DOMContentLoaded", () => {
 	locationInput.addEventListener("keydown", (e) => {
 		if (e.key === "Enter") {
 			getWeather();
+		} else if (e.key === "Escape") {
+			// Ha van már megjelenített adat, akkor bezárjuk a modált
+
+			if (tempElement.textContent !== "-- °C") {
+				hideModal();
+			}
+		}
+	});
+
+	// Close modal when clicking outside of modal content
+
+	startModal.addEventListener("click", (e) => {
+		// Ha a kattintás a modal-content-en kívülre történt és van már megjelenített adat
+
+		if (e.target === startModal && tempElement.textContent !== "-- °C") {
+			hideModal();
+		}
+	});
+
+	// Add event listener for Escape key on document level
+
+	document.addEventListener("keydown", (e) => {
+		if (
+			e.key === "Escape" &&
+			startModal.classList.contains("show") &&
+			tempElement.textContent !== "-- °C"
+		) {
+			hideModal();
 		}
 	});
 });
@@ -44,6 +72,9 @@ function hideModal() {
 	startModal.classList.remove("show");
 	// Clear the input field when the modal is hidden
 	locationInput.value = "";
+	// Clear msg
+	startModalError.textContent = "";
+	startModalError.innerHTML = "";
 }
 
 // Get weather data - either with city name or location Key
@@ -137,6 +168,7 @@ async function getWeather() {
 
 			weatherData = await weatherRes.json();
 			console.log("Kapott adat:", weatherData);
+			hideModal();
 		}
 
 		// Megjelenítjük az adatokat
@@ -144,7 +176,6 @@ async function getWeather() {
 
 		// Már kombináltuk az adatokat a backendben, így egyszerűen használhatjuk
 		displayWeather(weatherData);
-		hideModal();
 	} catch (error) {
 		console.error("Hiba:", error.message);
 		startModalError.innerHTML = "";
@@ -225,7 +256,7 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 			13: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ Showers
 			14: "../../../assets/images/weather/sunny-rain.png", // Partly Sunny w/ Showers
 			15: "../../../assets/images/weather/thunderstorm.png", // T-Storms
-			16: "../../../assets/images/weather/rain.png", // Mostly Cloudy w/ T-Storms
+			16: "../../../assets/images/weather/thunderstorm.png", // Mostly Cloudy w/ T-Storms
 			17: "../../../assets/images/weather/thunderstorm.png", // Partly Sunny w/ T-Storms
 			18: "../../../assets/images/weather/rain.png", // Rain
 			19: "../../../assets/images/weather/flurries.png", // Flurries
@@ -236,22 +267,22 @@ function updateWeatherIcon(iconCode, isDayTime = true) {
 			24: "../../../assets/images/weather/ice.png", // Ice
 			25: "../../../assets/images/weather/ice.png", // Sleet
 			26: "../../../assets/images/weather/ice.png", // Freezing Rain
-			29: "../../../assets/images/weather/rain.png", // Rain and Snow
-			30: "../../../assets/images/weather/sunny.png", // Hot
-			31: "../../../assets/images/weather/cloudy.png", // Cold
-			32: "../../../assets/images/weather/wind.png", // Windy
+			29: "../../../assets/images/weather/rain-and-snow.png", // Rain and Snow
+			30: "../../../assets/images/weather/hot.png", // Hot
+			31: "../../../assets/images/weather/cold.png", // Cold
+			32: "../../../assets/images/weather/windy.png", // Windy
 			33: "../../../assets/images/weather/night-clear.png", // Clear (night)
-			34: "../../../assets/images/weather/night-partly-cloudy.png", // Mostly Clear (night)
-			35: "../../../assets/images/weather/night-partly-cloudy.png", // Partly Cloudy (night)
-			36: "../../../assets/images/weather/night-partly-cloudy.png", // Intermittent Clouds (night)
+			34: "../../../assets/images/weather/night-cloudy.png", // Mostly Clear (night)
+			35: "../../../assets/images/weather/night-cloudy.png", // Partly Cloudy (night)
+			36: "../../../assets/images/weather/night-cloudy.png", // Intermittent Clouds (night)
 			37: "../../../assets/images/weather/night-fog.png", // Hazy (night)
 			38: "../../../assets/images/weather/night-cloudy.png", // Mostly Cloudy (night)
 			39: "../../../assets/images/weather/night-rain.png", // Partly Cloudy w/ Showers (night)
 			40: "../../../assets/images/weather/night-rain.png", // Mostly Cloudy w/ Showers (night)
 			41: "../../../assets/images/weather/night-thunderstorm.png", // Partly Cloudy w/ T-Storms (night)
-			42: "../../../assets/images/weather/night-snow.png", // Mostly Cloudy w/ T-Storms (night)
-			43: "../../../assets/images/weather/night-snow.png", // Mostly Cloudy w/ Flurries (night)
-			44: "../../../assets/images/weather/night-ice.png", // Mostly Cloudy w/ Snow (night)
+			42: "../../../assets/images/weather/night-thunderstorm.png", // Mostly Cloudy w/ T-Storms (night)
+			43: "../../../assets/images/weather/night-flurries.png", // Mostly Cloudy w/ Flurries (night)
+			44: "../../../assets/images/weather/night-snow.png", // Mostly Cloudy w/ Snow (night)
 		};
 
 		if (iconMap[iconCode]) {
