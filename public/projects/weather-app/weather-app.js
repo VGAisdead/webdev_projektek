@@ -8,6 +8,7 @@ const locationInput = document.getElementById("locationInput");
 const weatherInfoDiv = document.getElementById("weatherInfo");
 const tempElement = document.getElementById("temp");
 const cityElement = document.getElementById("city");
+const stateElement = document.getElementById("state");
 const countryElement = document.getElementById("country");
 const postcodeElement = document.getElementById("postcode");
 const weatherIcon = document.getElementById("weatherIcon");
@@ -209,6 +210,13 @@ function displayWeather(weatherData) {
 		cityElement.textContent = weatherData.LocalizedName;
 	} else {
 		cityElement.textContent = "N/A";
+	}
+
+	// Update state
+	if (weatherData.AdministrativeArea && weatherData.Country.LocalizedName) {
+		stateElement.textContent = weatherData.Country.LocalizedName;
+	} else {
+		stateElement.textContent = "N/A";
 	}
 
 	// Update country
