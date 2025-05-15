@@ -239,13 +239,13 @@ a:hover .code {
 /*------------------------------------------*/
 
 .animated-link:hover {
-	animation: fadeUp 0.5s ease-in-out;
+	animation: fadeUp 0.5s ease-out;
 }
 
 @keyframes fadeUp {
 	from {
 		opacity: 0;
-		transform: translateY(10px);
+		transform: translateY(20px);
 	}
 	to {
 		opacity: 1;
