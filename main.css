@@ -236,6 +236,8 @@ a:hover .code {
 	}
 }
 
+/*------------------------------------------*/
+
 .animated-link:hover {
 	animation: fadeUp 0.5s ease-in-out;
 }
