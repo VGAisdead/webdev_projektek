@@ -238,17 +238,12 @@ a:hover .code {
 
 /*------------------------------------------*/
 
-.animated-link:hover {
-	animation: fadeUp 0.5s ease-out;
+.animated-link {
+	display: inline-block;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@keyframes fadeUp {
-	from {
-		opacity: 0;
-		transform: translateY(20px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+.animated-link:hover {
+	transform: translateY(-5px); /* Felemelkedés */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Árnyék hozzáadása a lebegés érzéséhez */
 }
