@@ -43,7 +43,7 @@ function showResults(userOption) {
 
 	if (playerScore === 3) {
 		winnerMsgElement.innerText = `Sikeresen legyőztél egy nem túlképzett algoritmust,
-    azonban ezzel bizonyítottad rátermettséged a digitális világháború korában.
+    azonban ezzel bizonyítottad rátermettséged a digitális hadviselés korában.
     Most talán nem mentetted meg a világot, de egyszer talán eljön annak is az ideje...
     Gratulálok!`;
 		resetGameBtn.style.display = "block";
